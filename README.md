@@ -1,2 +1,10 @@
-# flaskforbeginners
-Flask for beginners.
+# Flask入门与实践
+
+使用Python和Flask 1.0开发你的第一个Web程序。
+
+## 特点
+
+* 基于Flask 1.0
+* 使用一个在线记事本程序作为示例
+* 完整的开发流程
+* 只提供入门所需的最简信息
