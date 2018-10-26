@@ -1,13 +1,13 @@
-# Flask入门与实践
+# Flask入门教程
 
-使用Python和Flask 1.0开发你的第一个Web程序。
+使用Python和Flask开发你的第一个Web程序。
 
 ## 写作进度
 
 本书共9章，预计11月底完成，发布1.0版本。
 
 1. 搭建开发环境 90%
-2. Hello, Flask! 50%
+2. Hello, Flask! 90%
 3. 模板和静态文件 0%
 4. 表单0%
 5. 数据库 0%
@@ -20,16 +20,24 @@
 
 * 基于Flask 1.0
 * 使用一个在线记事本程序作为示例
-* 完整的开发流程
+* 复原完整的开发流程，提供每一个命令和代码块
+* 读者需要从头到尾，自己跟着敲出每一个代码，通过模仿来学习Flask
 * 只提供入门所需的最少信息
 * 术语优化
 
+## 付费支持
+
+这个教程是免费的，你可以任意阅读或下载。如果这本书帮到了你，你想回馈我付出的时间和精力，也可以选择为它付费。这会让我有更多的时间和动力写作新的Flask文章和教程，谢谢！
+
+* 价格：￥10
+
+* [点击查看支付宝或微信二维码](http://greyli.com/support)
+
 ## 进阶内容
 
-因为本书只提供了入门Flask的最少信息，所以你需要搭配其他书或资料进行学习：
+这个教程只提供了入门Flask的最少信息，所以你需要搭配其他书或资料进行学习，比如：
 
 * [Flask官方文档](http://flask.pocoo.org/docs)
-* [Flask官方教程](http://flask.pocoo.org/docs/1.0/tutorial/)
 * [《Flask Web开发实战》](http://helloflask.com/book)
 
 ## 贡献
@@ -38,6 +46,6 @@
 
 ## 版权
 
-@ 2018 [李辉（Grey Li）](http://greyli.com) / [HelloFlask.com](http://helloflask.com)
+@ 2018 [李辉](http://greyli.com)（Grey Li） / [HelloFlask.com](http://helloflask.com)
 
 本书采用[署名-非商业性使用-禁止演绎 3.0 (CC BY-NC-ND 3.0)](https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh)协议授权，禁止商用、演绎后分发或无署名转载。
