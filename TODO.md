@@ -11,5 +11,6 @@
 
 ## 写作与发布
 
-* 发布到 GitHub Pages，jekyll + disqus
+* 发布到 GitHub Pages (jekyll + disqus)
 * 改用 Sphinx 写作？
+* 在 README 和主页加入示例程序截图
