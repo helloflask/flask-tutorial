@@ -223,7 +223,7 @@ $ git push
 
 为了保持简单，我们统一在章节最后一次提交所有改动。在现实世界里，通常会根据需要分为多个 commit；同样的，这里使用 `-m` 参数给出简单的提交信息。在现实世界里，你可能需要撰写更完整的提交信息。
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[016302a](https://github.com/greyli/watchlist/commit/016302aad3fdfeb42ea603cf0473e094fd7d2c37)
 
 ## 进阶提示
 
@@ -233,4 +233,5 @@ $ git push
 * 名字以 `.` 开头的文件默认会被隐藏，执行 `ls` 命令时会看不到它们，这时你可以使用 `ls -f` 命令来列出所有文件。
 * 了解 HTTP 基本知识将会有助于你了解 Flask 的工作原理。
 * 阅读文章[《互联网是如何工作的》](https://tutorial.djangogirls.org/zh/how_the_internet_works/)。
-* 如果你是《Flask Web 开发实战》的读者，这部分的进阶内容可以在第 1 章《初识 Flask》和第 2 章《HTTP 和 Flask》找到。
+* 阅读文章[《从HTTP请求 - 响应循环探索Flask的基本工作方式》](https://zhuanlan.zhihu.com/p/42231394)。
+* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，这部分的进阶内容可以在第 1 章《初识 Flask》和第 2 章《HTTP 和 Flask》找到。
