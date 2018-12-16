@@ -186,7 +186,7 @@ def user_page(name):
 ```python
 from flask import url_for
 
-...
+# ...
 
 @app.route('/')
 def hello():
