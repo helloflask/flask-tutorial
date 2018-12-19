@@ -147,7 +147,7 @@ footer {
 <img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">
 ```
 
-最终的页面如下图所示：
+最终的页面如下图所示（你可以自由修改 CSS 定义，我已经尽力了）：
 
 ![4-1](images/4-1.png)
 
