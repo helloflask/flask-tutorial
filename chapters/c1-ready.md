@@ -68,7 +68,7 @@ Git 默认会追踪项目文件夹（或者说代码仓库）里所有文件的�
 $ nano .gitignore
 ```
 
-在 nano 编辑界面写入常见的可忽略文件规则
+在 nano 编辑界面写入常见的可忽略文件规则：
 
 ```python
 *.pyc
@@ -130,7 +130,9 @@ $ git remote add origin git@github.com:greyli/watchlist.git  # 注意更换地�
 * 指定不同的依赖版本
 * 方便记录和管理依赖
 
-我们将使用 Pipenv 来创建和管理虚拟环境、以及在虚拟环境中安装和卸载依赖包。它集成了 pip 和 virtualenv，可以替代这两个工具的惯常用法。另外，它还集成了 Pipfile，它是新的依赖记录标准，使用 Pipfile 文件记录项目依赖，使用 Pipfile.lock 文件记录固定版本的依赖列表。这两个文件替代了手动通过 requirements.txt 文件记录依赖的方式。我们首先使用 pip 安装 Pipenv，Windows 系统使用下面的命令：
+我们将使用 Pipenv 来创建和管理虚拟环境、以及在虚拟环境中安装和卸载依赖包。它集成了 pip 和 virtualenv，可以替代这两个工具的惯常用法。另外，它还集成了 Pipfile，它是新的依赖记录标准，使用 Pipfile 文件记录项目依赖，使用 Pipfile.lock 文件记录固定版本的依赖列表。这两个文件替代了手动通过 requirements.txt 文件记录依赖的方式。
+
+我们首先使用 pip 安装 Pipenv，Windows 系统使用下面的命令：
 
 ```bash
 $ pip install pipenv
@@ -169,6 +171,8 @@ $ pipenv install flask
 ```
 
 这会把 Flask 以及相关的一些依赖包安装到对应的虚拟环境，同时 Pipenv 会自动更新依赖文件中。
+
+**提示** 如果你没有使用虚拟环境，记得将 Flask 更新到最新版本（`pip install -U flask`）。
 
 ## 本章小结
 

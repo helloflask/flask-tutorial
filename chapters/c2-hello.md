@@ -8,6 +8,8 @@ Flask 是典型的微框架，作为 Web 框架来说，它仅保留了核心功
 
 这一章的主要任务就是为我们的程序编写一个简单的主页。主页的 URL 一般就是根地址，即 `/`。当用户访问根地址的时候，我们需要返回一行欢迎文字。这个任务只需要下面几行代码就可以完成：
 
+*app.py：程序主页*
+
 ```python
 from flask import Flask
 app = Flask(__name__)
@@ -223,7 +225,7 @@ $ git push
 
 为了保持简单，我们统一在章节最后一次提交所有改动。在现实世界里，通常会根据需要分为多个 commit；同样的，这里使用 `-m` 参数给出简单的提交信息。在现实世界里，你可能需要撰写更完整的提交信息。
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[016302a](https://github.com/greyli/watchlist/commit/016302aad3fdfeb42ea603cf0473e094fd7d2c37)
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[016302a](https://github.com/greyli/watchlist/commit/016302aad3fdfeb42ea603cf0473e094fd7d2c37)。
 
 ## 进阶提示
 
