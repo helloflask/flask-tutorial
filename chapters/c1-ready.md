@@ -156,11 +156,13 @@ $ pipenv install
 * 如果当前目录有 Pipfile 文件或 requirements.txt 文件，那么从中读取依赖列表并安装。
 * 如果没有发现 Pipfile 文件，就自动创建。
 
-创建虚拟环境后，我们可以使用 `pipenv shell` 命令来激活虚拟环境，如下所示：
+创建虚拟环境后，我们可以使用 `pipenv shell` 命令来激活虚拟环境，如下所示（执行 `exit` 可以退出虚拟环境）：
 
 ```bash
 $ pipenv shell
 ```
+
+**注意** 除了 `pipenv install` 命令和 Git 相关命令外，除非特别说明，本书后续的所有命令均需要在激活虚拟环境后执行。如果你不想每次都激活虚拟环境，可以在命令前添加 `pipenv run` 前缀，比如 `pipenv run pip list` 即表示在虚拟环境内执行 `pip list` 命令。
 
 ## 安装 Flask
 
