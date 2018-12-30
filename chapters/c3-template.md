@@ -116,7 +116,7 @@ def index():
 
 现在访问 http://localhost:5000/ 看到的程序主页如下图所示：
 
-![3-1](images/3-1.png)
+![主页电影列表](images/3-1.png)
 
 ## 本章小结
 
