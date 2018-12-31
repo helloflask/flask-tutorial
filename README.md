@@ -4,16 +4,6 @@
 
 这是一本 Flask 入门教程，提供了入门 Flask 所需的最少信息，你可以跟随本书自己动手开发一个简单的 Watchlist 程序。访问 http://helloflask.com/tutorial 了解更多信息。
 
-## 写作进度
-
-* 目录：90%
-* 前言：95%
-* 第 1 章：90%
-* 第 2 章：90%
-* 第 3 章：90%
-* 第 4 章：90%
-* 第 5 章：90%
-
 ## 内容讨论
 
 这本书会以连载的形式发布在[知乎专栏 Hello, Flask!](https://zhuanlan.zhihu.com/flask)上，未来也会考虑发布到 GitBook 或是 GitHub Pages 以便和源码仓库同步更新。如果你有任何疑问和想法，欢迎通过下面的方式提出：
@@ -34,6 +24,7 @@
 - 本书主页：http://helloflask.com/tutorial
 - 本书源码仓库：https://github.com/greyli/flask-tutorial
 - 本书示例程序源码：https://github.com/greyli/watchlist
+- 示例程序在线 Demo：http://watchlist.helloflask.com
 - HelloFlask：http://helloflask.com
 - 知乎专栏 Hello, Flask!：https://zhuanlan.zhihu.com/flask
 - 《Flask Web 开发实战》：http://helloflask.com/book

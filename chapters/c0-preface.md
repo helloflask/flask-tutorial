@@ -4,6 +4,8 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 通过这本书，你会学到 Flask 开发的基础知识，并开发出一个简单的 Watchlist（观影清单）程序。在功能上，这个程序可以看做是简化版的 IMDB Watchlist / 豆瓣豆单：你可以添加、删除和修改你收藏的电影信息。
 
+你可以访问 http://watchlist.helloflask.com/ 查看示例程序的在线 Demo。
+
 ## 本书特点
 
 - 基于 Flask 最新的 1.0.2 版本
@@ -38,6 +40,7 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 * 本书主页：http://helloflask.com/tutorial
 * 本书源码仓库：https://github.com/greyli/flask-tutorial
 * 本书示例程序源码：https://github.com/greyli/watchlist
+* 示例程序在线 Demo：http://watchlist.helloflask.com
 * HelloFlask：http://helloflask.com
 * 知乎专栏 Hello, Flask!：https://zhuanlan.zhihu.com/flask
 * 《Flask Web 开发实战》：http://helloflask.com/book
