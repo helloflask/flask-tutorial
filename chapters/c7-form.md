@@ -26,11 +26,41 @@
 <form method="post">
     Name <input type="text" name="name" autocomplete="off" required>
     Year <input type="text" name="year" autocomplete="off" required>
-    <input type="submit" name="submit" value="Add">
+    <input class="btn" type="submit" name="submit" value="Add">
 </form>
 ```
 
 在这两个输入字段中，`autocomplete` 属性设为 `off` 来关闭自动完成（按下输入框不显示历史输入记录）；另外还添加了 `required` 标志属性，如果用户没有输入内容就按下了提交按钮，浏览器会显示错误提示。
+
+两个输入框和提交按钮相关的 CSS 定义如下：
+
+```css
+input[type=text] {
+    border: 1px solid #ddd;
+}
+
+input[name=year] {
+    width: 50px;
+}
+
+.btn {
+    font-size: 12px;
+    padding: 3px 5px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 1px solid #555555;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+}
+```
 
 接下来，我们需要考虑如何获取提交的表单数据。
 
@@ -52,8 +82,10 @@
 
 两种方法的请求有不同的处理逻辑：对于 GET 请求，返回渲染后的页面；对于 POST 请求，则获取提交的表单数据并保存。为了在函数内加以区分，我们添加一个 if 判断：
 
+*app.py：创建电影条目*
+
 ```python
-from flask import request, flash
+from flask import request, url_for, redirect, flash
 
 # ...
 
@@ -64,7 +96,7 @@ def index():
         title = request.form.get('title')  # 传入表单对应输入字段的 name 值
         year = request.form.get('year')
         # 验证数据
-        if not title or not year:
+        if not title or not year or len(year) > 4 or len(title) > 60:
             flash('Invalid input.')  # 显示错误提示
             return redirect(url_for('index'))  # 重定向回主页
         # 保存表单数据到数据库
@@ -83,7 +115,7 @@ def index():
 
 ### 请求对象
 
-Flask 会在请求触发后把请求信息放到 request 对象里，你可以从 `flask` 包导入它：
+Flask 会在请求触发后把请求信息放到 `request` 对象里，你可以从 `flask` 包导入它：
 
 ```python
 from flask import request
@@ -126,10 +158,11 @@ app.config['SECRET_KEY'] = 'dev'  # 等同于 app.secret_key = 'dev'
 下面在基模板（base.html）里使用 `get_flashed_messages()` 函数获取提示消息并显示：
 
 ```python
-<!-- 插入到导航栏下方 -->
+<!-- 插入到页面标题上方 -->
 {% for message in get_flashed_messages() %}
 	<div class="alert">{{ message }}</div>
 {% endfor %}
+<h2>...</h2>
 ```
 
 为提示消息增加样式：
@@ -137,19 +170,20 @@ app.config['SECRET_KEY'] = 'dev'  # 等同于 app.secret_key = 'dev'
 ```css
 .alert {
     position: relative;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 7px;
+    margin: 7px 0;
     border: 1px solid transparent;
     color: #004085;
     background-color: #cce5ff;
     border-color: #b8daff;
+    border-radius: 5px;
 }
 ```
 
 通过在 `<input>` 元素内添加 `required` 实现的验证（客户端验证）并不完全可靠，我们还要在服务器端追加验证。
 
 ```python
-if not title or not year:
+if not title or not year or len(year) > 4 or len(title) > 60:
     flash('Invalid input.')  # 显示错误提示
     return redirect(url_for('index'))
 # ...
@@ -158,12 +192,20 @@ flash('Item Created.')  # 显示成功创建的提示
 
 **提示** 在真实世界里，你会进行更严苛的验证，比如对数据去除首尾的空格。一般情况下，我们会使用第三方库（比如 [WTForms](https://github.com/wtforms/wtforms)）来实现表单数据的验证工作。
 
-如果输入的某个数据为空，就显示错误提示“Invalid input.”，否则显示成功创建的提示“Item Created.”。
+如果输入的某个数据为空，或是年份大于 4 位数，就显示错误提示“Invalid input.”，否则显示成功创建的提示“Item Created.”。
+
+下面是添加了表单后的主页：
+
+【】
 
 ### 重定向响应
 
+重定向响应是一类特殊的响应，它会返回一个新的 URL，浏览器在接受到这样的响应后会向这个新 URL 再次发起一个新的请求。Flask 提供了 `redirect()` 函数来快捷生成这种响应，传入重定向的目标 URL 作为参数，比如 `redirect('http://helloflask.com')`。
+
+如果输入的数据有错，我们就把页面重定向回主页；如果输入数据成功，我们同样也把页面重定向到主页，这里的主页 URL 均使用 `url_for()` 函数生成：
+
 ```python
-if not title or not year:
+if not title or not year or len(year) > 4 or len(title) > 60:
     flash('Invalid title or year!')  
     return redirect(url_for('index'))  # 重定向回主页
 flash('Movie Created!')
@@ -172,30 +214,129 @@ return redirect(url_for('index'))  # 重定向回主页
 
 ## 编辑条目
 
-编辑按钮
+编辑的实现和创建类似，我们先创建一个用于显示编辑页面和处理编辑表单提交请求的视图函数：
 
-编辑页面
+*app.py：编辑电影条目*
 
-编辑视图
+```python
+@app.route('/movie/edit/<int:movie_id>', methods=['GET', 'POST'])
+def edit(movie_id):
+    movie = Movie.query.get_or_404(movie_id)
+
+    if request.method == 'POST':  # 处理编辑表单的提交请求
+        title = request.form['title']
+        year = request.form['year']
+        
+        if not title or not year or len(year) > 4 or len(title) > 60:
+            flash('Invalid input.')
+            return redirect(url_for('edit', movie_id=movie_id))  # 重定向回对应的编辑页面
+        
+        movie.title = title  # 更新标题
+        movie.year = year  # 更新年份
+        db.session.commit()  # 提交数据库会话
+        flash('Item Updated.')
+        return redirect(url_for('index'))  # 重定向回主页
+    
+    movie = Movie.query.get_or_404(movie_id)
+    return render_template('edit.html', movie=movie)  # 传入被编辑的电影记录
+```
+
+这里视图函数 URL 规则有一些特殊，如果你还有印象的话，我们在第 2 章的《实验时间》部分曾介绍过这种 URL 规则，其中的 `<int:movie_id>` 是一个 URL 变量，而 `int` 则是将变量转换成整型的 URL 变量转换器。注意在生成这个视图的 URL 时需要传入对应的变量，比如 `url_for('edit', movie_id=2)` 会生成 /movie/edit/2。
+
+`movie_id` 变量是电影条目记录在数据库中的主键值，这个值用来在视图函数里查询到对应的电影记录。查询的时候，我们使用了 `get_or_404()` 方法，这个方法和 `get()` 有一些不同：返回对应主键的记录，如果没有找到，会返回 404 错误响应。
+
+为什么要获取电影条目？既然我们要编辑某个条目，那么必然要在输入框里提前把对应的数据放进去，以便于进行更新。在模板里插入要编辑的电影条目数据，通过表单 `<input>` 元素的 `value` 属性将它们提前写入输入框里。
+
+完整的编辑页面模板如下所示：
+
+*templates/edit.html：编辑页面模板*
+
+```jinja2
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Edit item</h3>
+<form method="post">
+    Name <input type="text" name="title" autocomplete="off" required value="{{ movie.title }}">
+    Year <input type="text" name="year" autocomplete="off" required value="{{ movie.year }}">
+    <input class="btn" type="submit" name="submit" value="Update">
+</form>
+{% endblock %}
+```
+
+最后在每一个电影条目右侧都添加一个指向编辑该电影条目的编辑页面链接：
+
+*index.html：编辑电影条目的链接*
+
+```html
+<span class="float-right">
+    <a class="btn" href="{{ url_for('edit', movie_id=movie.id) }}">Edit</a>
+    ...
+</span>
+```
+
+点击某一个电影条目的编辑按钮打开的编辑页面如下图所示：
+
+【】
 
 ## 删除条目
 
-删除表单
+删除条目的实现更加简单，因为不涉及数据的传递。首先创建一个视图函数执行删除操作，如下所示：
 
-删除视图
+*app.py：删除电影条目*
 
-删除按钮
+```python
+@app.route('/movie/delete/<int:movie_id>', methods=['POST'])  # 限定只接受 POST 请求
+def delete(movie_id):
+    movie = Movie.query.get_or_404(movie_id)  # 获取电影记录
+    db.session.delete(movie)  # 删除对应的记录
+    db.session.commit()  # 提交数据库会话
+    flash('Item Deleted.')
+    return redirect(url_for('index'))  # 重定向回主页
+```
+
+为了安全的考虑，我们一般会使用 POST 请求来提交删除请求，也就是使用表单来实现（而不是创建删除链接）：
+
+*index.html：删除电影条目表单*
+
+```html
+<span class="float-right">
+    ...
+    <form class="inline-form" method="post" action="{{ url_for('.delete', movie_id=movie.id) }}">
+        <input class="btn" type="submit" name="delete" value="Delete" onclick="return confirm('Are you sure?')">
+    </form>
+    ...
+</span>
+```
+
+为了让表单中的删除按钮和旁边的编辑链接排成一行，我们为表单元素添加了下面的 CSS 定义：
+
+```css
+.inline-form {
+    display: inline;
+}
+```
+
+最终的程序主页如下图所示：
+
+【删掉一个条目】
 
 ## 本章小结
 
+本章我们完成了程序的主要功能：添加、编辑和删除电影条目。结束前，让我们提交代码：
 
+```bash
+$ git add .
+$ git commit -m "Create, edit and delete item by form"
+$ git push
+```
+
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[待补全]()。在后续的 commit【link】 里，我们为另外两个常见的 HTTP 错误：400（Bad Request） 和 500（Internal Server Error） 错误编写了错误处理函数和对应的模板，前者会在请求格式不符要求时返回，后者则会在程序内部出现任意错误时返回（关闭调试模式的情况下）。
 
 ## 进阶提示
 
-- 本书主页 & 相关资源索引：[http://helloflask.com/tutorial](http://helloflask.com/tutorial)
-- 使用 Flask-WTF
-- CSRF 保护问题，使用 CSRFProtect
-- 编写宏渲染表单字段
-- 使用 Bootstrap-Flask 渲染表单
-- 删除按钮的行内 js 代码改为事件监听函数，写到单独的 js 文件里。
-- [《Flask Web 开发实战》](http://helloflask.com/book/)第 4 章
+- 从上面的代码可以看出，手动验证表单数据既麻烦又不可靠。对于复杂的程序，我们一般会使用集成了 WTForms 的扩展 [Flask-WTF](https://github.com/lepture/flask-wtf) 来简化表单处理。通过编写表单类，定义表单字段和验证器，它可以自动生成表单对应的 HTML 代码，并在表单提交时验证表单数据，返回对应的错误消息。更重要的，它还内置了 CSRF（跨站请求伪造） 保护功能。
+- CSRF 是一种常见的攻击手段。以我们的删除表单为例，某恶意网站的页面中内嵌了一段代码，访问时会自动发送一个删除某个电影条目的 POST 请求到我们的程序。如果我们访问了这个恶意网站，就会导致电影条目被删除，因为我们的程序没法分辨请求发自哪里。解决方法通常是在表单里添加一个包含随机字符串的隐藏字段，在提交时通过对比这个字段的值来判断是否是用户自己发送的请求。在我们的程序中没有实现 CSRF 保护。
+- 使用 Flask-WTF 时，表单类在模板中的渲染代码基本相同，你可以编写宏来渲染表单字段。如果你使用 Bootstap，那么扩展 [Bootstrap-Flask](https://github.com/greyli/bootstrap-flask) 内置了多个表单相关的宏。
+- 你可以把删除按钮的行内 JavaScript  代码改为事件监听函数，写到单独的 JavaScript 文件里。
+- [《Flask Web 开发实战》](http://helloflask.com/book/)第 4 章介绍了表单处理的各个方面，包括表单类的编写和渲染、错误消息显示、自定义错误消息语言、文件和多文件上传、富文本编辑器等等。
