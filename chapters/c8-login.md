@@ -1,27 +1,27 @@
 # 第 8 章：用户认证
 
-目前为止，虽然程序的功能大部分已经实现，但还有一个非常重要的部分，缺少认证保护。页面上的编辑和删除按钮是公开的，所有人都可以看到。假如我们现在把程序部署到网络上，任何人都可以执行编辑和删除条目的操作，这显然是不行的。
+目前为止，虽然程序的功能大部分已经实现，但还缺少一个非常重要的部分——用户认证保护。页面上的编辑和删除按钮是公开的，所有人都可以看到。假如我们现在把程序部署到网络上，那么任何人都可以执行编辑和删除条目的操作，这显然是不合理的。
 
-这一章我们会为程序添加用户认证功能，这会把用户分成两类，一类是管理员，通过用户名和密码登入程序；另一个是访客，只能浏览页面。所有数据操作和页面都只对管理员开放。在此之前，我们先来看看密码应该如何安全存储。
+这一章我们会为程序添加用户认证功能，这会把用户分成两类，一类是管理员，通过用户名和密码登入程序，可以执行数据相关的操作；另一个是访客，只能浏览页面。在此之前，我们先来看看密码应该如何安全的存储到数据库中。
 
 ## 安全存储密码
 
-安全存储密码，就是。把密码明文存储在数据库中是极其危险的，因为你的服务器可能会收到工具，数据库被窃取，这样攻击者就直接拿到了用户的账号和密码。更保险的方式是为每个密码通过计算生成独一无二的密码散列值，这样即使攻击者拿到了散列值，也几乎无法逆向获取到密码。
+把密码明文存储在数据库中是极其危险的，假如攻击者窃取了你的数据库，那么用户的账号和密码就会被直接泄露。更保险的方式是对每个密码进行计算生成独一无二的密码散列值，这样即使攻击者拿到了散列值，也几乎无法逆向获取到密码。
 
-Flask 的依赖 Werkzeug 内置了用于生成和验证密码散列值的函数，`werkzeug.security.generate_password_hash()` 用来为给定的密码生成密码散列值，`werkzeug.security.check_password_hash()` 用来检查给定的散列值和密码是否对应。使用示例如下所示：
+Flask 的依赖 Werkzeug 内置了用于生成和验证密码散列值的函数，`werkzeug.security.generate_password_hash()` 用来为给定的密码生成密码散列值，而 `werkzeug.security.check_password_hash()` 则用来检查给定的散列值和密码是否对应。使用示例如下所示：
 
 ```python
 >>> from werkzeug.security import generate_password_hash, check_password_hash
->>> pw_hash = generate_password_hash('dog')
->>> pw_hash
+>>> pw_hash = generate_password_hash('dog')  # 为密码 dog 生成密码散列值
+>>> pw_hash  # 查看密码散列值
 'pbkdf2:sha256:50000$mm9UPTRI$ee68ebc71434a4405a28d34ae3f170757fb424663dc0ca15198cb881edc0978f'
->>> check_password_hash(pw_hash, 'dog')
+>>> check_password_hash(pw_hash, 'dog')  # 检查散列值是否对应密码 dog
 True
->>> check_password_hash(pw_hash, 'cat')
+>>> check_password_hash(pw_hash, 'cat')  # 检查散列值是否对应密码 cat
 False
 ```
 
-我们在存储用户信息的 `User` 模型类添加 `username` 字段和 `password_hash` 字段，分别用来存储登录所需的用户名的密码散列值，同时添加两个方法来实现设置密码和验证密码的功能：
+我们在存储用户信息的 `User` 模型类添加 `username` 字段和 `password_hash` 字段，分别用来存储登录所需的用户名和密码散列值，同时添加两个方法来实现设置密码和验证密码的功能：
 
 ```python
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -50,6 +50,8 @@ $ flask initdb --drop
 因为程序只允许一个人使用，没有必要编写一个注册页面。我们可以编写一个命令来创建管理员账户，下面是实现这个功能的 `admin()` 函数：
 
 ```python
+import click
+
 @app.cli.command()
 @click.option('--username', prompt=True, help='The username used to login.')
 @click.option('--password', prompt=True, hide_input=True, confirmation_prompt=True, help='The password used to login.')
@@ -61,21 +63,26 @@ def admin(username, password):
     if user is not None:
         click.echo('Updating user...')
         user.username = username
-        user.set_password(password)
+        user.set_password(password)  # 设置密码
     else:
         click.echo('Creating user...')
         user = User(username=username, name='Admin')
-        user.set_password(password)
+        user.set_password(password)  # 设置密码
         db.session.add(user)
 
-    db.session.commit()
+    db.session.commit()  # 提交数据库会话
     click.echo('Done.')
 ```
 
-如果已存在，则更新相关信息
+使用 `click.option()` 装饰器设置的两个选项分别用来接受输入用户名和密码。执行 `flask admin` 命令，输入用户名和密码后，即可创建管理员账户。如果执行这个命令时账户已存在，则更新相关信息：
 
 ```bash
 $ flask admin
+Username: greyli
+Password: 123  # hide_input=True 会让密码输入隐藏
+Repeat for confirmation: 123  # confirmation_prompt=True 会要求二次确认输入
+Updating user...
+Done.
 ```
 
 ## 使用 Flask-Login 实现用户认证
@@ -102,9 +109,9 @@ def load_user(user_id):  # 创建用户加载回调函数，接受用户 ID 作�
     return user  # 返回用户对象
 ```
 
-Flask-Login 提供了一个 `current_user` 变量，注册这个函数的目的是，当程序运行后，如果用户已登录，这个变量的值会是用户记录。
+Flask-Login 提供了一个 `current_user` 变量，注册这个函数的目的是，当程序运行后，如果用户已登录， `current_user` 变量的值会是当前用户的用户模型类记录。
 
-另外一个步骤是让存储用户的 User 模型继承 Flask-Login 提供的 `UserMixin` 类。
+另一个步骤是让存储用户的 User 模型类继承 Flask-Login 提供的 `UserMixin` 类：
 
 ```python
 from flask_login import UserMixin
@@ -113,11 +120,11 @@ class User(db.Model, UserMixin):
     # ...
 ```
 
-继承这个类会让 `User` 类拥有几个用于判断认证状态的属性和方法，其中最常用的就是 `is_authenticated` 属性：如果当前用户已经认证，那么 `current_user.is_authenticated` 会返回 `True`， 否则返回 `False`。这让认证保护变得非常简单。
+继承这个类会让 `User` 类拥有几个用于判断认证状态的属性和方法，其中最常用的是 `is_authenticated` 属性：如果当前用户已经登录，那么 `current_user.is_authenticated` 会返回 `True`， 否则返回 `False`。有了  `current_user` 变量和这几个验证方法和属性，我们可以很轻松的判断当前用户的认证状态。
 
 ## 登录
 
-登录用户使用 Flask-Login 提供的 `login_user()` 函数实现，传入用户对象作为参数。下面是用于显示页面和处理登录表单提交请求的视图函数：
+登录用户使用 Flask-Login 提供的 `login_user()` 函数实现，需要传入用户模型类对象作为参数。下面是用于显示登录页面和处理登录表单提交请求的视图函数：
 
 *app.py：用户登录* 
 
@@ -174,7 +181,7 @@ def login():
 和登录相对，登出操作则需要调用 `logout_user()` 函数，使用下面的视图函数实现：
 
 ```python
-from flask_login imoprt login_required, logout_user
+from flask_login import login_required, logout_user
 
 # ...
 
@@ -186,9 +193,11 @@ def logout():
     return redirect(url_for('index'))  # 重定向回首页
 ```
 
+实现了登录和登出后，我们先来看看认证保护，最后再把对应这两个视图函数的登录/登出链接放到导航栏上。
+
 ## 认证保护
 
-在 Web 程序中，有些页面或 URL 不允许未登录用户访问，而页面上有些内容则需要对未登陆的用户隐藏，这就是认证保护的目的。
+在 Web 程序中，有些页面或 URL 不允许未登录的用户访问，而页面上有些内容则需要对未登陆的用户隐藏，这就是认证保护。
 
 ### 视图保护
 
@@ -200,7 +209,7 @@ def logout():
 * 执行删除操作
 * 执行添加新条目操作
 
-对于不允许未登录访问的视图，只需要为视图函数附加一个 `login_required` 装饰器就可以完成视图保护。以删除条目视图为例：
+对于不允许未登录用户访问的视图，只需要为视图函数附加一个 `login_required` 装饰器就可以将未登录用户拒之门外。以删除条目视图为例：
 
 ```python
 @app.route('/movie/delete/<int:movie_id>', methods=['POST'])
@@ -213,13 +222,13 @@ def delete(movie_id):
     return redirect(url_for('index'))
 ```
 
-添加了这个装饰器后，如果未登录的用户访问对应的 URL，Flask-Login 会把用户重定向到登录页面，并显示一个提示。为了让这个重定向操作正确执行，我们还需要把 `login_manager.login_view` 的值设为我们程序的登录视图端点（函数名）：
+添加了这个装饰器后，如果未登录的用户访问对应的 URL，Flask-Login 会把用户重定向到登录页面，并显示一个错误提示。为了让这个重定向操作正确执行，我们还需要把 `login_manager.login_view` 的值设为我们程序的登录视图端点（函数名）：
 
 ```python
 login_manager.login_view = 'login'
 ```
 
-**提示** 如果你需要的话，可以通过设置 `login_manager.login_message` 来自定义提示消息。
+**提示** 如果你需要的话，可以通过设置 `login_manager.login_message` 来自定义错误提示消息。
 
 编辑视图同样需要附加这个装饰器：
 
@@ -230,7 +239,7 @@ def edit(movie_id):
     # ...
 ```
 
-创建新条目的操作稍微有些不同，因为对应的视图同时处理显示页面的 GET 请求和创建新条目的 POST 请求，我们仅需要禁止未登录用户创建新条目，因此不能使用 `login_required`，而是在函数内部进行过滤：
+创建新条目的操作稍微有些不同，因为对应的视图同时处理显示页面的 GET 请求和创建新条目的 POST 请求，我们仅需要禁止未登录用户创建新条目，因此不能使用 `login_required`，而是在函数内部的 POST 请求处理代码前进行过滤：
 
 ```python
 from flask_login import login_required, current_user
@@ -251,6 +260,8 @@ def index():
 
 ```python
 from flask_login import login_required, current_user
+
+# ...
 
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required
@@ -292,7 +303,7 @@ def settings():
 
 ### 模板内容保护
 
-另外一种是页面模板内容的保护，比如，不能对未登录用户显示下列内容：
+认证保护的另一形式是页面模板内容的保护。比如，不能对未登录用户显示下列内容：
 
 - 创建新条目表单
 - 编辑按钮
@@ -301,6 +312,7 @@ def settings():
 这几个元素的定义都在首页模板（index.html）中，以创建新条目表单为例，我们在表单外部添加一个 `if` 判断：
 
 ```jinja2
+<!-- 在模板中可以直接使用 current_user 变量 -->
 {% if current_user.is_authenticated %}
 <form method="post">
     Name <input type="text" name="title" autocomplete="off" required>
@@ -310,7 +322,7 @@ def settings():
 {% endif %}
 ```
 
-这样处理后，在模板渲染时，会根据当前用户的登录状态来进行判断。如果用户没有登录，就不会渲染表单。类似的还有编辑和删除按钮：
+在模板渲染时，会先判断当前用户的登录状态（`current_user.is_authenticated`）。如果用户没有登录（`current_user.is_authenticated` 返回 `False`），就不会渲染表单部分的 HTML 代码，即上面代码块中 `{% if ... %}` 和  `{% endif %}` 之间的代码。类似的还有编辑和删除按钮：
 
 ```jinja2
 {% if current_user.is_authenticated %}
@@ -321,7 +333,7 @@ def settings():
 {% endif %}
 ```
 
-有些地方则需要根据登录状态分别显示不同的内容，比如基模板（base.html）中的导航栏上的按钮。如果用户已经登录，就显示设置和登出链接，否则显示登录链接：
+有些地方则需要根据登录状态分别显示不同的内容，比如基模板（base.html）中的导航栏。如果用户已经登录，就显示设置和登出链接，否则显示登录链接：
 
 ```jinja2
 {% if current_user.is_authenticated %}
@@ -332,13 +344,19 @@ def settings():
 {% endif %}
 ```
 
-已登录用户看到的主页如下图所示：
+现在的程序中，未登录用户看到的主页如下所示：
+
+
+
+在登录页面，输入用户名和密码登入：
+
+
+
+登录后看到的主页如下所示：
 
 【】
 
-未登录用户看到的主页如下所示：
 
-【】
 
 ## 本章小结
 
@@ -350,7 +368,7 @@ $ git commit -m "User authentication with Flask-Login"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[待补全]()。
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[3944088](https://github.com/greyli/watchlist/commit/39440888a593b9db496cb6cd5d60043e770a9b5f)。
 
 ## 进阶提示
 
