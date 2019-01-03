@@ -28,7 +28,7 @@
 ```html
 <p>{{ movies|length }} Titles</p>
 <form method="post">
-    Name <input type="text" name="name" autocomplete="off" required>
+    Name <input type="text" name="title" autocomplete="off" required>
     Year <input type="text" name="year" autocomplete="off" required>
     <input class="btn" type="submit" name="submit" value="Add">
 </form>
