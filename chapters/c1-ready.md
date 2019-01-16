@@ -172,7 +172,7 @@ $ pipenv shell
 $ pipenv install flask
 ```
 
-这会把 Flask 以及相关的一些依赖包安装到对应的虚拟环境，同时 Pipenv 会自动更新依赖文件中。
+这会把 Flask 以及相关的一些依赖包安装到对应的虚拟环境，同时 Pipenv 会自动更新依赖文件。
 
 **提示** 如果你没有使用虚拟环境，记得将 Flask 更新到最新版本（`pip install -U flask`）。
 
