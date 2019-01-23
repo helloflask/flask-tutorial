@@ -65,6 +65,8 @@ else:  # 否则使用四个斜线
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = prefix + os.path.join(app.root_path, 'data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # 关闭对模型修改的监控
+# 在扩展类实例化前加载配置
+db = SQLAlchemy(app)
 ```
 
 如果你固定在某一个操作系统上进行开发，部署时也使用相同的操作系统，那么可以不用这么做，直接根据你的需要写出前缀即可。
@@ -339,7 +341,7 @@ $ git push
 ## 进阶提示
 
 * 在生产环境，你可以更换更合适的 DBMS，因为 SQLAlchemy 支持多种 SQL 数据库引擎，通常只需要改动非常少的代码。
-* 我们的程序只有一个用户，所以没有将 User 表和 Movie 表建立关联。访问 Flask-SQLAlchemy 文档的”[声明模型](http://flask-sqlalchemy.pocoo.org/2.3/models/#one-to-many-relationships)“章节可以看到相关内容 
+* 我们的程序只有一个用户，所以没有将 User 表和 Movie 表建立关联。访问 Flask-SQLAlchemy 文档的”[声明模型](http://flask-sqlalchemy.pocoo.org/2.3/models/#one-to-many-relationships)“章节可以看到相关内容。 
 * [《Flask Web 开发实战》](http://helloflask.com/book/)第 5 章详细介绍了 SQLAlchemy 和 Flask-Migrate 的使用，第 8 章和第 9 章引入了更复杂的模型关系和查询方法。
 * 阅读 [SQLAlchemy 官方文档和教程](https://docs.sqlalchemy.org/en/latest/)详细了解它的用法。注意我们在这里使用 Flask-SQLAlchemy 来集成它，所以用法和单独使用 SQLAlchemy 有一些不同。作为参考，你可以同时阅读 [Flask-SQLAlchemy 官方文档](http://flask-sqlalchemy.pocoo.org/2.3/) 。
 
