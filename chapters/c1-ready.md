@@ -81,7 +81,7 @@ __pycache__
 
 ## 将程序托管到 GitHub（可选）
 
-这一步是可选的，将程序托管到 GitHub、GitLab 或是 BitBucket 等平台上，可以更方便的备份、协作和部署。这些托管平台作为 Git 服务器，你可以为本地仓库创建远程仓库。需要注意的是，和后两者不同，在 GitHub 上，免费账户只能创建公开仓库，也就意味着上传代码后其他人都可以看到。
+这一步是可选的，将程序托管到 GitHub、GitLab 或是 BitBucket 等平台上，可以更方便的备份、协作和部署。这些托管平台作为 Git 服务器，你可以为本地仓库创建远程仓库。
 
 首先要注册一个 GitHub 账户，点击访问[注册页面](https://github.com/join)，根据指示完成注册流程。登录备用。
 
@@ -112,7 +112,7 @@ ssh-rsa AAAAB3Nza...省略 N 个字符...3aph book@greyli
 
 ### 创建远程仓库
 
-访问[新建仓库页面](https://github.com/new)（导航栏“+” - New repository），在“Repository name”处填写仓库名称，这里填“watchlist”即可。点击“Create repository”按钮创建仓库。
+访问[新建仓库页面](https://github.com/new)（导航栏“+” - New repository），在“Repository name”处填写仓库名称，这里填“watchlist”即可，接着选择仓库类型（公开或私有）等选项，最后点击“Create repository”按钮创建仓库。
 
 因为我们已经提前创建了本地仓库，所以需要指定仓库的远程仓库地址（如果还没有创建，则可以直接将远程仓库克隆到本地）：
 
