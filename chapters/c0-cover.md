@@ -1,1 +1,0 @@
-![tutorial-cover](images/tutorial-cover.png)
