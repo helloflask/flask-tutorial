@@ -486,4 +486,4 @@ $ git push
 
 * 访问 Coverage.py 文档（https://coverage.readthedocs.io）或执行 coverage help 命令来查看更多用法。
 * 使用标准库中的 unittest 编写单元测试并不是唯一选择，你也可以使用第三方测试框架，比如非常流行的 [pytest](https://pytest.org)。
-* [《Flask Web 开发实战》](http://helloflask.com/book/) 第 12 章详细介绍了测试 Flask 程序的相关知识，包括使用 [Selenium](https://www.seleniumhq.org/) 编写用户界面测试，使用 [Flake8](https://github.com/PyCQA/flake8) 检查代码质量等。 
+* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 12 章详细介绍了测试 Flask 程序的相关知识，包括使用 [Selenium](https://www.seleniumhq.org/) 编写用户界面测试，使用 [Flake8](https://github.com/PyCQA/flake8) 检查代码质量等。 

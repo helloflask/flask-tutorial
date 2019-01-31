@@ -112,7 +112,7 @@ def index():
         movie = Movie(title=title, year=year)  # 创建记录
         db.session.add(movie)  # 添加到数据库会话
         db.session.commit()  # 提交数据库会话
-        flash('Item Created.')  # 显示成功创建的提示
+        flash('Item created.')  # 显示成功创建的提示
         return redirect(url_for('index'))  # 重定向回主页
 
     user = User.query.first()
@@ -196,7 +196,7 @@ if not title or not year or len(year) > 4 or len(title) > 60:
     flash('Invalid input.')  # 显示错误提示
     return redirect(url_for('index'))
 # ...
-flash('Item Created.')  # 显示成功创建的提示
+flash('Item created.')  # 显示成功创建的提示
 ```
 
 **提示** 在真实世界里，你会进行更严苛的验证，比如对数据去除首尾的空格。一般情况下，我们会使用第三方库（比如 [WTForms](https://github.com/wtforms/wtforms)）来实现表单数据的验证工作。
@@ -213,7 +213,7 @@ flash('Item Created.')  # 显示成功创建的提示
 if not title or not year or len(year) > 4 or len(title) > 60:
     flash('Invalid title or year!')  
     return redirect(url_for('index'))  # 重定向回主页
-flash('Movie Created!')
+flash('Item created.')
 return redirect(url_for('index'))  # 重定向回主页
 ```
 
@@ -239,7 +239,7 @@ def edit(movie_id):
         movie.title = title  # 更新标题
         movie.year = year  # 更新年份
         db.session.commit()  # 提交数据库会话
-        flash('Item Updated.')
+        flash('Item updated.')
         return redirect(url_for('index'))  # 重定向回主页
     
     return render_template('edit.html', movie=movie)  # 传入被编辑的电影记录
@@ -293,7 +293,7 @@ def delete(movie_id):
     movie = Movie.query.get_or_404(movie_id)  # 获取电影记录
     db.session.delete(movie)  # 删除对应的记录
     db.session.commit()  # 提交数据库会话
-    flash('Item Deleted.')
+    flash('Item deleted.')
     return redirect(url_for('index'))  # 重定向回主页
 ```
 
@@ -341,4 +341,4 @@ $ git push
 - CSRF 是一种常见的攻击手段。以我们的删除表单为例，某恶意网站的页面中内嵌了一段代码，访问时会自动发送一个删除某个电影条目的 POST 请求到我们的程序。如果我们访问了这个恶意网站，就会导致电影条目被删除，因为我们的程序没法分辨请求发自哪里。解决方法通常是在表单里添加一个包含随机字符串的隐藏字段，在提交时通过对比这个字段的值来判断是否是用户自己发送的请求。在我们的程序中没有实现 CSRF 保护。
 - 使用 Flask-WTF 时，表单类在模板中的渲染代码基本相同，你可以编写宏来渲染表单字段。如果你使用 Bootstap，那么扩展 [Bootstrap-Flask](https://github.com/greyli/bootstrap-flask) 内置了多个表单相关的宏，可以简化渲染工作。
 - 你可以把删除按钮的行内 JavaScript  代码改为事件监听函数，写到单独的 JavaScript 文件里。
-- [《Flask Web 开发实战》](http://helloflask.com/book/)第 4 章介绍了表单处理的各个方面，包括表单类的编写和渲染、错误消息显示、自定义错误消息语言、文件和多文件上传、富文本编辑器等等。
+- 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 4 章介绍了表单处理的各个方面，包括表单类的编写和渲染、错误消息显示、自定义错误消息语言、文件和多文件上传、富文本编辑器等等。
