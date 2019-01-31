@@ -24,7 +24,7 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 ## 内容讨论
 
-这本书会以连载的形式发布在[知乎专栏 Hello, Flask!](https://zhuanlan.zhihu.com/flask)上，未来也会考虑发布到 GitBook 或是 GitHub Pages 以便和源码仓库同步更新。如果你有任何疑问和想法，欢迎通过下面的方式提出：
+如果你有任何疑问和想法，欢迎通过下面的方式提出：
 
 * 在 [HelloFlask 论坛](https://discuss.helloflask.com)发布帖子，并选择“Flask 入门教程”分类。
 * 在专栏对应的连载文章下面撰写评论。
