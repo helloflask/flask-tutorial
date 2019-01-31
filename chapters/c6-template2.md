@@ -1,3 +1,5 @@
+{% raw %}
+
 # 第 6 章：模板优化
 
 这一章我们会继续完善模板，学习几个非常实用的模板编写技巧，为下一章实现创建、编辑电影条目打下基础。
@@ -114,7 +116,7 @@ def index():
 
 *templates/base.html：基模板*
 
-```jinja2
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -198,7 +200,7 @@ nav li a:hover {
 
 *templates/index.html：继承基模板的主页模板*
 
-```jinja2
+```html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -224,7 +226,7 @@ nav li a:hover {
 
 *templates/index.html：继承基模板的 404 错误页面模板*
 
-```jinja2
+```html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -291,3 +293,4 @@ $ git push
 * 因为示例程序的语言和电影标题使用了英文，所以电影网站的搜索链接使用了 IMDb，对于中文，你可以使用豆瓣电影或时光网。以豆瓣电影为例，它的搜索链接为 [https://movie.douban.com/subject_search?search_text=关键词](https://movie.douban.com/subject_search?search_text=关键词)，对应的 `href` 属性即 `https://movie.douban.com/subject_search?search_text={{ movie.title }}`。
 * 因为基模板会被所有其他页面模板继承，如果你在基模板中使用了某个变量，那么这个变量也需要使用模板上下文处理函数注入到模板里。
 
+{% endraw %}

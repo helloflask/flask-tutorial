@@ -1,3 +1,5 @@
+{% raw %}
+
 # 第 4 章：静态文件
 
 静态文件（static files）和我们的模板概念相反，指的是内容不需要动态生成的文件。比如图片、CSS 文件和 JavaScript 脚本等。
@@ -16,7 +18,7 @@ $ mkdir static
 
 假如我们在 static 文件夹的根目录下面放了一个 foo.jpg 文件，下面的调用可以获取它的 URL：
 
-```jinja2
+```html
 <img src="{{ url_for('static', filename='foo.jpg') }}">
 ```
 
@@ -30,7 +32,7 @@ Favicon（favourite icon） 是显示在标签页和书签栏的网站头像。�
 
 *templates/index.html：引入 Favicon*
 
-```jinja2
+```html
 <head>
     ...
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
@@ -52,7 +54,7 @@ $ mkdir images
 
 *templates/index.html：添加图片*
 
-```jinja2
+```html
 <h2>
     <img alt="Avatar" src="{{ url_for('static', filename='images/avatar.png') }}">
     {{ name }}'s Watchlist
@@ -167,3 +169,5 @@ $ git push
 
 * 如果你对 CSS 很头疼，可以借助前端框架来完善页面样式，比如 [Bootstrap](https://getbootstrap.com/)、[Semantic-UI](http://semantic-ui.com/)、[Foundation](https://foundation.zurb.com/) 等。它们提供了大量的 CSS 定义和动态效果，使用起来非常简单。
 * 扩展 [Bootstrap-Flask](https://github.com/greyli/bootstrap-flask) 可以简化在 Flask 项目里使用 Bootstrap 4 的步骤。
+
+{% endraw %}

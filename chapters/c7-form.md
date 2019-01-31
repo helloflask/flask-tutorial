@@ -1,3 +1,5 @@
+{% raw %}
+
 # 第 7 章：表单
 
 在 HTML 页面里，我们需要编写表单来获取用户输入。一个典型的表单如下所示：
@@ -342,3 +344,5 @@ $ git push
 - 使用 Flask-WTF 时，表单类在模板中的渲染代码基本相同，你可以编写宏来渲染表单字段。如果你使用 Bootstap，那么扩展 [Bootstrap-Flask](https://github.com/greyli/bootstrap-flask) 内置了多个表单相关的宏，可以简化渲染工作。
 - 你可以把删除按钮的行内 JavaScript  代码改为事件监听函数，写到单独的 JavaScript 文件里。
 - 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 4 章介绍了表单处理的各个方面，包括表单类的编写和渲染、错误消息显示、自定义错误消息语言、文件和多文件上传、富文本编辑器等等。
+
+{% endraw %}
