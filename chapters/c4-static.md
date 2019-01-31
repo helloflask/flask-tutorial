@@ -1,5 +1,3 @@
-{% raw %}
-
 # 第 4 章：静态文件
 
 静态文件（static files）和我们的模板概念相反，指的是内容不需要动态生成的文件。比如图片、CSS 文件和 JavaScript 脚本等。
@@ -169,5 +167,3 @@ $ git push
 
 * 如果你对 CSS 很头疼，可以借助前端框架来完善页面样式，比如 [Bootstrap](https://getbootstrap.com/)、[Semantic-UI](http://semantic-ui.com/)、[Foundation](https://foundation.zurb.com/) 等。它们提供了大量的 CSS 定义和动态效果，使用起来非常简单。
 * 扩展 [Bootstrap-Flask](https://github.com/greyli/bootstrap-flask) 可以简化在 Flask 项目里使用 Bootstrap 4 的步骤。
-
-{% endraw %}
