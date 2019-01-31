@@ -2,11 +2,11 @@
 
 *使用 Python 和 Flask 开发你的第一个 Web 程序。*
 
-这是一本 Flask 入门教程，提供了入门 Flask 所需的最少信息，你可以跟随本书自己动手开发一个简单的 Watchlist 程序。访问 http://helloflask.com/tutorial 了解更多信息。
+这是一本 Flask 入门教程，提供了入门 Flask 所需的最少信息，你可以跟随本书自己动手开发一个简单的 Watchlist 程序。访问 http://helloflask.com/tutorial 查看在线阅读和下载链接。
 
 ## 内容讨论
 
-这本书会以连载的形式发布在[知乎专栏 Hello, Flask!](https://zhuanlan.zhihu.com/flask)上，未来也会考虑发布到 GitBook 或是 GitHub Pages 以便和源码仓库同步更新。如果你有任何疑问和想法，欢迎通过下面的方式提出：
+如果你有任何疑问和想法，欢迎通过下面的方式提出：
 
 - 在 [HelloFlask 论坛](https://discuss.helloflask.com)发布帖子，并选择“Flask 入门教程”分类。
 - 在专栏对应的连载文章下面撰写评论。
