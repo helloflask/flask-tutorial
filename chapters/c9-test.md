@@ -480,7 +480,7 @@ $ git commit -m "Add unit test with unittest"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[999a9fe](https://github.com/greyli/watchlist/commit/999a9fe92ae72891c151f662b962e757970154ac)。
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[66dc487](https://github.com/greyli/watchlist/commit/66dc48719c797da00a9e29355b39d77abb45f574)。
 
 ## 进阶提示
 

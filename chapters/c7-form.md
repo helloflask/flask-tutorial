@@ -333,7 +333,7 @@ $ git commit -m "Create, edit and delete item by form"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[f7f7355](https://github.com/greyli/watchlist/commit/f7f73554e504fd7b3e8845ecb038ef41bbb5cbff)。在后续的 [commit](https://github.com/greyli/watchlist/commit/64751b52ededb916a1dc9f4f9879c4759861a6d8) 里，我们为另外两个常见的 HTTP 错误：400（Bad Request） 和 500（Internal Server Error） 错误编写了错误处理函数和对应的模板，前者会在请求格式不符要求时返回，后者则会在程序内部出现任意错误时返回（关闭调试模式的情况下）。
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[84e766f](https://github.com/greyli/watchlist/commit/84e766f276a25cb2b37ab43a468b2b707ed3489c)。在后续的 [commit](https://github.com/greyli/watchlist/commit/bb892c5f4721208619e656ccda7827c821fb301a) 里，我们为另外两个常见的 HTTP 错误：400（Bad Request） 和 500（Internal Server Error） 错误编写了错误处理函数和对应的模板，前者会在请求格式不符要求时返回，后者则会在程序内部出现任意错误时返回（关闭调试模式的情况下）。
 
 ## 进阶提示
 

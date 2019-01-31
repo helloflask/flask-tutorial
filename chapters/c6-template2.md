@@ -283,7 +283,7 @@ $ git commit -m "Add base template and error template"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[cfc08fa](https://github.com/greyli/watchlist/commit/cfc08fa28ee477ff704713da48b1531817eab934)。
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[3bca489](https://github.com/greyli/watchlist/commit/3bca489421cc498289734cfef9d6ff90232df8be)。
 
 ## 进阶提示
 

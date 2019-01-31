@@ -368,7 +368,7 @@ $ git commit -m "User authentication with Flask-Login"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[3944088](https://github.com/greyli/watchlist/commit/39440888a593b9db496cb6cd5d60043e770a9b5f)。
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[6c60b7d](https://github.com/greyli/watchlist/commit/6c60b7d552921cb758e716de567e76f3a1ea578e)。
 
 ## 进阶提示
 

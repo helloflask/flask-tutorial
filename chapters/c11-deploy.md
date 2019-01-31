@@ -45,6 +45,8 @@ $ git commit -m "Ready to deploy"
 $ git push
 ```
 
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[92eabc8](https://github.com/greyli/watchlist/commit/92eabc89a669a8b3e2d2a56177a875938923fd52)。
+
 ## 使用 PythonAnywhere 部署程序
 
 首先访问[注册页面](https://www.pythonanywhere.com/registration/register/beginner/)注册一个免费账户。注册时填入的用户名将作为你的程序域名的子域部分，以及分配给你的 Linux 用户名。比如，如果你的用户名为 greyli，最终为你分配的程序域名就是 http://greyli.pythonanywhere.com/ 。
@@ -220,10 +222,13 @@ $ git pull
 
 ## 本章小结
 
-程序部署上线以后，你可以考虑继续为它开发新功能，也可以从零编写一个新的程序。虽然本书即将接近尾声，但你的学习之路才刚刚开始，因为本书只是介绍了 Flask 入门所需的基础知识，你还需要进一步学习。在后记中，你可以看到进一步学习的推荐读物。接下来，有一个挑战在等着你。
+程序部署上线以后，你可以考虑继续为它开发新功能，也可以从零编写一个新的程序。虽然本书即将接近尾声，但你的学习之路才刚刚开始，因为本书只是介绍了 Flask 入门所需的基础知识，你还需要进一步学习。在后记中，你可以看到进一步学习的推荐读物。
+
+接下来，有一个挑战在等着你。
 
 ## 进阶提示
 
 *  因为 PythonAnywhere 支持在线管理文件、编辑代码、执行命令，你可以在学习编程的过程中使用它来在线开发 Web 程序。
 *  PythonAnywhere 的 Web 面板还有一些功能设置：Log files 部分可以查看你的程序日志，Traffic 部分显示了你的程序访问流量情况，Security 部分可以为你的程序程序开启强制启用 HTTPS 和密码保护。
 *  [《Flask Web 开发实战》](http://helloflask.com/book/) 第 14 章详细介绍了部署 Flask 程序的两种方式，传统部署和云部署。
+

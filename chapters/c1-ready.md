@@ -194,6 +194,8 @@ $ git push -u origin master # 如果你没有把仓库托管到 GitHub，则跳�
 
 这里最后一行命令添加了 `-u` 参数，会将推送的目标仓库和分支设为默认值，后续的推送直接使用 `git push` 命令即可。在 GitHub 上，你可以通过 [https://github.com/你的用户名/watchlist](https://github.com/greyli/watchlist) 查看你的仓库内容。
 
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[1b6fe4a](https://github.com/greyli/watchlist/commit/1b6fe4ae117c2b964f247d8b12d79753ea69406f)。
+
 ## 进阶提示
 
 * 阅读 MDN 的 [《Web 入门教程》](https://developer.mozilla.org/zh-CN/docs/learn)（了解 HTML、CSS、JavaScript）。

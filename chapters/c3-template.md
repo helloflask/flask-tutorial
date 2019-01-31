@@ -128,7 +128,7 @@ $ git commit -m "Add index page"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[17b579d](https://github.com/greyli/watchlist/commit/17b579d693cb3cfd2cc0e622d955ea1459f7406b)。
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[8537d98](https://github.com/greyli/watchlist/commit/8537d98bdd7828b1f7aa2431bbd5a16e757a3cc4)。
 
 ## 进阶提示
 

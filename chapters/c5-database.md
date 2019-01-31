@@ -335,7 +335,7 @@ $ git commit -m "Add database support with Flask-SQLAlchemy"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[7f167d2](https://github.com/greyli/watchlist/commit/7f167d29648fe97aff92840f975e49be22f8ac26)。
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[4d2442a](https://github.com/greyli/watchlist/commit/4d2442a41e55fb454e092864206af08e4e3eeddf)。
 
 
 ## 进阶提示

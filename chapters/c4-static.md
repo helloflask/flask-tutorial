@@ -161,7 +161,7 @@ $ git commit -m "Add static files"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[887b471](https://github.com/greyli/watchlist/commit/887b471b57d9833b33eda05efaca9487dce2a168)（图片的 CSS 定义后续有一些调整）。
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[e51c579](https://github.com/greyli/watchlist/commit/e51c579735ae837824f10af5c1b7d454014d3c59)。
 
 ## 进阶提示
 

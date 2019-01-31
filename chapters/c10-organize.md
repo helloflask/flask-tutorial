@@ -66,7 +66,9 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'dev'
-app.config['SQLALCHEMY_DATABASE_URI'] = prefix + os.path.join(app.root_path, 'data.db')
+# 注意更新这里的路径，把 app.root_path 添加到 os.path.dirname() 中
+# 以便把文件定位到项目根目录
+app.config['SQLALCHEMY_DATABASE_URI'] = prefix + os.path.join(os.path.dirname(app.root_path), 'data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -205,7 +207,7 @@ $ git commit -m "Orignize application with package"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[1e9b88c](https://github.com/greyli/watchlist/commit/1e9b88ceb15af5adc36f71eb6c2c673c2a7cda5a)。
+**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[f705408](https://github.com/greyli/watchlist/commit/f7054083c8f87f83bf842a1125a3d8d0244b0f62)。
 
 ## 进阶提示
 
