@@ -22,21 +22,13 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 在本书的最后，你会把你自己编写的 Watchlist 部署到互联网上，让任何人都可以访问。
 
-## 内容讨论
+## 讨论与反馈
 
 如果你有任何疑问和想法，欢迎通过下面的方式提出：
 
 * 在 [HelloFlask 论坛](https://discuss.helloflask.com)发布帖子，并选择“Flask 入门教程”分类。
 * 在专栏对应的连载文章下面撰写评论。
 * 在源码仓库[创建 Issue](https://github.com/greyli/flask-tutorial/issues/new)。
-
-## 参与贡献
-
-如果你发现了书中的错误，或是有任何意见或建议，欢迎[创建 Issue](https://github.com/greyli/flask-tutorial/issues/new) 反馈或提交 Pull Request 进行修正。对于较大的内容变动，建议先[创建 Issue](https://github.com/greyli/flask-tutorial/issues/new) 进行讨论。谢谢！
-
-## 付费支持
-
-本书是开源的，任何人都可以阅读和下载。如果这本书帮到了你，也可以付费支持我。价格为 10 元，访问[本书主页](http://helloflask.com/tutorial/)查看付款二维码。
 
 ## 相关资源
 
@@ -45,6 +37,3 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 * 本书源码：https://github.com/greyli/flask-tutorial
 * 本书示例程序源码：https://github.com/greyli/watchlist
 * 示例程序在线 Demo：http://watchlist.helloflask.com
-* HelloFlask：http://helloflask.com
-* 知乎专栏 Hello, Flask!：https://zhuanlan.zhihu.com/flask
-* 《Flask Web 开发实战》：http://helloflask.com/book
