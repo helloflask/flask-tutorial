@@ -4,6 +4,8 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 通过这本书，你会学到 Flask 开发的基础知识，并开发出一个简单的 Watchlist（观影清单）程序。在功能上，这个程序可以看做是简化版的 IMDB Watchlist / 豆瓣豆单：你可以添加、删除和修改你收藏的电影信息。
 
+![Watchlist 程序](images/7-2.png)
+
 你可以访问 http://watchlist.helloflask.com/ 查看示例程序的在线 Demo。
 
 ## 本书特点
@@ -24,8 +26,9 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 这本书会以连载的形式发布在[知乎专栏 Hello, Flask!](https://zhuanlan.zhihu.com/flask)上，未来也会考虑发布到 GitBook 或是 GitHub Pages 以便和源码仓库同步更新。如果你有任何疑问和想法，欢迎通过下面的方式提出：
 
-* 在专栏对应的连载文章下面撰写评论
-* 在源码仓库[创建 Issue](https://github.com/greyli/flask-tutorial/issues/new)
+* 在 [HelloFlask 论坛](https://discuss.helloflask.com)发布帖子，并选择“Flask 入门教程”分类。
+* 在专栏对应的连载文章下面撰写评论。
+* 在源码仓库[创建 Issue](https://github.com/greyli/flask-tutorial/issues/new)。
 
 ## 参与贡献
 
@@ -38,10 +41,10 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 ## 相关资源
 
 * 本书主页：http://helloflask.com/tutorial
-* 本书源码仓库：https://github.com/greyli/flask-tutorial
+* 本书论坛：https://discuss.helloflask.com
+* 本书源码：https://github.com/greyli/flask-tutorial
 * 本书示例程序源码：https://github.com/greyli/watchlist
 * 示例程序在线 Demo：http://watchlist.helloflask.com
 * HelloFlask：http://helloflask.com
 * 知乎专栏 Hello, Flask!：https://zhuanlan.zhihu.com/flask
 * 《Flask Web 开发实战》：http://helloflask.com/book
-* Flask 官方文档：http://flask.pocoo.com/docs

@@ -8,8 +8,9 @@
 
 这本书会以连载的形式发布在[知乎专栏 Hello, Flask!](https://zhuanlan.zhihu.com/flask)上，未来也会考虑发布到 GitBook 或是 GitHub Pages 以便和源码仓库同步更新。如果你有任何疑问和想法，欢迎通过下面的方式提出：
 
-- 在专栏对应的连载文章下面撰写评论
-- 在源码仓库[创建 Issue](https://github.com/greyli/flask-tutorial/issues/new) 
+- 在 [HelloFlask 论坛](https://discuss.helloflask.com)发布帖子，并选择“Flask 入门教程”分类。
+- 在专栏对应的连载文章下面撰写评论。
+- 在源码仓库[创建 Issue](https://github.com/greyli/flask-tutorial/issues/new)。
 
 ## 参与贡献
 
@@ -22,13 +23,13 @@
 ## 相关资源
 
 - 本书主页：http://helloflask.com/tutorial
-- 本书源码仓库：https://github.com/greyli/flask-tutorial
+- 本书论坛：https://discuss.helloflask.com
+- 本书源码：https://github.com/greyli/flask-tutorial
 - 本书示例程序源码：https://github.com/greyli/watchlist
 - 示例程序在线 Demo：http://watchlist.helloflask.com
 - HelloFlask：http://helloflask.com
 - 知乎专栏 Hello, Flask!：https://zhuanlan.zhihu.com/flask
 - 《Flask Web 开发实战》：http://helloflask.com/book
-- Flask 官方文档：http://flask.pocoo.com/docs
 
 ## 版权
 
