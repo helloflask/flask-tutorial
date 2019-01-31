@@ -1,12 +1,16 @@
-# Flask 入门教程
+书名：Flask 入门教程
 
-使用Python和Flask开发你的第一个Web程序
+副书名：使用Python和Flask开发你的第一个Web程序
+
+作者：[李辉](http://greyli.com)
 
 主页：http://helloflask.com/tutorial
 
 版本：1.0
 
 发布时间：2019.2.1
+
+------
 
 © 2018 [李辉](http://greyli.com/)（Grey Li） / [HelloFlask.com](http://helloflask.com/)
 
