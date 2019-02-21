@@ -167,7 +167,7 @@ def hello():
 
 ```python
 @app.route('/user/<name>')
-def user_page():
+def user_page(name):
     return 'User page'
 ```
 
@@ -201,8 +201,8 @@ def user_page(name):
 @app.route('/test')
 def test_url_for():
 	# 下面是一些调用示例：
-    print(url_for('hello'))  # 输出：/
-    # 注意下面两个调用是如何生成包含 URL 变量的 URL 的
+    print(url_for('hello'))  # 输出：/  此输出可在http://127.0.0.1:5000/中查看
+    # 注意下面两个调用是如何生成包含 URL 变量的 URL 的，下方调用在页面难以发觉不同，可在终端查看输出以验证是否成功
     print(url_for('user_page', name='greyli'))  # 输出：/user/greyli
     print(url_for('user_page', name='peter'))  # 输出：/user/peter
     print(url_for('test_url_for'))  # 输出：/test
