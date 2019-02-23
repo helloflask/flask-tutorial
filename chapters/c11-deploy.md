@@ -164,7 +164,7 @@ $ flask admin  # 创建管理员账户
 ```python
 import sys
 
-path = '/home/watchlist/watchlist'
+path = '/home/greyli/watchlist'  # 路径规则为 /home/你的用户名/项目文件夹名
 if path not in sys.path:
     sys.path.append(path)
 
