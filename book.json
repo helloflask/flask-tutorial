@@ -2,7 +2,7 @@
     "root": "./chapters",
     "title": "flask-tutorial",
     "language": "zh-hans",
-    "author": "李辉（Grey Li）"
+    "author": "李辉（Grey Li）",
     "plugins": ["disqus"],
     "pluginsConfig": {
         "disqus": {
