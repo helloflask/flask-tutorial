@@ -61,7 +61,7 @@ $ mkdir images
 <img alt="Walking Totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">
 ```
 
-**提示** 这两张图片你可以自己替换为任意的图片（注意更新文件名），也可以在示例程序的 [GitHub 仓库](https://github.com/greyli/watchlist/tree/master/static/images)下载。
+**提示** 这两张图片你可以自己替换为任意的图片（注意更新文件名），也可以在示例程序的 [GitHub 仓库](https://github.com/greyli/watchlist/tree/master/watchlist/static/images)下载。
 
 ## 添加 CSS
 
