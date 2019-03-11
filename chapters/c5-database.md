@@ -50,6 +50,8 @@ sqlite:////数据库文件的绝对地址
 
 另外，如果你使用 Windows 系统，上面的 URI 前缀部分需要写入三个斜线（即 `sqlite:///`）。在本书的示例程序代码里，做了一些兼容性处理，另外还新设置了一个配置变量，实际的代码如下：
 
+*app.py：数据库配置*
+
 ```python
 import os
 import sys
@@ -136,6 +138,8 @@ $ flask shell
 **提示** 上面打开 Python Shell 使用的是 `flask shell`命令，而不是 `python`。使用这个命令启动的 Python Shell 激活了“程序上下文”，它包含一些特殊变量，这对于某些操作是必须的（比如上面的 `db.create_all()`调用）。请记住，后续的 Python Shell 都会使用这个命令打开。
 
 和 `flask shell`类似，我们可以编写一个自定义命令来自动执行创建数据库表操作：
+
+*app.py：自定义命令 initdb*
 
 ```python
 import click
@@ -285,6 +289,8 @@ def index():
 ### 生成虚拟数据
 
 因为有了数据库，我们可以编写一个命令函数把虚拟数据添加到数据库里。下面是用来生成虚拟数据的命令函数：
+
+*app.py：创建自定义命令 forge*
 
 ```python
 import click
