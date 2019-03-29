@@ -106,7 +106,7 @@ $ git clone https://github.com/greyli/watchlist  # 注意替换 Git 仓库地址
 $ cd watchlist  # 切换进程序仓库
 ```
 
-这会把程序代码克隆到 PythonAnywhere 为你分配的用户目录中，路径即 `/home/你的 PythonAnywhere 用户名/你的参仓库名`，比如 `/home/greyli/watchlist`。
+这会把程序代码克隆到 PythonAnywhere 为你分配的用户目录中，路径即 `/home/你的 PythonAnywhere 用户名/你的仓库名称`，比如 `/home/greyli/watchlist`。
 
 注意替换 git clone 命令后的 Git 地址，将 `greyli` 替换为你的 GitHub 用户名，将 `watchlist` 替换为你的仓库名称。
 
