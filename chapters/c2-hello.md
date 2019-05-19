@@ -79,7 +79,7 @@ def hello():
 
 如果你把上面的程序保存成其他的名字，比如 hello.py，接着执行 `flask run` 命令会返回一个错误提示。这是因为 Flask 默认会假设你把程序存储在名为 app.py 或 wsgi.py 的文件中。如果你使用了其他名称，就要设置系统环境变量 `FLASK_APP` 来告诉 Flask 你要启动哪个程序。
 
-Flask 通过读取这个文件对应的模块寻找要运行的程序实例，你可以把它设置成下面这些值：
+Flask 通过读取这个环境变量值对应的模块寻找要运行的程序实例，你可以把它设置成下面这些值：
 
 * 模块名
 * Python 导入路径
@@ -101,9 +101,9 @@ $ pipenv install python-dotenv
 $ touch .env .flaskenv
 ```
 
-.flaskenv 用来存储 Flask 命令行系统相关的公开环境变量；而 .env 则用来存储敏感数据，不应该提交进Git仓库，我们把 .env 添加到 .gitignore 文件的结尾（新建一行）来让 Git 忽略它。你可以使用编辑器执行这个操作：
+.flaskenv 用来存储 Flask 命令行系统相关的公开环境变量；而 .env 则用来存储敏感数据，不应该提交进Git仓库，我们把文件名 `.env` 添加到 .gitignore 文件的结尾（新建一行）来让 Git 忽略它。你可以使用编辑器打开这个文件，然后添加下面这一行内容：
 
-```bash
+```
 .env
 ```
 
