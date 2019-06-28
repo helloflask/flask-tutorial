@@ -152,7 +152,7 @@ $ pipenv install
 
 这个命令执行的过程包含下面的行为：
 
-* 为当前目录创建一个 Python 解释器环境，按照 pip、setuptool、virtualenv 等工具库。
+* 为当前目录创建一个 Python 解释器环境，安装 pip、setuptool、virtualenv 等工具库。
 * 如果当前目录有 Pipfile 文件或 requirements.txt 文件，那么从中读取依赖列表并安装。
 * 如果没有发现 Pipfile 文件，就自动创建。
 
@@ -163,6 +163,8 @@ $ pipenv shell
 ```
 
 **注意** 除了 `pipenv install` 命令和 Git 相关命令外，除非特别说明，本书后续的所有命令均需要在激活虚拟环境后执行。如果你不想每次都激活虚拟环境，可以在命令前添加 `pipenv run` 前缀，比如 `pipenv run pip list` 即表示在虚拟环境内执行 `pip list` 命令。
+
+**提示** 建议为 Pip 和 Pipenv 更新 PyPI 源，改为使用国内的 PyPI 镜像源以提高下载速度，具体见[这篇文章](https://zhuanlan.zhihu.com/p/57872888)。
 
 ## 安装 Flask
 
