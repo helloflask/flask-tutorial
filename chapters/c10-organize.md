@@ -11,22 +11,22 @@ Flask 对项目结构没有固定要求，你可以使用单脚本，也可以�
 ├── Pipfile
 ├── Pipfile.lock
 ├── app.py
+├── test_watchlist.py
 ├── static
 │   ├── favicon.ico
 │   ├── images
 │   │   ├── avatar.png
 │   │   └── totoro.gif
 │   └── style.css
-├── templates
-│   ├── 400.html
-│   ├── 404.html
-│   ├── 500.html
-│   ├── base.html
-│   ├── edit.html
-│   ├── index.html
-│   ├── login.html
-│   └── settings.html
-└── test_watchlist.py
+└── templates
+    ├── 400.html
+    ├── 404.html
+    ├── 500.html
+    ├── base.html
+    ├── edit.html
+    ├── index.html
+    ├── login.html
+    └── settings.html
 ```
 
 ## 使用包组织代码
@@ -178,23 +178,23 @@ FLASK_APP=watchlist
     ├── commands.py
     ├── errors.py
     ├── models.py
+    ├── views.py
     ├── static
     │   ├── favicon.ico
     │   ├── images
     │   │   ├── avatar.png
     │   │   └── totoro.gif
     │   └── style.css
-    ├── templates
-    │   ├── base.html
-    │   ├── edit.html
-    │   ├── errors
-    │   │   ├── 400.html
-    │   │   ├── 404.html
-    │   │   └── 500.html
-    │   ├── index.html
-    │   ├── login.html
-    │   └── settings.html
-    └── views.py
+    └── templates
+        ├── base.html
+        ├── edit.html
+        ├── errors
+        │   ├── 400.html
+        │   ├── 404.html
+        │   └── 500.html
+        ├── index.html
+        ├── login.html
+        └── settings.html
 ```
 
 ## 本章小结
