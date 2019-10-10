@@ -222,7 +222,7 @@ nav li a:hover {
 
 404 错误页面的模板类似，如下所示：
 
-*templates/index.html：继承基模板的 404 错误页面模板*
+*templates/404.html：继承基模板的 404 错误页面模板*
 
 ```html
 {% extends 'base.html' %}
