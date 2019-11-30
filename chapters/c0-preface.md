@@ -22,13 +22,23 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 在本书的最后，你会把你自己编写的 Watchlist 部署到互联网上，让任何人都可以访问。
 
-## 讨论与反馈
+## 讨论与求助
 
-如果你有任何疑问和想法，欢迎通过下面的方式提出：
+如果你想和其他同学交流 Flask、Web 开发等相关话题，或是在学习中遇到了问题，想要寻求帮助，下面是一些好去处：
 
+* [HelloFlask 论坛](https://discuss.helloflask.com)
+* [HelloFlask 微信群](http://greyli.com/wechat/)
+* [HelloFlask QQ 群](http://shang.qq.com/wpa/qunwpa?idkey=3cbf3e3ede8252eb3ae584a356131123ed68a9f3bd5bcee0652b401914eb01bb)（419980814）
+* [HelloFlask Telegram 群组](https://t.me/helloflask)（@helloflask）
+
+
+## 反馈与勘误
+
+欢迎通过下面的方式提出反馈、建议和勘误：
+
+* 在源码仓库[创建 Issue](https://github.com/greyli/flask-tutorial/issues/new)。
 * 在 [HelloFlask 论坛](https://discuss.helloflask.com)发布帖子，并选择“Flask 入门教程”分类。
 * 在专栏对应的连载文章下面撰写评论。
-* 在源码仓库[创建 Issue](https://github.com/greyli/flask-tutorial/issues/new)。
 
 ## 相关资源
 
@@ -37,3 +47,11 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 * 本书源码：https://github.com/greyli/flask-tutorial
 * 本书示例程序源码：https://github.com/greyli/watchlist
 * 示例程序在线 Demo：http://watchlist.helloflask.com
+
+## 付费支持
+
+本书采取自愿付费原则，价格为 10 元。如果你愿意，可以通过付费来支持我，让我有更多的时间和动力写作 Flask 教程和文章。你可以通过支付宝账号 withlihui@gmail.com 转账，或是扫描下面的二维码付款。
+
+支付宝二维码 / 微信二维码
+
+![qr_alipay](images/qr_alipay.jpg)![qr_wechat](images/qr_wechat.jpg)
