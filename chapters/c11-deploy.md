@@ -6,6 +6,12 @@ Web 程序通常有两种部署方式：传统部署和云部署。传统部署�
 
 ## 部署前的准备
 
+首先，我们需要生成一个依赖列表，方便在部署环境里安装。使用下面的命令把当前依赖列表写到一个 requirements.txt 文件里：
+
+```bash
+(env) $ pip freeze > requirements.txt
+```
+
 对于某些配置，生产环境下需要使用不同的值。为了让配置更加灵活，我们把需要在生产环境下使用的配置改为优先从环境变量中读取，如果没有读取到，则使用默认值：
 
 ```python
@@ -101,7 +107,6 @@ $ git push
 在命令行下输入下面的命令：
 
 ```bash
-$ pip3 install --user pipenv  # 安装 Pipenv
 $ git clone https://github.com/greyli/watchlist  # 注意替换 Git 仓库地址
 $ cd watchlist  # 切换进程序仓库
 ```
@@ -109,8 +114,6 @@ $ cd watchlist  # 切换进程序仓库
 这会把程序代码克隆到 PythonAnywhere 为你分配的用户目录中，路径即 `/home/你的 PythonAnywhere 用户名/你的仓库名称`，比如 `/home/greyli/watchlist`。
 
 注意替换 git clone 命令后的 Git 地址，将 `greyli` 替换为你的 GitHub 用户名，将 `watchlist` 替换为你的仓库名称。
-
-**提示** 如果你使用 Python 2.7，那么需要使用 pip 来执行安装 Pipenv 的命令；打开 Python Shell 时使用 python 命令，而不是 python3。
 
 **提示** 如果你在 GitHub 上的仓库类型为私有仓库，那么需要将 PythonAnywhere 服务器的 SSH 密钥添加到 GitHub 账户中，具体参考第 1 章“设置 SSH 密钥”小节。
 
@@ -139,10 +142,11 @@ DATABASE_FILE=data-prod.db
 最后安装依赖并执行初始化操作：
 
 ```bash
-$ pipenv install  # 创建虚拟环境并安装依赖
-$ pipenv shell  # 激活虚拟环境
-$ flask initdb  # 初始化数据库
-$ flask admin  # 创建管理员账户
+$ python3 -m venv env  # 创建虚拟环境
+$ . env/bin/activate  # 激活虚拟环境
+(env) $ pip install -r requirements.txt  # 安装所有依赖
+(env) $ flask initdb  # 初始化数据库
+(env) $ flask admin  # 创建管理员账户
 ```
 
 先不要关闭这个标签页，后面我们还要在这里执行一些命令。点击右上角的菜单按钮，并在浏览器的新标签页打开 Web 面板。
@@ -181,13 +185,7 @@ PythonAnywhere 会自动从这个文件里导入名称为 `application` 的程�
 
 ![虚拟环境配置](images/11-9.png)
 
-使用 Pipenv 时，你可以在项目根目录下使用下面的命令获取当前项目对应的虚拟环境文件夹路径（返回前面打开的命令行会话输入下面的命令）：
-
-```bash
-$ pipenv --venv
-```
-
-复制输出的路径，点击 Virtualenv 部分的红色字体链接，填入并保存。
+对应我们的项目就是 `/home/greyli/watchlist/env/`，注意替换其中的用户名、项目名称和虚拟环境名称部分。点击 Virtualenv 部分的红色字体链接，填入并保存。
 
 ### 静态文件
 

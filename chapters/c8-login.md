@@ -42,7 +42,7 @@ class User(db.Model):
 因为模型（表结构）发生变化，我们需要重新生成数据库（这会清空数据）：
 
 ```bash
-$ flask initdb --drop
+(env) $ flask initdb --drop
 ```
 
 ## 生成管理员账户
@@ -77,7 +77,7 @@ def admin(username, password):
 使用 `click.option()` 装饰器设置的两个选项分别用来接受输入用户名和密码。执行 `flask admin` 命令，输入用户名和密码后，即可创建管理员账户。如果执行这个命令时账户已存在，则更新相关信息：
 
 ```bash
-$ flask admin
+(env) $ flask admin
 Username: greyli
 Password: 123  # hide_input=True 会让密码输入隐藏
 Repeat for confirmation: 123  # confirmation_prompt=True 会要求二次确认输入
@@ -87,10 +87,10 @@ Done.
 
 ## 使用 Flask-Login 实现用户认证
 
-扩展 [Flask-Login](https://github.com/maxcountryman/flask-login) 提供了实现用户认证需要的各类功能函数，我们将使用它来实现程序的用户认证，首先使用 Pipenv 安装它：
+扩展 [Flask-Login](https://github.com/maxcountryman/flask-login) 提供了实现用户认证需要的各类功能函数，我们将使用它来实现程序的用户认证，首先来安装它：
 
 ```bash
-$ pipenv install flask-login
+(env) $ pip install flask-login
 ```
 
 这个扩展的初始化步骤稍微有些不同，除了实例化扩展类之外，我们还要实现一个“用户加载回调函数”，具体代码如下所示：

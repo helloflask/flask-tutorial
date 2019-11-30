@@ -130,57 +130,73 @@ $ git remote add origin git@github.com:greyli/watchlist.git  # 注意更换地�
 * 指定不同的依赖版本
 * 方便记录和管理依赖
 
-我们将使用 Pipenv 来创建和管理虚拟环境、以及在虚拟环境中安装和卸载依赖包。它集成了 pip 和 virtualenv，可以替代这两个工具的惯常用法。另外，它还集成了 Pipfile，它是新的依赖记录标准，使用 Pipfile 文件记录项目依赖，使用 Pipfile.lock 文件记录固定版本的依赖列表。这两个文件替代了手动通过 requirements.txt 文件记录依赖的方式。
+我们将使用 Python 3 内置的 venv 模块创建虚拟环境。
 
-我们首先使用 pip 安装 Pipenv，Windows 系统使用下面的命令：
-
-```bash
-$ pip install pipenv
-```
-
-Linux 和 macOS 使用下面的命令：
+如果你使用 Python 2，则需要安装 virtualenv 作为替代：
 
 ```bash
-$ sudo -H pip install pipenv
+$ pip install virtualenv
 ```
 
-使用 Pipenv 创建虚拟环境非常简单，使用 `pipenv install` 命令即可为当前项目创建一个虚拟环境：
+或：
 
 ```bash
-$ pipenv install
+$ sudo pip install virtualenv
 ```
 
-这个命令执行的过程包含下面的行为：
-
-* 为当前目录创建一个 Python 解释器环境，安装 pip、setuptool、virtualenv 等工具库。
-* 如果当前目录有 Pipfile 文件或 requirements.txt 文件，那么从中读取依赖列表并安装。
-* 如果没有发现 Pipfile 文件，就自动创建。
-
-创建虚拟环境后，我们可以使用 `pipenv shell` 命令来激活虚拟环境，如下所示（执行 `exit` 可以退出虚拟环境）：
+然后使用下面的命令即可为当前项目创建一个虚拟环境：
 
 ```bash
-$ pipenv shell
+$ python -m venv env
 ```
 
-**注意** 除了 `pipenv install` 命令和 Git 相关命令外，除非特别说明，本书后续的所有命令均需要在激活虚拟环境后执行。如果你不想每次都激活虚拟环境，可以在命令前添加 `pipenv run` 前缀，比如 `pipenv run pip list` 即表示在虚拟环境内执行 `pip list` 命令。
+Python 2 用户使用：
 
-**提示** 建议为 Pip 和 Pipenv 更新 PyPI 源，改为使用国内的 PyPI 镜像源以提高下载速度，具体见[这篇文章](https://zhuanlan.zhihu.com/p/57872888)。
+```bash
+$ virtualenv env
+```
+
+上述命令的最后一个参数是虚拟环境名称，你可以自由定义，比如 venv、env、.venv，或是 项目名-venv，这里使用了 env。
+
+这会在当前目录创建一个包含 Python 解释器环境的虚拟环境文件夹，名称为 env。
+
+创建虚拟环境后，我们可以使用下面的命令来激活虚拟环境，如下所示（执行 `deactivate` 可以退出虚拟环境）：
+
+```bash
+$ env\Scripts\activate  # Windows
+```
+
+或
+
+```bash
+$ . env/bin/activate  # Linux 或 macOS
+```
+
+这时命令提示符前会显示虚拟环境的名称，表示已经激活成功：
+
+```bash
+(env) $
+```
+
+**注意** 除了 Git 相关命令外，除非特别说明，本书后续的所有命令均需要在激活虚拟环境后执行。
+
+**提示** 建议为 pip 更新 PyPI 源，改为使用国内的 PyPI 镜像源以提高下载速度，具体见[这篇文章](https://zhuanlan.zhihu.com/p/57872888)。
 
 ## 安装 Flask
 
-无论是否已经激活虚拟环境，你都可以使用下面的命令来安装 Flask：
+激活虚拟环境后，使用下面的命令来安装 Flask：
 
 ```bash
-$ pipenv install flask
+(env) $ pip install flask
 ```
 
-这会把 Flask 以及相关的一些依赖包安装到对应的虚拟环境，同时 Pipenv 会自动更新依赖文件。
+这会把 Flask 以及相关的一些依赖包安装到对应的虚拟环境。
 
 **提示** 如果你没有使用虚拟环境，记得将 Flask 更新到最新版本（`pip install -U flask`）。
 
 ## 本章小结
 
-当你进行到这里，就意味这我们已经做好学习和开发Flask程序的全部准备了。使用 `git status` 命令可以查看当前仓库的文件变动状态：
+当你进行到这里，就意味这我们已经做好学习和开发 Flask 程序的全部准备了。使用 `git status` 命令可以查看当前仓库的文件变动状态：
 
 ```bash
 $ git status
@@ -202,6 +218,4 @@ $ git push -u origin master # 如果你没有把仓库托管到 GitHub，则跳�
 
 * 阅读 MDN 的 [《Web 入门教程》](https://developer.mozilla.org/zh-CN/docs/learn)（了解 HTML、CSS、JavaScript）。
 * 阅读短教程[《Git 简明指南》](http://rogerdudler.github.io/git-guide/index.zh.html)。
-* 阅读文章[《Pipenv：新一代Python项目环境与依赖管理工具》](https://zhuanlan.zhihu.com/p/37581807)或 [Pipenv 官方文档](https://pipenv.readthedocs.io/en/latest/)。
 * 如果你打算开源你的程序，在项目根目录中添加一个 README.md （自述文件）和 LICENSE （授权声明）是很有必要的。详情可以访问 [Open Source Guides](https://opensource.guide/) 了解。
-* 在安装 Pipenv 时，你也可以使用 `--user` 选项进行用户安装（即 `pip install --user pipenv`）。用户安装可以避免破坏全局的包，而且可以避免对不可信的包使用 sudo pip 导致的潜在安全问题。详情见 [Pipenv 文档安装章节](https://docs.pipenv.org/install/#installing-pipenv)。

@@ -138,7 +138,7 @@ from watchlist.commands import forge, initdb
 因为要测试的目标改变，测试时的 `--source` 选项的值也要更新为包的名称 `watchlist`：
 
 ```bash
-$ coverage run --source=watchlist test_watchlist.py
+(env) $ coverage run --source=watchlist test_watchlist.py
 ```
 
 **提示** 你可以创建配置文件来预先定义 `--source` 选项，避免每次执行命令都给出这个选项，具体可以参考文档[配置文件章节](https://coverage.readthedocs.io/en/v4.5.x/config.html)。

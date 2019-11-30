@@ -8,10 +8,10 @@
 
 Flask 有大量的第三方扩展，这些扩展可以简化和第三方库的集成工作。我们下面将使用一个叫做 [Flask-SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/) 的官方扩展来集成 SQLAlchemy。
 
-首先使用 Pipenv 安装它：
+首先安装它：
 
 ```bash
-$ pipenv install flask-sqlalchemy
+(env) $ pip install flask-sqlalchemy
 ```
 
 大部分扩展都需要执行一个“初始化”操作。你需要导入扩展类，实例化并传入 Flask 程序实例：
@@ -115,7 +115,7 @@ class Movie(db.Model):  # 表名将会是 movie
 模型类创建后，还不能对数据库进行操作，因为我们还没有创建表和数据库文件。下面在 Python Shell 中创建了它们：
 
 ```python
-$ flask shell
+(env) $ flask shell
 >>> from app import db
 >>> db.create_all()
 ```
@@ -157,13 +157,13 @@ def initdb(drop):
 默认情况下，函数名称就是命令的名字，现在执行 `flask initdb` 命令就可以创建数据库表：
 
 ```bash
-$ flask initdb
+(env) $ flask initdb
 ```
 
 使用 `--drop` 选项可以删除表后重新创建：
 
 ```bash
-$ flask initdb --drop
+(env) $ flask initdb --drop
 ```
 
 ## 创建、读取、更新、删除
@@ -328,7 +328,7 @@ def forge():
 现在执行 `flask forge` 命令就会把所有虚拟数据添加到数据库里：
 
 ```bash
-$ flask forge
+(env) $ flask forge
 ```
 
 ## 本章小结

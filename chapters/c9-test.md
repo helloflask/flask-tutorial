@@ -422,7 +422,7 @@ if __name__ == '__main__':
 使用下面的命令执行测试：
 
 ```bash
-$ python test_watchlist.py
+(env) $ python test_watchlist.py
 ...............
 ----------------------------------------------------------------------
 Ran 15 tests in 2.942s
@@ -434,16 +434,16 @@ OK
 
 ## 测试覆盖率
 
-为了让让程序更加强壮，你可以添加更多、更完善的测试。那么，如何才能知道程序里有哪些代码还没有被测试？整体的测试覆盖率情况如何？我们可以使用 [Coverage.py](https://coverage.readthedocs.io/en/v4.5.x/) 来检查测试覆盖率，首先安装它（添加 `--dev` 参数将它作为开发依赖安装）：
+为了让程序更加强壮，你可以添加更多、更完善的测试。那么，如何才能知道程序里有哪些代码还没有被测试？整体的测试覆盖率情况如何？我们可以使用 [Coverage.py](https://coverage.readthedocs.io/en/v4.5.x/) 来检查测试覆盖率，首先安装它：
 
 ```bash
-$ pipenv install coverage --dev
+(env) $ pip install coverage
 ```
 
 使用下面的命令执行测试并检查测试覆盖率：
 
 ```bash
-$ coverage run --source=app test_watchlist.py
+(env) $ coverage run --source=app test_watchlist.py
 ```
 
 因为我们只需要检查程序脚本 app.py 的测试覆盖率，所以使用 `--source`  选项来指定要检查的模块或包。

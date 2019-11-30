@@ -19,10 +19,10 @@ def hello():
     return 'Welcome to My Watchlist!'
 ```
 
-按照惯例，我们把程序保存为 app.py，确保当前目录是项目的根目录，然后在命令行窗口执行 `flask run` 命令启动程序（按下 Control + C 可以退出）：
+按照惯例，我们把程序保存为 app.py，确保当前目录是项目的根目录，并且激活了虚拟环境，然后在命令行窗口执行 `flask run` 命令启动程序（按下 Control + C 可以退出）：
 
 ```bash
-$ flask run
+(env) $ flask run
 * Serving Flask app "app.py"
 * Environment: production
   WARNING: Do not use the development server in a production environment.
@@ -92,7 +92,7 @@ Flask 通过读取这个环境变量值对应的模块寻找要运行的程序�
 为了不用每次打开新的终端会话都要设置环境变量，我们安装用来管理系统环境变量的 python-dotenv：
 
 ```bash
-$ pipenv install python-dotenv
+(env) $ pip install python-dotenv
 ```
 
 当 python-dotenv 安装后，Flask 会从项目根目录的 .flaskenv 和 .env 文件读取环境变量并设置。我们分别使用文本编辑器创建这两个文件，或是使用更方便的 `touch` 命令创建：
