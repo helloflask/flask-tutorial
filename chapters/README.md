@@ -1,6 +1,6 @@
-# Flask 入门教程
+# 简介
 
-这是一本 Flask 入门教程，提供了入门 Flask 所需的最少信息，你可以跟随本书自己动手开发一个简单的 [Watchlist 程序](https://github.com/greyli/watchlist)。本书主页为 <http://helloflask.com/tutorial>。
+这是一本 Flask 入门教程，提供了入门 Flask 所需的最少信息，你可以跟随本书自己动手开发一个简单的 [Watchlist 程序](https://github.com/greyli/watchlist)。本书主页为 [http://helloflask.com/tutorial](http://helloflask.com/tutorial)。
 
 ## 关于作者
 
@@ -8,20 +8,20 @@
 
 ## 目录
 
-- 前言
-- 第 1 章：准备工作
-- 第 2 章：Hello, Flask!
-- 第 3 章：模板
-- 第 4 章：静态文件
-- 第 5 章：数据库
-- 第 6 章：模板优化
-- 第 7 章：表单
-- 第 8 章：用户认证
-- 第 9 章：测试
-- 第 10 章：组织你的代码
-- 第 11 章：部署上线
-- 小挑战
-- 后记
+* 前言
+* 第 1 章：准备工作
+* 第 2 章：Hello, Flask!
+* 第 3 章：模板
+* 第 4 章：静态文件
+* 第 5 章：数据库
+* 第 6 章：模板优化
+* 第 7 章：表单
+* 第 8 章：用户认证
+* 第 9 章：测试
+* 第 10 章：组织你的代码
+* 第 11 章：部署上线
+* 小挑战
+* 后记
 
 ## 版权信息
 
@@ -38,3 +38,4 @@
 © 2018 [李辉](http://greyli.com)（Grey Li） / [HelloFlask.com](http://helloflask.com)
 
 本书采用 [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh) 协议授权，禁止商用、演绎后分发或无署名转载。
+

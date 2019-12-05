@@ -50,7 +50,7 @@ sqlite:////数据库文件的绝对地址
 
 另外，如果你使用 Windows 系统，上面的 URI 前缀部分需要写入三个斜线（即 `sqlite:///`）。在本书的示例程序代码里，做了一些兼容性处理，另外还新设置了一个配置变量，实际的代码如下：
 
-*app.py：数据库配置*
+_app.py：数据库配置_
 
 ```python
 import os
@@ -73,13 +73,13 @@ db = SQLAlchemy(app)
 
 如果你固定在某一个操作系统上进行开发，部署时也使用相同的操作系统，那么可以不用这么做，直接根据你的需要写出前缀即可。
 
-> **提示** 你可以访问  [Flask 文档的配置页面](http://flask.pocoo.org/docs/1.0/config/)查看 Flask 内置的配置变量；同样的，在 [Flask-SQLAlchemy 文档的配置页面](http://flask-sqlalchemy.pocoo.org/2.1/config/)可以看到 Flask-SQLAlchemy 提供的配置变量。
+> **提示** 你可以访问 [Flask 文档的配置页面](http://flask.pocoo.org/docs/1.0/config/)查看 Flask 内置的配置变量；同样的，在 [Flask-SQLAlchemy 文档的配置页面](http://flask-sqlalchemy.pocoo.org/2.1/config/)可以看到 Flask-SQLAlchemy 提供的配置变量。
 
 ## 创建数据库模型
 
 在 Watchlist 程序里，目前我们有两类数据要保存：用户信息和电影条目信息。下面分别创建了两个模型类来表示这两张表：
 
-*app.py：创建数据库模型*
+_app.py：创建数据库模型_
 
 ```python
 class User(db.Model):  # 表名将会是 user（自动生成，小写处理）
@@ -101,14 +101,14 @@ class Movie(db.Model):  # 表名将会是 movie
 
 常用的字段类型如下表所示：
 
-| 字段类           | 说明                                          |
-| ---------------- | --------------------------------------------- |
-| db.Integer       | 整型                                          |
-| db.String (size) | 字符串，size 为最大长度，比如 `db.String(20)` |
-| db.Text          | 长文本                                        |
-| db.DateTime      | 时间日期，Python `datetime` 对象              |
-| db.Float         | 浮点数                                        |
-| db.Boolean       | 布尔值                                        |
+| 字段类 | 说明 |
+| :--- | :--- |
+| db.Integer | 整型 |
+| db.String \(size\) | 字符串，size 为最大长度，比如 `db.String(20)` |
+| db.Text | 长文本 |
+| db.DateTime | 时间日期，Python `datetime` 对象 |
+| db.Float | 浮点数 |
+| db.Boolean | 布尔值 |
 
 ## 创建数据库表
 
@@ -122,7 +122,7 @@ class Movie(db.Model):  # 表名将会是 movie
 
 打开文件管理器，你会发现项目根目录下出现了新创建的数据库文件 data.db。这个文件不需要提交到 Git 仓库，我们在 .gitignore 文件最后添加一行新规则：
 
-```
+```text
 *.db
 ```
 
@@ -139,7 +139,7 @@ class Movie(db.Model):  # 表名将会是 movie
 
 和 `flask shell`类似，我们可以编写一个自定义命令来自动执行创建数据库表操作：
 
-*app.py：自定义命令 initdb*
+_app.py：自定义命令 initdb_
 
 ```python
 import click
@@ -199,24 +199,24 @@ def initdb(drop):
 
 下面是一些常用的过滤方法：
 
-| 过滤方法    | 说明                                                         |
-| ----------- | ------------------------------------------------------------ |
-| filter()    | 使用指定的规则过滤记录，返回新产生的查询对象                 |
-| filter_by() | 使用指定规则过滤记录（以关键字表达式的形式），返回新产生的查询对象 |
-| order_by()  | 根据指定条件对记录进行排序，返回新产生的查询对象             |
-| group_by()  | 根据指定条件对记录进行分组，返回新产生的查询对象             |
+| 过滤方法 | 说明 |
+| :--- | :--- |
+| filter\(\) | 使用指定的规则过滤记录，返回新产生的查询对象 |
+| filter\_by\(\) | 使用指定规则过滤记录（以关键字表达式的形式），返回新产生的查询对象 |
+| order\_by\(\) | 根据指定条件对记录进行排序，返回新产生的查询对象 |
+| group\_by\(\) | 根据指定条件对记录进行分组，返回新产生的查询对象 |
 
 下面是一些常用的查询方法：
 
-| 查询方法       | 说明                                                         |
-| -------------- | ------------------------------------------------------------ |
-| all()          | 返回包含所有查询记录的列表                                   |
-| first()        | 返回查询的第一条记录，如果未找到，则返回None                 |
-| get(id)        | 传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回None |
-| count()        | 返回查询结果的数量                                           |
-| first_or_404() | 返回查询的第一条记录，如果未找到，则返回404错误响应          |
-| get_or_404(id) | 传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回404错误响应 |
-| paginate()     | 返回一个Pagination对象，可以对记录进行分页处理               |
+| 查询方法 | 说明 |
+| :--- | :--- |
+| all\(\) | 返回包含所有查询记录的列表 |
+| first\(\) | 返回查询的第一条记录，如果未找到，则返回None |
+| get\(id\) | 传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回None |
+| count\(\) | 返回查询结果的数量 |
+| first\_or\_404\(\) | 返回查询的第一条记录，如果未找到，则返回404错误响应 |
+| get\_or\_404\(id\) | 传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回404错误响应 |
+| paginate\(\) | 返回一个Pagination对象，可以对记录进行分页处理 |
 
 下面的操作演示了如何从数据库中读取记录，并进行简单的查询：
 
@@ -282,7 +282,7 @@ def index():
 
 在 `index` 视图中，原来传入模板的 `name` 变量被 `user` 实例取代，模板 index.html 中的两处 `name` 变量也要相应的更新为 `user.name` 属性：
 
-```jinja2
+```text
 {{ user.name }}'s Watchlist
 ```
 
@@ -290,7 +290,7 @@ def index():
 
 因为有了数据库，我们可以编写一个命令函数把虚拟数据添加到数据库里。下面是用来生成虚拟数据的命令函数：
 
-*app.py：创建自定义命令 forge*
+_app.py：创建自定义命令 forge_
 
 ```python
 import click
@@ -299,7 +299,7 @@ import click
 def forge():
     """Generate fake data."""
     db.create_all()
-    
+
     # 全局的两个变量移动到这个函数内
     name = 'Grey Li'
     movies = [
@@ -314,13 +314,13 @@ def forge():
         {'title': 'WALL-E', 'year': '2008'},
         {'title': 'The Pork of Music', 'year': '2012'},
     ]
-    
+
     user = User(name=name)
     db.session.add(user)
     for m in movies:
         movie = Movie(title=m['title'], year=m['year'])
         db.session.add(movie)
-    
+
     db.session.commit()
     click.echo('Done.')
 ```
@@ -342,7 +342,6 @@ $ git push
 ```
 
 > **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[4d2442a](https://github.com/greyli/watchlist/commit/4d2442a41e55fb454e092864206af08e4e3eeddf)。
-
 
 ## 进阶提示
 

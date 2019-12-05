@@ -6,7 +6,7 @@ Flask 对项目结构没有固定要求，你可以使用单脚本，也可以�
 
 先来看看我们目前的项目文件结构：
 
-```
+```text
 ├── .flaskenv
 ├── Pipfile
 ├── Pipfile.lock
@@ -42,13 +42,13 @@ $ touch __init__.py views.py errors.py models.py commands.py  # 创建多个模�
 
 我们把这个包称为程序包，包里目前包含的模块和作用如下表所示：
 
-| 模块            | 作用                     |
-| --------------- | ------------------------ |
+| 模块 | 作用 |
+| :--- | :--- |
 | \_\_init\_\_.py | 包构造文件，创建程序实例 |
-| views.py        | 视图函数                 |
-| errors.py       | 错误处理函数             |
-| models.py       | 模型类                   |
-| commands.py     | 命令函数                 |
+| views.py | 视图函数 |
+| errors.py | 错误处理函数 |
+| models.py | 模型类 |
+| commands.py | 命令函数 |
 
 > **提示** 除了包构造文件外，其他的模块文件名你可以自由修改，比如 views.py 也可以叫 routes.py。
 
@@ -76,17 +76,17 @@ login_manager = LoginManager(app)
 
 @login_manager.user_loader
 def load_user(user_id):
-	from watchlist.models import User
-	user = User.query.get(int(user_id))
-	return user
+    from watchlist.models import User
+    user = User.query.get(int(user_id))
+    return user
 
 login_manager.login_view = 'login'
 
 @app.context_processor
 def inject_user():
-	from watchlist.models import User
-	user = User.query.first()
-	return dict(user=user)
+    from watchlist.models import User
+    user = User.query.first()
+    return dict(user=user)
 
 from watchlist import views, errors, commands
 ```
@@ -162,13 +162,13 @@ TOTAL                     161      6    96%
 
 因为我们使用包来组织程序，不再是 Flask 默认识别的 app.py，所以在启动开发服务器前需要使用环境变量 `FLASK_APP` 来给出程序实例所在的模块路径。因为我们的程序实例在包构造文件内，所以直接写出包名称即可。在 .flaskenv 文件中添加下面这行代码：
 
-```
+```text
 FLASK_APP=watchlist
 ```
 
 最终的项目文件结构如下所示：
 
-```
+```text
 ├── .flaskenv
 ├── Pipfile
 ├── Pipfile.lock
@@ -211,6 +211,7 @@ $ git push
 
 ## 进阶提示
 
-- [蓝本](http://flask.pocoo.org/docs/1.0/blueprints/)类似于子程序的概念，借助蓝本你可以把程序不同部分的代码分离开（比如按照功能划分为用户认证、管理后台等多个部分），即对程序进行模块化处理。每个蓝本可以拥有独立的子域名、URL 前缀、错误处理函数、模板和静态文件。
-- [工厂函数](http://flask.pocoo.org/docs/1.0/patterns/appfactories/)就是创建程序的函数。在工厂函数内，我们先创建程序实例，并在函数内完成初始化扩展、注册视图函数等一系列操作，最后返回可以直接运行的程序实例。工厂函数可以接受配置名称作为参数，在内部加载对应的配置文件，这样就可以实现按需创建加载不同配置的程序实例，比如在测试时调用工厂函数创建一个测试用的程序实例。
-- 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 7 章介绍了使用包组织程序，第 8 章介绍了大型项目结构以及如何使用蓝本和工厂函数组织程序。 
+* [蓝本](http://flask.pocoo.org/docs/1.0/blueprints/)类似于子程序的概念，借助蓝本你可以把程序不同部分的代码分离开（比如按照功能划分为用户认证、管理后台等多个部分），即对程序进行模块化处理。每个蓝本可以拥有独立的子域名、URL 前缀、错误处理函数、模板和静态文件。
+* [工厂函数](http://flask.pocoo.org/docs/1.0/patterns/appfactories/)就是创建程序的函数。在工厂函数内，我们先创建程序实例，并在函数内完成初始化扩展、注册视图函数等一系列操作，最后返回可以直接运行的程序实例。工厂函数可以接受配置名称作为参数，在内部加载对应的配置文件，这样就可以实现按需创建加载不同配置的程序实例，比如在测试时调用工厂函数创建一个测试用的程序实例。
+* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 7 章介绍了使用包组织程序，第 8 章介绍了大型项目结构以及如何使用蓝本和工厂函数组织程序。 
+

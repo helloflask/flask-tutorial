@@ -36,10 +36,10 @@ class SayHelloTestCase(unittest.TestCase):  # 测试用例
     def test_sayhello(self):  # 第 1 个测试
         rv = sayhello()
         self.assertEqual(rv, 'Hello!')
-       
+
     def test_sayhello_to_somebody(self)  # 第 2 个测试
         rv = sayhello(to='Grey')
-		self.assertEqual(rv, 'Hello, Grey!')
+        self.assertEqual(rv, 'Hello, Grey!')
 
 
 if __name__ == '__main__':
@@ -52,32 +52,32 @@ if __name__ == '__main__':
 
 如果把执行测试方法比作战斗，那么准备弹药、规划战术的工作就要在 `setUp()` 方法里完成，而打扫战场则要在 `tearDown()` 方法里完成。
 
-每一个测试方法（名称以 `test_`  开头的方法）对应一个要测试的函数 / 功能 / 使用场景。在上面我们创建了两个测试方法，`test_sayhello()` 方法测试 `sayhello()` 函数，`test_sayhello_to_somebody()` 方法测试传入参数时的 `sayhello()` 函数。
+每一个测试方法（名称以 `test_` 开头的方法）对应一个要测试的函数 / 功能 / 使用场景。在上面我们创建了两个测试方法，`test_sayhello()` 方法测试 `sayhello()` 函数，`test_sayhello_to_somebody()` 方法测试传入参数时的 `sayhello()` 函数。
 
 在测试方法里，我们使用断言方法来判断程序功能是否正常。以第一个测试方法为例，我们先把 `sayhello()` 函数调用的返回值保存为 `rv` 变量（return value），然后使用 `self.assertEqual(rv, 'Hello!')` 来判断返回值内容是否符合预期。如果断言方法出错，就表示该测试方法未通过。
 
 下面是一些常用的断言方法：
 
-- assertEqual(a, b) 
-- assertNotEqual(a, b) 
-- assertTrue(x) 
-- assertFalse(x) 
-- assertIs(a, b) 
-- assertIsNot(a, b) 
-- assertIsNone(x) 
-- assertIsNotNone(x) 
-- assertIn(a, b) 
-- assertNotIn(a, b) 
+* assertEqual\(a, b\) 
+* assertNotEqual\(a, b\) 
+* assertTrue\(x\) 
+* assertFalse\(x\) 
+* assertIs\(a, b\) 
+* assertIsNot\(a, b\) 
+* assertIsNone\(x\) 
+* assertIsNotNone\(x\) 
+* assertIn\(a, b\) 
+* assertNotIn\(a, b\) 
 
 这些方法的作用从方法名称上基本可以得知。
 
-假设我们把上面的测试代码保存到 test_sayhello.py 文件中，通过执行 `python test_sayhello.py` 命令即可执行所有测试，并输出测试的结果、通过情况、总耗时等信息。
+假设我们把上面的测试代码保存到 test\_sayhello.py 文件中，通过执行 `python test_sayhello.py` 命令即可执行所有测试，并输出测试的结果、通过情况、总耗时等信息。
 
 ## 测试 Flask 程序
 
-回到我们的程序，我们在项目根目录创建一个 test_watchlist.py 脚本来存储测试代码，我们先编写测试固件和两个简单的基础测试：
+回到我们的程序，我们在项目根目录创建一个 test\_watchlist.py 脚本来存储测试代码，我们先编写测试固件和两个简单的基础测试：
 
-*test_watchlist.py：测试固件*
+_test\_watchlist.py：测试固件_
 
 ```python
 import unittest
@@ -109,7 +109,7 @@ class WatchlistTestCase(unittest.TestCase):
     def tearDown(self):
         db.session.remove()  # 清除数据库会话
         db.drop_all()  # 删除数据库表
-    
+
     # 测试程序实例是否存在
     def test_app_exist(self):
         self.assertIsNotNone(app)
@@ -129,7 +129,7 @@ class WatchlistTestCase(unittest.TestCase):
 
 `app.test_client()` 返回一个测试客户端对象，可以用来模拟客户端（浏览器），我们创建类属性 `self.client` 来保存它。对它调用 `get()` 方法就相当于浏览器向服务器发送 GET 请求，调用 `post()` 则相当于浏览器向服务器发送 POST 请求，以此类推。下面是两个发送 GET 请求的测试方法，分别测试 404 页面和主页：
 
-*test_watchlist.py：测试固件*
+_test\_watchlist.py：测试固件_
 
 ```python
 class WatchlistTestCase(unittest.TestCase):
@@ -141,7 +141,7 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertIn('Page Not Found - 404', data)
         self.assertIn('Go Back', data)
         self.assertEqual(response.status_code, 404)  # 判断响应状态码
-    
+
     # 测试主页
     def test_index_page(self):
         response = self.client.get('/')
@@ -150,11 +150,12 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertIn('Test Movie Title', data)
         self.assertEqual(response.status_code, 200)
 ```
+
 调用这类方法返回包含响应数据的响应对象，对这个响应对象调用 `get_data()` 方法并把 `as_text` 参数设为 `True` 可以获取 Unicode 格式的响应主体。我们通过判断响应主体中是否包含预期的内容来测试程序是否正常工作，比如 404 页面响应是否包含 Go Back，主页响应是否包含标题 Test's Watchlist。
 
 接下来，我们要测试数据库操作相关的功能，比如创建、更新和删除电影条目。这些操作对应的请求都需要登录账户后才能发送，我们先编写一个用于登录账户的辅助方法：
 
-*test_watchlist.py：测试辅助方法*
+_test\_watchlist.py：测试辅助方法_
 
 ```python
 class WatchlistTestCase(unittest.TestCase):
@@ -171,7 +172,7 @@ class WatchlistTestCase(unittest.TestCase):
 
 下面是测试创建、更新和删除条目的测试方法：
 
-*test_watchlist.py：测试创建、更新和删除条目*
+_test\_watchlist.py：测试创建、更新和删除条目_
 
 ```python
 class WatchlistTestCase(unittest.TestCase):
@@ -179,7 +180,7 @@ class WatchlistTestCase(unittest.TestCase):
     # 测试创建条目
     def test_create_item(self):
         self.login()
-        
+
         # 测试创建条目操作
         response = self.client.post('/', data=dict(
             title='New Movie',
@@ -188,7 +189,7 @@ class WatchlistTestCase(unittest.TestCase):
         data = response.get_data(as_text=True)
         self.assertIn('Item created.', data)
         self.assertIn('New Movie', data)
-        
+
         # 测试创建条目操作，但电影标题为空
         response = self.client.post('/', data=dict(
             title='',
@@ -197,7 +198,7 @@ class WatchlistTestCase(unittest.TestCase):
         data = response.get_data(as_text=True)
         self.assertNotIn('Item created.', data)
         self.assertIn('Invalid input.', data)
-        
+
         # 测试创建条目操作，但电影年份为空
         response = self.client.post('/', data=dict(
             title='New Movie',
@@ -210,14 +211,14 @@ class WatchlistTestCase(unittest.TestCase):
     # 测试更新条目
     def test_update_item(self):
         self.login()
-        
+
         # 测试更新页面
         response = self.client.get('/movie/edit/1')
         data = response.get_data(as_text=True)
         self.assertIn('Edit item', data)
         self.assertIn('Test Movie Title', data)
         self.assertIn('2019', data)
-        
+
         # 测试更新条目操作
         response = self.client.post('/movie/edit/1', data=dict(
             title='New Movie Edited',
@@ -226,7 +227,7 @@ class WatchlistTestCase(unittest.TestCase):
         data = response.get_data(as_text=True)
         self.assertIn('Item updated.', data)
         self.assertIn('New Movie Edited', data)
-        
+
         # 测试更新条目操作，但电影标题为空
         response = self.client.post('/movie/edit/1', data=dict(
             title='',
@@ -235,7 +236,7 @@ class WatchlistTestCase(unittest.TestCase):
         data = response.get_data(as_text=True)
         self.assertNotIn('Item updated.', data)
         self.assertIn('Invalid input.', data)
-        
+
         # 测试更新条目操作，但电影年份为空
         response = self.client.post('/movie/edit/1', data=dict(
             title='New Movie Edited Again',
@@ -249,17 +250,18 @@ class WatchlistTestCase(unittest.TestCase):
     # 测试删除条目
     def test_delete_item(self):
         self.login()
-        
+
         response = self.client.post('/movie/delete/1', follow_redirects=True)
         data = response.get_data(as_text=True)
         self.assertIn('Item deleted.', data)
         self.assertNotIn('Test Movie Title', data)
 ```
+
 在这几个测试方法中，大部分的断言都是在判断响应主体是否包含正确的提示消息和电影条目信息。
 
 登录、登出和认证保护等功能的测试如下所示：
 
-*test_watchlist.py：测试认证相关功能*
+_test\_watchlist.py：测试认证相关功能_
 
 ```python
 class WatchlistTestCase(unittest.TestCase):
@@ -287,7 +289,7 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertIn('Delete', data)
         self.assertIn('Edit', data)
         self.assertIn('<form method="post">', data)
-        
+
         # 测试使用错误的密码登录
         response = self.client.post('/login', data=dict(
             username='test',
@@ -296,7 +298,7 @@ class WatchlistTestCase(unittest.TestCase):
         data = response.get_data(as_text=True)
         self.assertNotIn('Login success.', data)
         self.assertIn('Invalid username or password.', data)
-        
+
         # 测试使用错误的用户名登录
         response = self.client.post('/login', data=dict(
             username='wrong',
@@ -305,7 +307,7 @@ class WatchlistTestCase(unittest.TestCase):
         data = response.get_data(as_text=True)
         self.assertNotIn('Login success.', data)
         self.assertIn('Invalid username or password.', data)
-        
+
         # 测试使用空用户名登录
         response = self.client.post('/login', data=dict(
             username='',
@@ -314,7 +316,7 @@ class WatchlistTestCase(unittest.TestCase):
         data = response.get_data(as_text=True)
         self.assertNotIn('Login success.', data)
         self.assertIn('Invalid input.', data)
-        
+
         # 测试使用空密码登录
         response = self.client.post('/login', data=dict(
             username='test',
@@ -336,11 +338,11 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertNotIn('Delete', data)
         self.assertNotIn('Edit', data)
         self.assertNotIn('<form method="post">', data)
-    
+
     # 测试设置
     def test_settings(self):
         self.login()
-        
+
         # 测试设置页面
         response = self.client.get('/settings')
         data = response.get_data(as_text=True)
@@ -363,11 +365,12 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertNotIn('Settings updated.', data)
         self.assertIn('Invalid input.', data)
 ```
+
 ### 测试命令
 
 除了测试程序的各个视图函数，我们还需要测试自定义命令。`app.test_cli_runner()` 方法返回一个命令运行器对象，我们创建类属性 `self.runner` 来保存它。通过对它调用 `invoke()` 方法可以执行命令，传入命令函数对象，或是使用 `args` 关键字直接给出命令参数列表。`invoke()` 方法返回的命令执行结果对象，它的 `output` 属性返回命令的输出信息。下面是我们为各个自定义命令编写的测试方法：
 
-*test_watchlist.py：测试自定义命令行命令*
+_test\_watchlist.py：测试自定义命令行命令_
 
 ```python
 # 导入命令函数
@@ -408,6 +411,7 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertEqual(User.query.first().username, 'peter')
         self.assertTrue(User.query.first().validate_password('456'))
 ```
+
 在这几个测试中，大部分的断言是在检查执行命令后的数据库数据是否发生了正确的变化，或是判断命令行输出（`result.output`）是否包含预期的字符。
 
 ### 运行测试
@@ -446,7 +450,7 @@ OK
 (env) $ coverage run --source=app test_watchlist.py
 ```
 
-因为我们只需要检查程序脚本 app.py 的测试覆盖率，所以使用 `--source`  选项来指定要检查的模块或包。
+因为我们只需要检查程序脚本 app.py 的测试覆盖率，所以使用 `--source` 选项来指定要检查的模块或包。
 
 最后使用下面的命令查看覆盖率报告：
 
@@ -461,11 +465,11 @@ app.py     146      5    97%
 
 你还可以使用 coverage html 命令获取详细的 HTML 格式的覆盖率报告，它会在当前目录生成一个 htmlcov 文件夹，打开其中的 index.html 即可查看覆盖率报告。点击文件名可以看到具体的代码覆盖情况，如下图所示：
 
-![覆盖率报告](images/9-1.png)
+![&#x8986;&#x76D6;&#x7387;&#x62A5;&#x544A;](.gitbook/assets/9-1%20%281%29.png)
 
 同时在 .gitignore 文件后追加下面两行，忽略掉生成的覆盖率报告文件：
 
-```
+```text
 htmlcov/
 .coverage
 ```
@@ -484,6 +488,7 @@ $ git push
 
 ## 进阶提示
 
-* 访问 Coverage.py 文档（https://coverage.readthedocs.io）或执行 coverage help 命令来查看更多用法。
+* 访问 Coverage.py 文档（[https://coverage.readthedocs.io）或执行](https://coverage.readthedocs.io）或执行) coverage help 命令来查看更多用法。
 * 使用标准库中的 unittest 编写单元测试并不是唯一选择，你也可以使用第三方测试框架，比如非常流行的 [pytest](https://pytest.org)。
 * 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 12 章详细介绍了测试 Flask 程序的相关知识，包括使用 [Selenium](https://www.seleniumhq.org/) 编写用户界面测试，使用 [Flake8](https://github.com/PyCQA/flake8) 检查代码质量等。 
+

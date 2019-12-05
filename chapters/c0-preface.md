@@ -6,17 +6,17 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 当你想要完成一个比较大的目标时，通常你会把这个目标分解成多个小目标，然后逐一去完成。开发程序也是这样，在一开始就编写出像豆瓣、IMDB 这样的程序恐怕不太现实，但是我们可以先模仿其中的一小部分。我们要完成的 Watchlist 程序就是一个很好的开始。在功能上，这个程序可以看做是简化版的 IMDB Watchlist / 豆瓣豆单：你可以添加、删除和修改你收藏的电影信息。
 
-![Watchlist 程序](images/7-2.png)
+![Watchlist &#x7A0B;&#x5E8F;](.gitbook/assets/7-2%20%281%29.png)
 
-你可以访问 http://watchlist.helloflask.com/ 查看示例程序的在线 Demo。
+你可以访问 [http://watchlist.helloflask.com/](http://watchlist.helloflask.com/) 查看示例程序的在线 Demo。
 
 ## 本书特点
 
-- 基于 Flask 最新的 1.0.2 版本
-- 使用一个 Watchlist 程序作为示例
-- 复原完整的开发流程
-- 只提供入门所需的最少信息
-- 优化术语解释，更容易理解
+* 基于 Flask 最新的 1.0.2 版本
+* 使用一个 Watchlist 程序作为示例
+* 复原完整的开发流程
+* 只提供入门所需的最少信息
+* 优化术语解释，更容易理解
 
 ## 阅读方法
 
@@ -33,7 +33,6 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 * [HelloFlask QQ 群](http://shang.qq.com/wpa/qunwpa?idkey=3cbf3e3ede8252eb3ae584a356131123ed68a9f3bd5bcee0652b401914eb01bb)（419980814）
 * [HelloFlask Telegram 群组](https://t.me/helloflask)（@helloflask）
 
-
 ## 反馈与勘误
 
 欢迎通过下面的方式提出反馈、建议和勘误：
@@ -44,11 +43,11 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 ## 相关资源
 
-* 本书主页：http://helloflask.com/tutorial
-* 本书论坛：https://discuss.helloflask.com
-* 本书源码：https://github.com/greyli/flask-tutorial
-* 本书示例程序源码：https://github.com/greyli/watchlist
-* 示例程序在线 Demo：http://watchlist.helloflask.com
+* 本书主页：[http://helloflask.com/tutorial](http://helloflask.com/tutorial)
+* 本书论坛：[https://discuss.helloflask.com](https://discuss.helloflask.com)
+* 本书源码：[https://github.com/greyli/flask-tutorial](https://github.com/greyli/flask-tutorial)
+* 本书示例程序源码：[https://github.com/greyli/watchlist](https://github.com/greyli/watchlist)
+* 示例程序在线 Demo：[http://watchlist.helloflask.com](http://watchlist.helloflask.com)
 
 ## 付费支持
 
@@ -56,4 +55,5 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 支付宝二维码 / 微信二维码
 
-![qr_alipay](images/qr_alipay.jpg)![qr_wechat](images/qr_wechat.jpg)
+![qr\_alipay](.gitbook/assets/qr_alipay%20%281%29.jpg)![qr\_wechat](.gitbook/assets/qr_wechat.jpg)
+

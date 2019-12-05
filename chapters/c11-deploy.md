@@ -27,7 +27,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = prefix + os.path.join(os.path.dirname(ap
 
 在部署程序时，我们不会使用 Flask 内置的开发服务器运行程序，因此，对于写到 .env 文件的环境变量，我们需要手动使用 python-dotenv 导入。下面在项目根目录创建一个 wsgi.py 脚本，在这个脚本中加载环境变量，并导入程序实例以供部署时使用：
 
-*wsgi.py：手动设置环境变量并导入程序实例*
+_wsgi.py：手动设置环境变量并导入程序实例_
 
 ```python
 import os
@@ -55,41 +55,41 @@ $ git push
 
 ## 使用 PythonAnywhere 部署程序
 
-首先访问[注册页面](https://www.pythonanywhere.com/registration/register/beginner/)注册一个免费账户。注册时填入的用户名将作为你的程序域名的子域部分，以及分配给你的 Linux 用户名。比如，如果你的用户名为 greyli，最终为你分配的程序域名就是 http://greyli.pythonanywhere.com/ 。
+首先访问[注册页面](https://www.pythonanywhere.com/registration/register/beginner/)注册一个免费账户。注册时填入的用户名将作为你的程序域名的子域部分，以及分配给你的 Linux 用户名。比如，如果你的用户名为 greyli，最终为你分配的程序域名就是 [http://greyli.pythonanywhere.com/](http://greyli.pythonanywhere.com/) 。
 
 注册完成后会有一个简单的教程，你可以跳过，也可以跟着了解一下基本用法。管理面板主页如下所示：
 
-![管理面板主页](images/11-1.png)
+![&#x7BA1;&#x7406;&#x9762;&#x677F;&#x4E3B;&#x9875;](.gitbook/assets/11-1.png)
 
 导航栏包含几个常用的链接，可以打开其他面板：
 
-- Consoles（控制台）：可以打开 Bash、Python Shell、MySQL 等常用的控制台
-- Files（文件）：创建、删除、编辑、上传文件，你可以在这里直接修改代码
-- Web：管理 Web 程序
-- Tasks（任务）：创建计划任务
-- Databases（数据库）：设置数据库，免费账户可以使用 MySQL
+* Consoles（控制台）：可以打开 Bash、Python Shell、MySQL 等常用的控制台
+* Files（文件）：创建、删除、编辑、上传文件，你可以在这里直接修改代码
+* Web：管理 Web 程序
+* Tasks（任务）：创建计划任务
+* Databases（数据库）：设置数据库，免费账户可以使用 MySQL
 
 这些链接对应页面的某些功能也可以直接在管理面板主页打开。
 
 我们需要先来创建一个 Web 程序，你可以点击导航栏的 Web 链接，或是主页上的“Open Web tab”按钮打开 Web 面板：
 
-![Web 面板](images/11-2.png)
+![Web &#x9762;&#x677F;](.gitbook/assets/11-2.png)
 
 点击“Add a new web app”按钮创建 Web 程序，第一步提示升级账户后可以自定义域名，我们直接点击“Next”按钮跳到下一步：
 
-![自定义域名](images/11-3.png)
+![&#x81EA;&#x5B9A;&#x4E49;&#x57DF;&#x540D;](.gitbook/assets/11-3.png)
 
 这一步选择 Web 框架，为了获得更灵活的控制，选择手动设置（Manual configuration）：
 
-![选择 Web 框架](images/11-4.png)
+![&#x9009;&#x62E9; Web &#x6846;&#x67B6;](.gitbook/assets/11-4.png)
 
 接着选择你想使用的 Python 版本：
 
-![选择 Python 版本](images/11-5.png)
+![&#x9009;&#x62E9; Python &#x7248;&#x672C;](.gitbook/assets/11-5.png)
 
 最后点击“Next”按钮即可完成创建 Web 程序流程：
 
-![结束创建 Web 程序流程](images/11-6.png)
+![&#x7ED3;&#x675F;&#x521B;&#x5EFA; Web &#x7A0B;&#x5E8F;&#x6D41;&#x7A0B;](.gitbook/assets/11-6%20%281%29.png)
 
 接下来我们需要进行一系列程序初始化操作，最后再回到 Web 面板进行具体的设置。
 
@@ -102,7 +102,7 @@ $ git push
 
 因为我们的代码已经推送到 GitHub 上，这里将采用第一种方式。首先通过管理面板主页的“Bash”按钮或是 Consoles 面板下的“Bash”链接创建一个命令行会话：
 
-![打开新的命令行会话](images/11-7.png)
+![&#x6253;&#x5F00;&#x65B0;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x4F1A;&#x8BDD;](.gitbook/assets/11-7.png)
 
 在命令行下输入下面的命令：
 
@@ -134,7 +134,7 @@ $ nano .env
 
 写入设置密钥和数据库名称的环境变量：
 
-```ini
+```text
 SECRET_KEY=3d6f45a5fc12445dbac2f59c3b6c7cb1
 DATABASE_FILE=data-prod.db
 ```
@@ -159,7 +159,7 @@ $ . env/bin/activate  # 激活虚拟环境
 
 回到 Web 标签页，先来设置 Code 部分的配置：
 
-![代码配置](images/11-8.png)
+![&#x4EE3;&#x7801;&#x914D;&#x7F6E;](.gitbook/assets/11-8.png)
 
 点击源码（Source code）和工作目录（Working directory）后的路径并填入项目根目录，目录规则为“/home/用户名/项目文件夹名”。
 
@@ -183,7 +183,7 @@ PythonAnywhere 会自动从这个文件里导入名称为 `application` 的程�
 
 为了让程序正确运行，我们需要在 Virtualenv 部分填入虚拟环境文件夹的路径：
 
-![虚拟环境配置](images/11-9.png)
+![&#x865A;&#x62DF;&#x73AF;&#x5883;&#x914D;&#x7F6E;](.gitbook/assets/11-9%20%281%29.png)
 
 对应我们的项目就是 `/home/greyli/watchlist/env/`，注意替换其中的用户名、项目名称和虚拟环境名称部分。点击 Virtualenv 部分的红色字体链接，填入并保存。
 
@@ -191,7 +191,7 @@ PythonAnywhere 会自动从这个文件里导入名称为 `application` 的程�
 
 静态文件可以交给 PythonAnywhere 设置的服务器来处理，这样会更高效。要让 PythonAnywhere 处理静态文件，我们只需要在 Static files 部分指定静态文件 URL 和对应的静态文件文件夹目录，如下所示：
 
-![静态文件配置](images/11-10.png)
+![&#x9759;&#x6001;&#x6587;&#x4EF6;&#x914D;&#x7F6E;](.gitbook/assets/11-10%20%281%29.png)
 
 注意更新目录中的用户名和项目文件夹名称。
 
@@ -199,13 +199,13 @@ PythonAnywhere 会自动从这个文件里导入名称为 `application` 的程�
 
 一切就绪，点击绿色的重载按钮即可让配置生效：
 
-![重载程序](images/11-11.png)
+![&#x91CD;&#x8F7D;&#x7A0B;&#x5E8F;](.gitbook/assets/11-11.png)
 
-现在访问你的程序网址“https://用户名.pythonanywhere.com”（Web 面板顶部的链接），比如https://greyli.pythonanywhere.com 即可访问程序。
+现在访问你的程序网址“[https://用户名.pythonanywhere.com”（Web](https://用户名.pythonanywhere.com”（Web) 面板顶部的链接），比如[https://greyli.pythonanywhere.com](https://greyli.pythonanywhere.com) 即可访问程序。
 
 最后还要注意的是，免费账户需要每三个月点击一次黄色的激活按钮（在过期前你会收到提醒邮件）：
 
-![激活程序](images/11-12.png)
+![&#x6FC0;&#x6D3B;&#x7A0B;&#x5E8F;](.gitbook/assets/11-12%20%281%29.png)
 
 ## 更新部署后的程序
 
@@ -226,7 +226,7 @@ $ git pull
 
 ## 进阶提示
 
-*  因为 PythonAnywhere 支持在线管理文件、编辑代码、执行命令，你可以在学习编程的过程中使用它来在线开发 Web 程序。
-*  PythonAnywhere 的 Web 面板还有一些功能设置：Log files 部分可以查看你的程序日志，Traffic 部分显示了你的程序访问流量情况，Security 部分可以为你的程序程序开启强制启用 HTTPS 和密码保护。
-*  如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 14 章详细介绍了部署 Flask 程序的两种方式，传统部署和云部署。
+* 因为 PythonAnywhere 支持在线管理文件、编辑代码、执行命令，你可以在学习编程的过程中使用它来在线开发 Web 程序。
+* PythonAnywhere 的 Web 面板还有一些功能设置：Log files 部分可以查看你的程序日志，Traffic 部分显示了你的程序访问流量情况，Security 部分可以为你的程序程序开启强制启用 HTTPS 和密码保护。
+* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 14 章详细介绍了部署 Flask 程序的两种方式，传统部署和云部署。
 
