@@ -4,7 +4,7 @@
 
 基于这些原因，为程序编写自动化测试就变得非常重要。
 
-**注意** 为了便于介绍，本书统一在这里介绍关于测试的内容。在实际的项目开发中，你应该在开发每一个功能后立刻编写相应的测试，确保测试通过后再开发下一个功能。
+> **注意** 为了便于介绍，本书统一在这里介绍关于测试的内容。在实际的项目开发中，你应该在开发每一个功能后立刻编写相应的测试，确保测试通过后再开发下一个功能。
 
 ## 单元测试
 
@@ -480,7 +480,7 @@ $ git commit -m "Add unit test with unittest"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[66dc487](https://github.com/greyli/watchlist/commit/66dc48719c797da00a9e29355b39d77abb45f574)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[66dc487](https://github.com/greyli/watchlist/commit/66dc48719c797da00a9e29355b39d77abb45f574)。
 
 ## 进阶提示
 

@@ -22,7 +22,7 @@ $ mkdir static
 
 花括号部分的调用会返回 `/static/foo.jpg`。
 
-**提示** 在 Python 脚本里，`url_for()` 函数需要从 `flask` 包中导入，而在模板中则可以直接使用，因为 Flask 把一些常用的函数和对象添加到了模板上下文（环境）里。
+> **提示** 在 Python 脚本里，`url_for()` 函数需要从 `flask` 包中导入，而在模板中则可以直接使用，因为 Flask 把一些常用的函数和对象添加到了模板上下文（环境）里。
 
 ## 添加 Favicon
 
@@ -61,7 +61,7 @@ $ mkdir images
 <img alt="Walking Totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">
 ```
 
-**提示** 这两张图片你可以自己替换为任意的图片（注意更新文件名），也可以在示例程序的 [GitHub 仓库](https://github.com/greyli/watchlist/tree/master/watchlist/static/images)下载。
+> **提示** 这两张图片你可以自己替换为任意的图片（注意更新文件名），也可以在示例程序的 [GitHub 仓库](https://github.com/greyli/watchlist/tree/master/watchlist/static/images)下载。
 
 ## 添加 CSS
 
@@ -161,7 +161,7 @@ $ git commit -m "Add static files"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[e51c579](https://github.com/greyli/watchlist/commit/e51c579735ae837824f10af5c1b7d454014d3c59)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[e51c579](https://github.com/greyli/watchlist/commit/e51c579735ae837824f10af5c1b7d454014d3c59)。
 
 ## 进阶提示
 

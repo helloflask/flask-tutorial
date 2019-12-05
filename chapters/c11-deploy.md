@@ -21,7 +21,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = prefix + os.path.join(os.path.dirname(ap
 
 以第一个配置变量为例，`os.getenv('SECRET_KEY', 'dev')` 表示读取系统环境变量 `SECRET_KEY` 的值，如果没有获取到，则使用 `dev`。
 
-**注意** 像密钥这种敏感信息，保存到环境变量中要比直接写在代码中更加安全。
+> **注意** 像密钥这种敏感信息，保存到环境变量中要比直接写在代码中更加安全。
 
 对于第二个配置变量，我们仅改动了最后的数据库文件名。在示例程序里，因为我们部署后将继续使用 SQLite，所以只需要为生产环境设置不同的数据库文件名，否则的话，你可以像密钥一样设置优先从环境变量读取整个数据库 URL。
 
@@ -51,7 +51,7 @@ $ git commit -m "Ready to deploy"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[92eabc8](https://github.com/greyli/watchlist/commit/92eabc89a669a8b3e2d2a56177a875938923fd52)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[92eabc8](https://github.com/greyli/watchlist/commit/92eabc89a669a8b3e2d2a56177a875938923fd52)。
 
 ## 使用 PythonAnywhere 部署程序
 
@@ -115,7 +115,7 @@ $ cd watchlist  # 切换进程序仓库
 
 注意替换 git clone 命令后的 Git 地址，将 `greyli` 替换为你的 GitHub 用户名，将 `watchlist` 替换为你的仓库名称。
 
-**提示** 如果你在 GitHub 上的仓库类型为私有仓库，那么需要将 PythonAnywhere 服务器的 SSH 密钥添加到 GitHub 账户中，具体参考第 1 章“设置 SSH 密钥”小节。
+> **提示** 如果你在 GitHub 上的仓库类型为私有仓库，那么需要将 PythonAnywhere 服务器的 SSH 密钥添加到 GitHub 账户中，具体参考第 1 章“设置 SSH 密钥”小节。
 
 下面我们在项目根目录创建 .env 文件，并写入生产环境下需要设置的两个环境变量。其中，密钥（`SECRET_KEY`）的值是随机字符串，我们可以使用 uuid 模块来生成：
 

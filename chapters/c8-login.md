@@ -228,7 +228,7 @@ def delete(movie_id):
 login_manager.login_view = 'login'
 ```
 
-**提示** 如果你需要的话，可以通过设置 `login_manager.login_message` 来自定义错误提示消息。
+> **提示** 如果你需要的话，可以通过设置 `login_manager.login_message` 来自定义错误提示消息。
 
 编辑视图同样需要附加这个装饰器：
 
@@ -368,7 +368,7 @@ $ git commit -m "User authentication with Flask-Login"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[6c60b7d](https://github.com/greyli/watchlist/commit/6c60b7d552921cb758e716de567e76f3a1ea578e)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[6c60b7d](https://github.com/greyli/watchlist/commit/6c60b7d552921cb758e716de567e76f3a1ea578e)。
 
 ## 进阶提示
 

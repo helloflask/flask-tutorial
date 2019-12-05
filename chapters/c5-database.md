@@ -38,7 +38,7 @@ import os
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + os.path.join(app.root_path, 'data.db')
 ```
 
-**注意** 这个配置变量的最后一个单词是 URI，而不是 URL。
+> **注意** 这个配置变量的最后一个单词是 URI，而不是 URL。
 
 对于这个变量值，不同的 DBMS 有不同的格式，对于 SQLite 来说，这个值的格式如下：
 
@@ -73,7 +73,7 @@ db = SQLAlchemy(app)
 
 如果你固定在某一个操作系统上进行开发，部署时也使用相同的操作系统，那么可以不用这么做，直接根据你的需要写出前缀即可。
 
-**提示** 你可以访问  [Flask 文档的配置页面](http://flask.pocoo.org/docs/1.0/config/)查看 Flask 内置的配置变量；同样的，在 [Flask-SQLAlchemy 文档的配置页面](http://flask-sqlalchemy.pocoo.org/2.1/config/)可以看到 Flask-SQLAlchemy 提供的配置变量。
+> **提示** 你可以访问  [Flask 文档的配置页面](http://flask.pocoo.org/docs/1.0/config/)查看 Flask 内置的配置变量；同样的，在 [Flask-SQLAlchemy 文档的配置页面](http://flask-sqlalchemy.pocoo.org/2.1/config/)可以看到 Flask-SQLAlchemy 提供的配置变量。
 
 ## 创建数据库模型
 
@@ -135,7 +135,7 @@ class Movie(db.Model):  # 表名将会是 movie
 
 注意这会一并删除所有数据，如果你想在不破坏数据库内的数据的前提下变更表的结构，需要使用数据库迁移工具，比如集成了 [Alembic](https://alembic.sqlalchemy.org/en/latest/) 的 [Flask-Migrate](https://github.com/miguelgrinberg/Flask-Migrate) 扩展。
 
-**提示** 上面打开 Python Shell 使用的是 `flask shell`命令，而不是 `python`。使用这个命令启动的 Python Shell 激活了“程序上下文”，它包含一些特殊变量，这对于某些操作是必须的（比如上面的 `db.create_all()`调用）。请记住，后续的 Python Shell 都会使用这个命令打开。
+> **提示** 上面打开 Python Shell 使用的是 `flask shell`命令，而不是 `python`。使用这个命令启动的 Python Shell 激活了“程序上下文”，它包含一些特殊变量，这对于某些操作是必须的（比如上面的 `db.create_all()`调用）。请记住，后续的 Python Shell 都会使用这个命令打开。
 
 和 `flask shell`类似，我们可以编写一个自定义命令来自动执行创建数据库表操作：
 
@@ -185,7 +185,7 @@ def initdb(drop):
 >>> db.session.commit()  # 提交数据库会话，只需要在最后调用一次即可
 ```
 
-**提示** 在实例化模型类的时候，我们并没有传入 `id` 字段（主键），因为 SQLAlchemy 会自动处理这个字段。
+> **提示** 在实例化模型类的时候，我们并没有传入 `id` 字段（主键），因为 SQLAlchemy 会自动处理这个字段。
 
 最后一行 `db.session.commit()` 很重要，只有调用了这一行才会真正把记录提交进数据库，前面的 `db.session.add()` 调用是将改动添加进数据库会话（一个临时区域）中。
 
@@ -239,7 +239,7 @@ def initdb(drop):
 <Movie 2>
 ```
 
-**提示** 我们在说 Movie 模型的时候，实际指的是数据库中的 movie 表。表的实际名称是模型类的小写形式（自动生成），如果你想自己指定表名，可以定义 `__tablename__` 属性。
+> **提示** 我们在说 Movie 模型的时候，实际指的是数据库中的 movie 表。表的实际名称是模型类的小写形式（自动生成），如果你想自己指定表名，可以定义 `__tablename__` 属性。
 
 对于最基础的 `filter()` 过滤方法，SQLAlchemy 支持丰富的查询操作符，具体可以访问[文档相关页面](http://docs.sqlalchemy.org/en/latest/core/sqlelement.html#sqlalchemy.sql.operators.ColumnOperators)查看。除此之外，还有更多的查询方法、过滤方法和数据库函数可以使用，具体可以访问文档的 [Query API](https://docs.sqlalchemy.org/en/latest/orm/query.html) 部分查看。
 
@@ -341,7 +341,7 @@ $ git commit -m "Add database support with Flask-SQLAlchemy"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[4d2442a](https://github.com/greyli/watchlist/commit/4d2442a41e55fb454e092864206af08e4e3eeddf)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[4d2442a](https://github.com/greyli/watchlist/commit/4d2442a41e55fb454e092864206af08e4e3eeddf)。
 
 
 ## 进阶提示

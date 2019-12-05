@@ -17,7 +17,7 @@
 * 在 `<form>` 标签里使用 `method` 属性将提交表单数据的 HTTP 请求方法指定为 POST。如果不指定，则会默认使用 GET 方法，这会将表单数据通过 URL 提交，容易导致数据泄露，而且不适用于包含大量数据的情况。
 * `<input>` 元素必须要指定 `name`  属性，否则无法提交数据，在服务器端，我们也需要通过这个 `name` 属性值来获取对应字段的数据。
 
-**提示** 填写输入框标签文字的 `<label>` 元素不是必须的，只是为了辅助鼠标用户。当使用鼠标点击标签文字时，会自动激活对应的输入框，这对复选框来说比较有用。`for` 属性填入要绑定的 `<input>` 元素的 `id` 属性值。
+> **提示** 填写输入框标签文字的 `<label>` 元素不是必须的，只是为了辅助鼠标用户。当使用鼠标点击标签文字时，会自动激活对应的输入框，这对复选框来说比较有用。`for` 属性填入要绑定的 `<input>` 元素的 `id` 属性值。
 
 ## 创建新条目
 
@@ -79,7 +79,7 @@ input[name=year] {
 
 因为我们在模板里为表单定义了 POST 方法，当你输入数据，按下提交按钮，一个携带输入信息的 POST 请求会发往根地址。接着，你会看到一个 405 Method Not Allowed 错误提示。这是因为处理根地址请求的 `index` 视图默认只接受 GET 请求。
 
-**提示** 在 HTTP 中，GET 和 POST 是两种最常见的请求方法，其中 GET 请求用来获取资源，而 POST 则用来创建 / 更新资源。我们访问一个链接时会发送 GET 请求，而提交表单通常会发送 POST 请求。
+> **提示** 在 HTTP 中，GET 和 POST 是两种最常见的请求方法，其中 GET 请求用来获取资源，而 POST 则用来创建 / 更新资源。我们访问一个链接时会发送 GET 请求，而提交表单通常会发送 POST 请求。
 
 为了能够处理 POST 请求，我们需要修改一下视图函数：
 
@@ -162,7 +162,7 @@ flash('Item Created.')
 app.config['SECRET_KEY'] = 'dev'  # 等同于 app.secret_key = 'dev'
 ```
 
-**提示** 这个密钥的值在开发时可以随便设置。基于安全的考虑，在部署时应该设置为随机字符，且不应该明文写在代码里， 在部署章节会详细介绍。
+> **提示** 这个密钥的值在开发时可以随便设置。基于安全的考虑，在部署时应该设置为随机字符，且不应该明文写在代码里， 在部署章节会详细介绍。
 
 下面在基模板（base.html）里使用 `get_flashed_messages()` 函数获取提示消息并显示：
 
@@ -199,7 +199,7 @@ if not title or not year or len(year) > 4 or len(title) > 60:
 flash('Item created.')  # 显示成功创建的提示
 ```
 
-**提示** 在真实世界里，你会进行更严苛的验证，比如对数据去除首尾的空格。一般情况下，我们会使用第三方库（比如 [WTForms](https://github.com/wtforms/wtforms)）来实现表单数据的验证工作。
+> **提示** 在真实世界里，你会进行更严苛的验证，比如对数据去除首尾的空格。一般情况下，我们会使用第三方库（比如 [WTForms](https://github.com/wtforms/wtforms)）来实现表单数据的验证工作。
 
 如果输入的某个数据为空，或是长度不符合要求，就显示错误提示“Invalid input.”，否则显示成功创建的提示“Item Created.”。
 
@@ -333,7 +333,7 @@ $ git commit -m "Create, edit and delete item by form"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[84e766f](https://github.com/greyli/watchlist/commit/84e766f276a25cb2b37ab43a468b2b707ed3489c)。在后续的 [commit](https://github.com/greyli/watchlist/commit/bb892c5f4721208619e656ccda7827c821fb301a) 里，我们为另外两个常见的 HTTP 错误：400（Bad Request） 和 500（Internal Server Error） 错误编写了错误处理函数和对应的模板，前者会在请求格式不符要求时返回，后者则会在程序内部出现任意错误时返回（关闭调试模式的情况下）。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[84e766f](https://github.com/greyli/watchlist/commit/84e766f276a25cb2b37ab43a468b2b707ed3489c)。在后续的 [commit](https://github.com/greyli/watchlist/commit/bb892c5f4721208619e656ccda7827c821fb301a) 里，我们为另外两个常见的 HTTP 错误：400（Bad Request） 和 500（Internal Server Error） 错误编写了错误处理函数和对应的模板，前者会在请求格式不符要求时返回，后者则会在程序内部出现任意错误时返回（关闭调试模式的情况下）。
 
 ## 进阶提示
 

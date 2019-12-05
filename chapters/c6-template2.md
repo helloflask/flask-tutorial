@@ -52,7 +52,7 @@ def page_not_found(e):  # 接受异常对象作为参数
     return render_template('404.html', user=user), 404  # 返回模板和状态码
 ```
 
-**提示** 和我们前面编写的视图函数相比，这个函数返回了状态码作为第二个参数，普通的视图函数之所以不用写出状态码，是因为默认会使用 200 状态码，表示成功。
+> **提示** 和我们前面编写的视图函数相比，这个函数返回了状态码作为第二个参数，普通的视图函数之所以不用写出状态码，是因为默认会使用 200 状态码，表示成功。
 
 这个视图返回渲染好的错误模板，因为模板中使用了 user 变量，这里也要一并传入。现在访问一个不存在的 URL，会显示我们自定义的错误页面：
 
@@ -218,7 +218,7 @@ nav li a:hover {
 
 第一行使用 `extends` 标签声明扩展自模板 base.html，可以理解成“这个模板继承自 base.html“。接着我们定义了 `content` 块，这里的内容会插入到基模板中 `content` 块的位置。
 
-**提示** 默认的块重写行为是覆盖，如果你想向父块里追加内容，可以在子块中使用 `super()` 声明，即 `{{ super() }}`。
+> **提示** 默认的块重写行为是覆盖，如果你想向父块里追加内容，可以在子块中使用 `super()` 声明，即 `{{ super() }}`。
 
 404 错误页面的模板类似，如下所示：
 
@@ -283,7 +283,7 @@ $ git commit -m "Add base template and error template"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[3bca489](https://github.com/greyli/watchlist/commit/3bca489421cc498289734cfef9d6ff90232df8be)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[3bca489](https://github.com/greyli/watchlist/commit/3bca489421cc498289734cfef9d6ff90232df8be)。
 
 ## 进阶提示
 

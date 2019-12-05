@@ -68,7 +68,7 @@ Jinja2 的语法和 Python 大致相同，你在后面会陆续接触到一些�
 
 左侧是变量，右侧是过滤器名。比如，上面的模板里使用 `length` 过滤器来获取 `movies` 的长度，类似 Python 里的 `len()` 函数。
 
-**提示** 访问 http://jinja.pocoo.org/docs/2.10/templates/#list-of-builtin-filters 查看所有可用的过滤器。
+> **提示** 访问 http://jinja.pocoo.org/docs/2.10/templates/#list-of-builtin-filters 查看所有可用的过滤器。
 
 ## 准备虚拟数据
 
@@ -128,7 +128,7 @@ $ git commit -m "Add index page"
 $ git push
 ```
 
-**提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[8537d98](https://github.com/greyli/watchlist/commit/8537d98bdd7828b1f7aa2431bbd5a16e757a3cc4)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[8537d98](https://github.com/greyli/watchlist/commit/8537d98bdd7828b1f7aa2431bbd5a16e757a3cc4)。
 
 ## 进阶提示
 
