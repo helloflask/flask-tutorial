@@ -52,8 +52,8 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 ## 付费支持
 
-本书采取自愿付费原则，价格为 10 元。如果你愿意，可以通过付费来支持我，让我有更多的时间和动力写作 Flask 教程和文章。你可以通过支付宝账号 withlihui@gmail.com 转账，或是扫描下面的二维码付款。
+本书采取自愿付费原则，价格为 10 元。如果你愿意，可以通过付费来支持我，让我有更多的时间和动力写作 Flask 教程和文章。你可以通过支付宝账号 withlihui@gmail.com 转账，或是扫描下面的二维码付款：
 
 支付宝二维码 / 微信二维码
 
-![qr_alipay](images/qr_alipay.jpg)![qr_wechat](images/qr_wechat.jpg)
+<img width="195" src="http://greyli.com/wp-content/uploads/2018/10/qr_alipay.jpg"><img width="200" src="http://greyli.com/wp-content/uploads/2018/10/qr_wechat.jpg">

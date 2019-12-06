@@ -8,8 +8,6 @@ Flask 对项目结构没有固定要求，你可以使用单脚本，也可以�
 
 ```
 ├── .flaskenv
-├── Pipfile
-├── Pipfile.lock
 ├── app.py
 ├── test_watchlist.py
 ├── static
@@ -170,8 +168,6 @@ FLASK_APP=watchlist
 
 ```
 ├── .flaskenv
-├── Pipfile
-├── Pipfile.lock
 ├── test_watchlist.py
 └── watchlist  # 程序包
     ├── __init__.py
