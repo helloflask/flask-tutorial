@@ -174,10 +174,14 @@ def user_page(name):
 不论你访问 http://localhost:5000/user/greyli，还是 http://localhost:5000/user/peter，抑或是 [http://localhost:5000/user/甲](http://localhost:5000/user/甲)，都会触发这个函数。通过下面的方式，我们也可以在视图函数里获取到这个变量值：
 
 ```python
+from flask import escape
+
 @app.route('/user/<name>')
 def user_page(name):
-    return 'User: %s' % name
+    return 'User: %s' % escape(name)
 ```
+
+> 注意 用户输入的数据会包含恶意代码，所以不能直接作为响应返回，需要使用 Flask 提供的 escape() 函数对 name 变量进行转义处理，比如把 `<` 转换成 `&lt;`。这样在返回响应时浏览器就不会把它们当做代码执行。
 
 ### 修改视图函数名？
 
@@ -186,7 +190,7 @@ def user_page(name):
 除此之外，它还有一个重要的作用：作为代表某个路由的端点（endpoint），同时用来生成 URL。对于程序内的 URL，为了避免手写，Flask 提供了一个 `url_for` 函数来生成 URL，它接受的第一个参数就是端点值，默认为视图函数的名称：
 
 ```python
-from flask import url_for
+from flask import url_for, escape
 
 # ...
 
@@ -196,11 +200,11 @@ def hello():
 
 @app.route('/user/<name>')
 def user_page(name):
-    return 'User: %s' % name
+    return 'User: %s' % escape(name)
 
 @app.route('/test')
 def test_url_for():
-	# 下面是一些调用示例（请在命令行窗口查看输出的 URL）：
+    # 下面是一些调用示例（请在命令行窗口查看输出的 URL）：
     print(url_for('hello'))  # 输出：/
     # 注意下面两个调用是如何生成包含 URL 变量的 URL 的
     print(url_for('user_page', name='greyli'))  # 输出：/user/greyli
