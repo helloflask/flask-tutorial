@@ -166,7 +166,9 @@ $ virtualenv env
 $ env\Scripts\activate  # Windows
 ```
 
-或
+> 提示 如果你在 Windows 中使用 Git Bash，则需要使用`. env/Scripts/activate` 命令
+
+或：
 
 ```bash
 $ . env/bin/activate  # Linux 或 macOS
