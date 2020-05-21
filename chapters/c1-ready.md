@@ -135,28 +135,28 @@ $ git remote add origin git@github.com:greyli/watchlist.git  # 注意更换地�
 如果你使用 Python 2，则需要安装 virtualenv 作为替代：
 
 ```bash
-$ pip install virtualenv
+$ pip install virtualenv  # Windows
 ```
 
 或：
 
 ```bash
-$ sudo pip install virtualenv
+$ sudo pip install virtualenv  # Linux 或 macOS
 ```
 
-然后使用下面的命令即可为当前项目创建一个虚拟环境：
+我们来创建虚拟环境，使用下面的命令即可为当前项目创建一个虚拟环境：
 
 ```bash
 $ python -m venv env
 ```
 
-Python 2 用户使用：
+Python 2 用户则需要使用：
 
 ```bash
 $ virtualenv env
 ```
 
-上述命令的最后一个参数是虚拟环境名称，你可以自由定义，比如 venv、env、.venv，或是 项目名-venv，这里使用了 env。
+> 提示 上述命令的最后一个参数是虚拟环境名称，你可以自由定义，比如 venv、env、.venv，或是 项目名-venv，这里使用了 env。
 
 这会在当前目录创建一个包含 Python 解释器环境的虚拟环境文件夹，名称为 env。
 
