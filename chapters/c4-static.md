@@ -132,11 +132,11 @@ footer {
 ```
 
 > 提示 当你把 CSS 写到单独的文件后，浏览器获取到这个文件后会对其进行缓存（其他静态文件同理）。所以，在后续章节，每当你对 CSS 文件的内容进行更新后，都需要使用下面的快捷键清除缓存：
-> Google Chrome（Mac）：Command + Shift + R
-> Google Chrome（Windows & Linux）：Ctrl + F5
-> Firefox（Mac）：Command + Shift + R
-> Firefox（Windows & Linux）：Ctrl + F5
-> Safari：Command + Option + R
+> - Google Chrome（Mac）：Command + Shift + R
+> - Google Chrome（Windows & Linux）：Ctrl + F5
+> - Firefox（Mac）：Command + Shift + R
+> - Firefox（Windows & Linux）：Ctrl + F5
+> - Safari：Command + Option + R
 
 
 最后要为对应的元素设置 `class` 属性值，以便和对应的 CSS 定义关联起来：
