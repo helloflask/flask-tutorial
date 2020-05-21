@@ -144,7 +144,7 @@ $ pip install virtualenv  # Windows
 $ sudo pip install virtualenv  # Linux 或 macOS
 ```
 
-我们来创建虚拟环境，使用下面的命令即可为当前项目创建一个虚拟环境：
+现在我们来创建虚拟环境，使用下面的命令即可为当前项目创建一个虚拟环境：
 
 ```bash
 $ python -m venv env
