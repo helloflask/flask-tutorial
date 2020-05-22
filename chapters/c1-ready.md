@@ -33,7 +33,13 @@ $ python --version
 Python 2.7.11
 ```
 
-对于 Windows 用户，请使用 [cmder](http://cmder.net)（一个基于  [ConEmu](https://conemu.github.io/) 实现的终端模拟器） 来代替系统自带的 cmd.exe，或是使用安装 Git for Windows 后（下一节）附带的 Git Bash。cmder 集成了 Git Bash，支持一些在 Linux 或 macOS 下才能使用的命令（程序），比如 ls、cat、nano、ssh 等，这些命令我们在后面会用到。
+对于 Windows（非 WSL） 用户，如果你对不同系统下终端命令的区别不熟悉，那么建议在这个教程的学习过程中使用 Git Bash（安装 Git for Windows 后附带的终端程序，下一节会介绍 Git 安装） 来代替系统自带的 cmd.exe 或 Powershell。Git Bash 支持一些在 Linux 或 macOS 下才能使用的命令（程序），比如 ls、cat、nano、ssh 等，这些命令我们在后面会用到。
+
+> 提示 如果你打算在这个教程的学习中继续使用 cmd.exe 或 Powershell，那么需要注意下列命令的区别：
+> - 在 cmd.exe 中使用 `dir` 命令替代 `ls` 命令，使用 `type` 命令替代 `cat` 命令
+> - 对于 `nano` 命令，你可以替换为其他已安装的编辑器命令，比如对于 VS Code，可以使用 `code` 命令。或者，你也可以直接使用编辑器的图形界面创建文件并编辑。
+> - 对于 Windows 10 1809，OpenSSH 程序（相关命令 `ssh`、`ssh-keygen`）可以在控制面板中额外安装（[Docs](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse)）；旧版本 Windows 可以安装第三方 OpenSSH 客户端，比如 Putty，或直接使用 Git Bash。
+
 
 ## 使用 Git
 
@@ -62,7 +68,7 @@ $ git init
 Initialized empty Git repository in ~/watchlist/.git/
 ```
 
-Git 默认会追踪项目文件夹（或者说代码仓库）里所有文件的变化，但是有些无关紧要的文件不需要记录变化，我们在项目根目录创建一个 .gitignore 文件，在文件中写入忽略文件的规则。因为文件内容比较简单，我们直接在命令使用 nano 来创建：
+Git 默认会追踪项目文件夹（或者说代码仓库）里所有文件的变化，但是有些无关紧要的文件不需要记录变化，我们在项目根目录创建一个 .gitignore 文件，在文件中写入忽略文件的规则。因为文件内容比较简单，我们直接在命令行使用 nano 来创建：
 
 ```bash
 $ nano .gitignore
@@ -77,7 +83,7 @@ __pycache__
 .DS_Store
 ```
 
-使用 Control + O 和 Enter 键保存，然后按下 Control + X 键退出。在后续章节，对于简单的文件，都会使用 nano 创建，这部分操作你也可以使用编辑器来完成。
+使用 Control + O 和 Enter 键保存，然后按下 Control + X 键退出。在后续章节，对于简单的文件，都会使用 nano 创建，这部分操作你也可以使用编辑器图形界面来完成。
 
 ## 将程序托管到 GitHub（可选）
 
