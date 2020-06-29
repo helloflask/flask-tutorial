@@ -4,7 +4,7 @@
 
 ## 留言 & 打卡
 
-如果你完成了这个教程，可以在 HelloFlask 论坛上的[这个帖子](https://discuss.helloflask.com/t/topic/64)留言打卡，欢迎分享你的心得体会和经验总结。如果你对这本书有什么建议，也可以在这里进行留言反馈。
+如果你完成了这个教程，可以在 HelloFlask 论坛上的[这个主题](https://discuss.helloflask.com/t/topic/64)留言打卡，欢迎分享你的心得体会和经验总结。如果你对这本书有改进建议，可以在[这个主题](https://discuss.helloflask.com/t/topic/502)留言反馈。
 
 ## 进阶阅读
 
@@ -22,4 +22,4 @@
 
 再或者，这个教程或许会升级为一本完整的书，使用类似的编写模式，引入一个更加丰富有趣的程序，包含优化后的入门知识和 Flask 进阶内容。
 
-如果你期待这样一本进阶教程 / 书的出现，欢迎让我知道。你可以在[打卡 & 留言贴](https://discuss.helloflask.com/t/topic/64)发布留言，或是直接发邮件（withlihui@gmail.com）告诉我。
+如果你期待这样一本进阶教程 / 书的出现，欢迎[让我知道](https://discuss.helloflask.com/t/topic/64)。
