@@ -28,7 +28,7 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 如果你想和其他同学交流 Flask、Web 开发等相关话题，或是在学习中遇到了问题，想要寻求帮助，下面是一些好去处：
 
-* [HelloFlask 论坛](https://discuss.helloflask.com)
+* [HelloFlask 论坛](https://discuss.helloflask.com)（最容易获得回答）
 * [HelloFlask 微信群](http://greyli.com/wechat/)
 * [HelloFlask QQ 群](http://shang.qq.com/wpa/qunwpa?idkey=3cbf3e3ede8252eb3ae584a356131123ed68a9f3bd5bcee0652b401914eb01bb)（419980814）
 * [HelloFlask Telegram 群组](https://t.me/helloflask)（@helloflask）
@@ -49,11 +49,3 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 * 本书源码：https://github.com/greyli/flask-tutorial
 * 本书示例程序源码：https://github.com/greyli/watchlist
 * 示例程序在线 Demo：http://watchlist.helloflask.com
-
-## 付费支持
-
-本书采取自愿付费原则，价格为 10 元。如果你愿意，可以通过付费来支持我，让我有更多的时间和动力写作 Flask 教程和文章。你可以通过支付宝账号 withlihui@gmail.com 转账，或是扫描下面的二维码付款：
-
-支付宝二维码 / 微信二维码
-
-<img width="195" src="http://greyli.com/wp-content/uploads/2018/10/qr_alipay.jpg"><img width="200" src="http://greyli.com/wp-content/uploads/2018/10/qr_wechat.jpg">
