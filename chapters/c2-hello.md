@@ -64,7 +64,7 @@ def hello():
 
 填入 `app.route()` 装饰器的第一个参数是 URL 规则字符串，这里的 `/`指的是根地址。
 
-我们只需要写出相对地址，主机地址、端口号等都不需要写出。所以说，这里的 `/` 对应的是主机名后面的路径部分，完整 URL 就是 http://localhost:5000/。如果我们这里定义的 URL 规则是 `/hello`，那么完整 URL 就是  http://localhost:5000/hello 。
+我们只需要写出相对地址，主机地址、端口号等都不需要写出。所以说，这里的 `/` 对应的是主机名后面的路径部分，完整 URL 就是 [http://localhost:5000/](http://localhost:5000/)。如果我们这里定义的 URL 规则是 `/hello`，那么完整 URL 就是  http://localhost:5000/hello 。
 
 整个请求的处理过程如下所示：
 
@@ -149,7 +149,7 @@ def hello():
     return 'Welcome to My Watchlist!'
 ```
 
-保存修改，这时刷新浏览器，则会看到一个 404 错误提示，提示页面未找到（Page Not Found）。这是因为视图函数的 URL 改成了 `/home`，而我们刷新后访问的地址仍然是旧的 `/`。如果我们把访问地址改成 http://localhost:5000/home，就会正确看到返回值。
+保存修改，这时刷新浏览器，则会看到一个 404 错误提示，提示页面未找到（Page Not Found）。这是因为视图函数的 URL 改成了 `/home`，而我们刷新后访问的地址仍然是旧的 `/`。如果我们把访问地址改成 [http://localhost:5000/home](http://localhost:5000/home)，就会正确看到返回值。
 
 一个视图函数也可以绑定多个 URL，这通过附加多个装饰器实现，比如：
 
@@ -171,7 +171,7 @@ def user_page(name):
     return 'User page'
 ```
 
-不论你访问 http://localhost:5000/user/greyli，还是 http://localhost:5000/user/peter，抑或是 [http://localhost:5000/user/甲](http://localhost:5000/user/甲)，都会触发这个函数。通过下面的方式，我们也可以在视图函数里获取到这个变量值：
+不论你访问 [http://localhost:5000/user/greyli](http://localhost:5000/user/greyli)，还是 [http://localhost:5000/user/peter](http://localhost:5000/user/peter)，抑或是 [http://localhost:5000/user/甲](http://localhost:5000/user/甲)，都会触发这个函数。通过下面的方式，我们也可以在视图函数里获取到这个变量值：
 
 ```python
 from flask import escape
