@@ -91,7 +91,7 @@ from watchlist import views, errors, commands
 
 在构造文件中，为了让视图函数、错误处理函数和命令函数注册到程序实例上，我们需要在这里导入这几个模块。但是因为这几个模块同时也要导入构造文件中的程序实例，为了避免循环依赖（A 导入 B，B 导入 A），我们把这一行导入语句放到构造文件的结尾。同样的，`load_user()` 函数和 `inject_user()` 函数中使用的模型类也在函数内进行导入。
 
-其他代码则按照分类分别放到各自的模块中，这里不再给出具体代码，你可以参考[源码仓库](https://github.com/greyli/watchlist)。在移动代码之后，注意添加并更新导入语句，比如使用下面的导入语句来导入程序实例和扩展对象：
+其他代码则按照分类分别放到各自的模块中，这里不再给出具体代码，你可以参考 [源码仓库](https://github.com/greyli/watchlist)。在移动代码之后，注意添加并更新导入语句，比如使用下面的导入语句来导入程序实例和扩展对象：
 
 ```python
 from watchlist import app, db
@@ -139,7 +139,7 @@ from watchlist.commands import forge, initdb
 (env) $ coverage run --source=watchlist test_watchlist.py
 ```
 
-> **提示** 你可以创建配置文件来预先定义 `--source` 选项，避免每次执行命令都给出这个选项，具体可以参考文档[配置文件章节](https://coverage.readthedocs.io/en/v4.5.x/config.html)。
+> **提示** 你可以创建配置文件来预先定义 `--source` 选项，避免每次执行命令都给出这个选项，具体可以参考文档 [配置文件章节](https://coverage.readthedocs.io/en/v4.5.x/config.html)。
 
 现在的测试覆盖率报告会显示包内的多个文件的覆盖率情况：
 
@@ -199,7 +199,7 @@ FLASK_APP=watchlist
 
 ```bash
 $ git add .
-$ git commit -m "Orignize application with package"
+$ git commit -m "Orgnize application with package"
 $ git push
 ```
 
@@ -207,6 +207,6 @@ $ git push
 
 ## 进阶提示
 
-- [蓝本](http://flask.pocoo.org/docs/1.0/blueprints/)类似于子程序的概念，借助蓝本你可以把程序不同部分的代码分离开（比如按照功能划分为用户认证、管理后台等多个部分），即对程序进行模块化处理。每个蓝本可以拥有独立的子域名、URL 前缀、错误处理函数、模板和静态文件。
-- [工厂函数](http://flask.pocoo.org/docs/1.0/patterns/appfactories/)就是创建程序的函数。在工厂函数内，我们先创建程序实例，并在函数内完成初始化扩展、注册视图函数等一系列操作，最后返回可以直接运行的程序实例。工厂函数可以接受配置名称作为参数，在内部加载对应的配置文件，这样就可以实现按需创建加载不同配置的程序实例，比如在测试时调用工厂函数创建一个测试用的程序实例。
-- 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 7 章介绍了使用包组织程序，第 8 章介绍了大型项目结构以及如何使用蓝本和工厂函数组织程序。 
+- [蓝本](http://flask.pocoo.org/docs/1.0/blueprints/) 类似于子程序的概念，借助蓝本你可以把程序不同部分的代码分离开（比如按照功能划分为用户认证、管理后台等多个部分），即对程序进行模块化处理。每个蓝本可以拥有独立的子域名、URL 前缀、错误处理函数、模板和静态文件。
+- [工厂函数](http://flask.pocoo.org/docs/1.0/patterns/appfactories/) 就是创建程序的函数。在工厂函数内，我们先创建程序实例，并在函数内完成初始化扩展、注册视图函数等一系列操作，最后返回可以直接运行的程序实例。工厂函数可以接受配置名称作为参数，在内部加载对应的配置文件，这样就可以实现按需创建加载不同配置的程序实例，比如在测试时调用工厂函数创建一个测试用的程序实例。
+- 如果你是 [《Flask Web 开发实战》](http://helloflask.com/book/) 的读者，第 7 章介绍了使用包组织程序，第 8 章介绍了大型项目结构以及如何使用蓝本和工厂函数组织程序。 

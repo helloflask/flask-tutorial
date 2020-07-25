@@ -181,7 +181,7 @@ def user_page(name):
     return 'User: %s' % escape(name)
 ```
 
-> 注意 用户输入的数据会包含恶意代码，所以不能直接作为响应返回，需要使用 Flask 提供的 escape() 函数对 name 变量进行转义处理，比如把 `<` 转换成 `&lt;`。这样在返回响应时浏览器就不会把它们当做代码执行。
+> **注意** 用户输入的数据会包含恶意代码，所以不能直接作为响应返回，需要使用 Flask 提供的 escape() 函数对 name 变量进行转义处理，比如把 `<` 转换成 `&lt;`。这样在返回响应时浏览器就不会把它们当做代码执行。
 
 ### 修改视图函数名？
 
@@ -238,6 +238,6 @@ $ git push
 * 因为 Flask 的上下文机制，有一些变量和函数（比如 `url_for`函数）只能在特定的情况下才能正确执行，比如视图函数内。我们先暂时不用纠结，后面再慢慢了解。
 * 名字以 `.` 开头的文件默认会被隐藏，执行 `ls` 命令时会看不到它们，这时你可以使用 `ls -f` 命令来列出所有文件。
 * 了解 HTTP 基本知识将会有助于你了解 Flask 的工作原理。
-* 阅读文章[《互联网是如何工作的》](https://tutorial.djangogirls.org/zh/how_the_internet_works/)。
-* 阅读文章[《从HTTP请求 - 响应循环探索Flask的基本工作方式》](https://zhuanlan.zhihu.com/p/42231394)。
-* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，这部分的进阶内容可以在第 1 章《初识 Flask》和第 2 章《HTTP 和 Flask》找到。
+* 阅读文章 [《互联网是如何工作的》](https://tutorial.djangogirls.org/zh/how_the_internet_works/)。
+* 阅读文章 [《从HTTP请求 - 响应循环探索Flask的基本工作方式》](https://zhuanlan.zhihu.com/p/42231394)。
+* 如果你是 [《Flask Web 开发实战》](http://helloflask.com/book/) 的读者，这部分的进阶内容可以在第 1 章《初识 Flask》和第 2 章《HTTP 和 Flask》找到。

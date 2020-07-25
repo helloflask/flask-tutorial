@@ -102,7 +102,6 @@ from flask_login import LoginManager
 
 login_manager = LoginManager(app)  # 实例化扩展类
 
-
 @login_manager.user_loader
 def load_user(user_id):  # 创建用户加载回调函数，接受用户 ID 作为参数
     user = User.query.get(int(user_id))  # 用 ID 作为 User 模型的主键查询对应的用户
@@ -160,7 +159,7 @@ def login():
 
 *templates/login.html：登录页面*
 
-```html
+```jinja2
 {% extends 'base.html' %}
 
 {% block content %}
@@ -289,7 +288,7 @@ def settings():
 
 *templates/settings.html：设置页面模板*
 
-```html
+```jinja2
 {% extends 'base.html' %}
 
 {% block content %}
@@ -356,8 +355,6 @@ def settings():
 
 ![对已登录用户显示的主页](images/8-3.png)
 
-
-
 ## 本章小结
 
 添加用户认证后，在功能层面，我们的程序基本算是完成了。结束前，让我们提交代码：
@@ -372,5 +369,5 @@ $ git push
 
 ## 进阶提示
 
-* 访问 [Flask-Login 文档](https://github.com/maxcountryman/flask-login)了解更多细节和用法。
-* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 2 章通过一个示例介绍了用户认证的实现方式；第 8 章包含对 Flask-Login 更详细的介绍。
+* 访问 [Flask-Login 文档](https://github.com/maxcountryman/flask-login) 了解更多细节和用法。
+* 如果你是 [《Flask Web 开发实战》](http://helloflask.com/book/) 的读者，第 2 章通过一个示例介绍了用户认证的实现方式；第 8 章包含对 Flask-Login 更详细的介绍。

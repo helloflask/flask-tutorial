@@ -38,8 +38,8 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 欢迎通过下面的方式提出反馈、建议和勘误：
 
-* 在源码仓库[创建 Issue](https://github.com/greyli/flask-tutorial/issues/new)。
-* 在 [HelloFlask 论坛](https://discuss.helloflask.com)发布帖子，并选择“Flask 入门教程”分类。
+* 在源码仓库 [创建 Issue](https://github.com/greyli/flask-tutorial/issues/new)。
+* 在 [HelloFlask 论坛](https://discuss.helloflask.com) 发布帖子，并选择“Flask 入门教程”分类。
 * 在专栏对应的连载文章下面撰写评论。
 
 ## 相关资源

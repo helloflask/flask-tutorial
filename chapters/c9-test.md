@@ -150,6 +150,7 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertIn('Test Movie Title', data)
         self.assertEqual(response.status_code, 200)
 ```
+
 调用这类方法返回包含响应数据的响应对象，对这个响应对象调用 `get_data()` 方法并把 `as_text` 参数设为 `True` 可以获取 Unicode 格式的响应主体。我们通过判断响应主体中是否包含预期的内容来测试程序是否正常工作，比如 404 页面响应是否包含 Go Back，主页响应是否包含标题 Test's Watchlist。
 
 接下来，我们要测试数据库操作相关的功能，比如创建、更新和删除电影条目。这些操作对应的请求都需要登录账户后才能发送，我们先编写一个用于登录账户的辅助方法：
@@ -255,6 +256,7 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertIn('Item deleted.', data)
         self.assertNotIn('Test Movie Title', data)
 ```
+
 在这几个测试方法中，大部分的断言都是在判断响应主体是否包含正确的提示消息和电影条目信息。
 
 登录、登出和认证保护等功能的测试如下所示：
@@ -363,6 +365,7 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertNotIn('Settings updated.', data)
         self.assertIn('Invalid input.', data)
 ```
+
 ### 测试命令
 
 除了测试程序的各个视图函数，我们还需要测试自定义命令。`app.test_cli_runner()` 方法返回一个命令运行器对象，我们创建类属性 `self.runner` 来保存它。通过对它调用 `invoke()` 方法可以执行命令，传入命令函数对象，或是使用 `args` 关键字直接给出命令参数列表。`invoke()` 方法返回的命令执行结果对象，它的 `output` 属性返回命令的输出信息。下面是我们为各个自定义命令编写的测试方法：
@@ -408,6 +411,7 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertEqual(User.query.first().username, 'peter')
         self.assertTrue(User.query.first().validate_password('456'))
 ```
+
 在这几个测试中，大部分的断言是在检查执行命令后的数据库数据是否发生了正确的变化，或是判断命令行输出（`result.output`）是否包含预期的字符。
 
 ### 运行测试
@@ -486,4 +490,4 @@ $ git push
 
 * 访问 Coverage.py 文档（https://coverage.readthedocs.io）或执行 coverage help 命令来查看更多用法。
 * 使用标准库中的 unittest 编写单元测试并不是唯一选择，你也可以使用第三方测试框架，比如非常流行的 [pytest](https://pytest.org)。
-* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 12 章详细介绍了测试 Flask 程序的相关知识，包括使用 [Selenium](https://www.seleniumhq.org/) 编写用户界面测试，使用 [Flake8](https://github.com/PyCQA/flake8) 检查代码质量等。 
+* 如果你是 [《Flask Web 开发实战》](http://helloflask.com/book/) 的读者，第 12 章详细介绍了测试 Flask 程序的相关知识，包括使用 [Selenium](https://www.seleniumhq.org/) 编写用户界面测试，使用 [Flake8](https://github.com/PyCQA/flake8) 检查代码质量等。 

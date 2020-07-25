@@ -4,11 +4,11 @@
 
 ## 留言 & 打卡
 
-如果你完成了这个教程，可以在 HelloFlask 论坛上的[这个主题](https://discuss.helloflask.com/t/topic/64)留言打卡，欢迎分享你的心得体会和经验总结。如果你对这本书有改进建议，可以在[这个主题](https://discuss.helloflask.com/t/topic/502)留言反馈。
+如果你完成了这个教程，可以在 HelloFlask 论坛上的 [这个主题](https://discuss.helloflask.com/t/topic/64) 留言打卡，欢迎分享你的心得体会和经验总结。如果你对这本书有改进建议，可以在 [这个主题](https://discuss.helloflask.com/t/topic/502) 留言反馈。
 
 ## 进阶阅读
 
-说来惭愧，在这本教程几乎每一章的结尾，我都会提到[《Flask Web 开发实战》](http://helloflask.com/book)，每次写到这里，我都觉得自己好像在写“问候家明”。所以，最合适的进阶读物我已经推荐过很多次了。除了这本书，其他的进阶读物如下：
+说来惭愧，在这本教程几乎每一章的结尾，我都会提到 [《Flask Web 开发实战》](http://helloflask.com/book)，每次写到这里，我都觉得自己好像在写“问候家明”。所以，最合适的进阶读物我已经推荐过很多次了。除了这本书，其他的进阶读物如下：
 
 * [Flask 官方文档](http://flask.pocoo.com/docs)
 * [Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
@@ -22,4 +22,4 @@
 
 再或者，这个教程或许会升级为一本完整的书，使用类似的编写模式，引入一个更加丰富有趣的程序，包含优化后的入门知识和 Flask 进阶内容。
 
-如果你期待这样一本进阶教程 / 书的出现，欢迎[让我知道](https://discuss.helloflask.com/t/topic/64)。
+如果你期待这样一本进阶教程 / 书的出现，欢迎 [让我知道](https://discuss.helloflask.com/t/topic/64)。
