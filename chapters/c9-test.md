@@ -37,7 +37,7 @@ class SayHelloTestCase(unittest.TestCase):  # 测试用例
         rv = sayhello()
         self.assertEqual(rv, 'Hello!')
        
-    def test_sayhello_to_somebody(self)  # 第 2 个测试
+    def test_sayhello_to_somebody(self):  # 第 2 个测试
         rv = sayhello(to='Grey')
 		self.assertEqual(rv, 'Hello, Grey!')
 
