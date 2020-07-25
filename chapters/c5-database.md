@@ -74,7 +74,7 @@ db = SQLAlchemy(app)
 
 如果你固定在某一个操作系统上进行开发，部署时也使用相同的操作系统，那么可以不用这么做，直接根据你的需要写出前缀即可。
 
-> **提示** 你可以访问  [Flask 文档的配置页面](http://flask.pocoo.org/docs/1.0/config/)查看 Flask 内置的配置变量；同样的，在 [Flask-SQLAlchemy 文档的配置页面](http://flask-sqlalchemy.pocoo.org/2.1/config/)可以看到 Flask-SQLAlchemy 提供的配置变量。
+> **提示** 你可以访问 [Flask 文档的配置页面](http://flask.pocoo.org/docs/1.0/config/)查看 Flask 内置的配置变量；同样的，在 [Flask-SQLAlchemy 文档的配置页面](http://flask-sqlalchemy.pocoo.org/2.1/config/)可以看到 Flask-SQLAlchemy 提供的配置变量。
 
 ## 创建数据库模型
 
@@ -86,7 +86,6 @@ db = SQLAlchemy(app)
 class User(db.Model):  # 表名将会是 user（自动生成，小写处理）
     id = db.Column(db.Integer, primary_key=True)  # 主键
     name = db.Column(db.String(20))  # 名字
-
 
 class Movie(db.Model):  # 表名将会是 movie
     id = db.Column(db.Integer, primary_key=True)  # 主键
@@ -212,12 +211,12 @@ def initdb(drop):
 | 查询方法       | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
 | all()          | 返回包含所有查询记录的列表                                   |
-| first()        | 返回查询的第一条记录，如果未找到，则返回None                 |
-| get(id)        | 传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回None |
+| first()        | 返回查询的第一条记录，如果未找到，则返回 None                 |
+| get(id)        | 传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回 None |
 | count()        | 返回查询结果的数量                                           |
-| first_or_404() | 返回查询的第一条记录，如果未找到，则返回404错误响应          |
-| get_or_404(id) | 传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回404错误响应 |
-| paginate()     | 返回一个Pagination对象，可以对记录进行分页处理               |
+| first_or_404() | 返回查询的第一条记录，如果未找到，则返回 404 错误响应          |
+| get_or_404(id) | 传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回 404 错误响应 |
+| paginate()     | 返回一个 Pagination 对象，可以对记录进行分页处理               |
 
 下面的操作演示了如何从数据库中读取记录，并进行简单的查询：
 
@@ -344,11 +343,9 @@ $ git push
 
 > **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[4d2442a](https://github.com/greyli/watchlist/commit/4d2442a41e55fb454e092864206af08e4e3eeddf)。
 
-
 ## 进阶提示
 
 * 在生产环境，你可以更换更合适的 DBMS，因为 SQLAlchemy 支持多种 SQL 数据库引擎，通常只需要改动非常少的代码。
-* 我们的程序只有一个用户，所以没有将 User 表和 Movie 表建立关联。访问 Flask-SQLAlchemy 文档的”[声明模型](http://flask-sqlalchemy.pocoo.org/2.3/models/#one-to-many-relationships)“章节可以看到相关内容。 
-* 阅读 [SQLAlchemy 官方文档和教程](https://docs.sqlalchemy.org/en/latest/)详细了解它的用法。注意我们在这里使用 Flask-SQLAlchemy 来集成它，所以用法和单独使用 SQLAlchemy 有一些不同。作为参考，你可以同时阅读 [Flask-SQLAlchemy 官方文档](http://flask-sqlalchemy.pocoo.org/2.3/) 。
+* 我们的程序只有一个用户，所以没有将 User 表和 Movie 表建立关联。访问 Flask-SQLAlchemy 文档的“[声明模型](http://flask-sqlalchemy.pocoo.org/2.3/models/#one-to-many-relationships)”章节可以看到相关内容。 
+* 阅读 [SQLAlchemy 官方文档和教程](https://docs.sqlalchemy.org/en/latest/)详细了解它的用法。注意我们在这里使用 Flask-SQLAlchemy 来集成它，所以用法和单独使用 SQLAlchemy 有一些不同。作为参考，你可以同时阅读 [Flask-SQLAlchemy 官方文档](http://flask-sqlalchemy.pocoo.org/2.3/)。
 * 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 5 章详细介绍了 SQLAlchemy 和 Flask-Migrate 的使用，第 8 章和第 9 章引入了更复杂的模型关系和查询方法。
-

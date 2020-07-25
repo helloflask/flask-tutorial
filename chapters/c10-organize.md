@@ -199,7 +199,7 @@ FLASK_APP=watchlist
 
 ```bash
 $ git add .
-$ git commit -m "Orignize application with package"
+$ git commit -m "Organize application with package"
 $ git push
 ```
 

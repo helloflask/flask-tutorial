@@ -102,7 +102,6 @@ from flask_login import LoginManager
 
 login_manager = LoginManager(app)  # 实例化扩展类
 
-
 @login_manager.user_loader
 def load_user(user_id):  # 创建用户加载回调函数，接受用户 ID 作为参数
     user = User.query.get(int(user_id))  # 用 ID 作为 User 模型的主键查询对应的用户
@@ -160,7 +159,7 @@ def login():
 
 *templates/login.html：登录页面*
 
-```html
+```jinja2
 {% extends 'base.html' %}
 
 {% block content %}
@@ -289,7 +288,7 @@ def settings():
 
 *templates/settings.html：设置页面模板*
 
-```html
+```jinja2
 {% extends 'base.html' %}
 
 {% block content %}
@@ -355,8 +354,6 @@ def settings():
 登录后看到的主页如下所示：
 
 ![对已登录用户显示的主页](images/8-3.png)
-
-
 
 ## 本章小结
 

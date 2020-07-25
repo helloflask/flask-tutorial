@@ -8,7 +8,7 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 ![Watchlist 程序](images/7-2.png)
 
-你可以访问 http://watchlist.helloflask.com/ 查看示例程序的在线 Demo。
+你可以访问 <http://watchlist.helloflask.com/> 查看示例程序的在线 Demo。
 
 ## 本书特点
 

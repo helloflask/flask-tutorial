@@ -14,7 +14,7 @@ $ mkdir templates
 
 在社交网站上，每个人都有一个主页，借助 Jinja2 就可以写出一个通用的模板：
 
-```html
+```jinja2
 <h1>{{ username }}的个人主页</h1>
 {% if bio %}
     <p>{{ bio }}</p>  {# 这里的缩进只是为了可读性，不是必须的 #}
@@ -37,7 +37,7 @@ Jinja2 的语法和 Python 大致相同，你在后面会陆续接触到一些�
 
 *templates/index.html：主页模板*
 
-```html
+```jinja2
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +68,7 @@ Jinja2 的语法和 Python 大致相同，你在后面会陆续接触到一些�
 
 左侧是变量，右侧是过滤器名。比如，上面的模板里使用 `length` 过滤器来获取 `movies` 的长度，类似 Python 里的 `len()` 函数。
 
-> **提示** 访问 http://jinja.pocoo.org/docs/2.10/templates/#list-of-builtin-filters 查看所有可用的过滤器。
+> **提示** 访问 <http://jinja.pocoo.org/docs/2.10/templates/#list-of-builtin-filters> 查看所有可用的过滤器。
 
 ## 准备虚拟数据
 
@@ -110,11 +110,11 @@ def index():
 
 为了更好的表示这个视图函数的作用，我们把原来的函数名 `hello` 改为 `index`，意思是“索引”，即主页。
 
-在传入` render_template()` 函数的关键字参数中，左边的 `movies` 是模板中使用的变量名称，右边的 `movies` 则是该变量指向的实际对象。这里传入模板的 `name` 是字符串，`movies` 是列表，但能够在模板里使用的不只这两种 Python 数据结构，你也可以传入元组、字典、函数等。
+在传入 ` render_template()` 函数的关键字参数中，左边的 `movies` 是模板中使用的变量名称，右边的 `movies` 则是该变量指向的实际对象。这里传入模板的 `name` 是字符串，`movies` 是列表，但能够在模板里使用的不只这两种 Python 数据结构，你也可以传入元组、字典、函数等。
 
 `render_template()` 函数在调用时会识别并执行 index.html 里所有的 Jinja2 语句，返回渲染好的模板内容。在返回的页面中，变量会被替换为实际的值（包括定界符），语句（及定界符）则会在执行后被移除（注释也会一并移除）。
 
-现在访问 http://localhost:5000/ 看到的程序主页如下图所示：
+现在访问 <http://localhost:5000/> 看到的程序主页如下图所示：
 
 ![主页电影列表](images/3-1.png)
 

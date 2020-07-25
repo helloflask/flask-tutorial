@@ -12,11 +12,11 @@ $ mkdir static
 
 在 HTML 文件里，引入这些静态文件需要给出资源所在的 URL。为了更加灵活，这些文件的 URL 可以通过 Flask 提供的 `url_for()` 函数来生成。
 
-在第 2 章的最后，我们学习过 `url_for()` 函数的用法，传入端点值（视图函数的名称）和参数，它会返回对应的 URL。对于静态文件，需要传入的端点值是 `static`，同时使用`filename` 参数来传入相对于 static 文件夹的文件路径。
+在第 2 章的最后，我们学习过 `url_for()` 函数的用法，传入端点值（视图函数的名称）和参数，它会返回对应的 URL。对于静态文件，需要传入的端点值是 `static`，同时使用 `filename` 参数来传入相对于 static 文件夹的文件路径。
 
 假如我们在 static 文件夹的根目录下面放了一个 foo.jpg 文件，下面的调用可以获取它的 URL：
 
-```html
+```jinja2
 <img src="{{ url_for('static', filename='foo.jpg') }}">
 ```
 
@@ -131,13 +131,13 @@ footer {
 </head>
 ```
 
-> 提示 当你把 CSS 写到单独的文件后，浏览器获取到这个文件后会对其进行缓存（其他静态文件同理）。所以，在后续章节，每当你对 CSS 文件的内容进行更新后，都需要使用下面的快捷键清除缓存：
+> **提示** 当你把 CSS 写到单独的文件后，浏览器获取到这个文件后会对其进行缓存（其他静态文件同理）。所以，在后续章节，每当你对 CSS 文件的内容进行更新后，都需要使用下面的快捷键清除缓存：
+>
 > - Google Chrome（Mac）：Command + Shift + R
 > - Google Chrome（Windows & Linux）：Ctrl + F5
 > - Firefox（Mac）：Command + Shift + R
 > - Firefox（Windows & Linux）：Ctrl + F5
 > - Safari：Command + Option + R
-
 
 最后要为对应的元素设置 `class` 属性值，以便和对应的 CSS 定义关联起来：
 

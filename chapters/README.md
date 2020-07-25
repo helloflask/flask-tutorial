@@ -35,6 +35,6 @@
 
 发布时间：2019.12.6
 
-© 2018 [李辉](http://greyli.com)（Grey Li） / [HelloFlask.com](http://helloflask.com)
+© 2018 [李辉](http://greyli.com)（Grey Li）/ [HelloFlask.com](http://helloflask.com)
 
 本书采用 [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh) 协议授权，禁止商用、演绎后分发或无署名转载。
