@@ -2,7 +2,7 @@
 
 在这个教程的最后一章，我们将会把程序部署到互联网上，让网络中的其他所有人都可以访问到。
 
-Web 程序通常有两种部署方式：传统部署和云部署。传统部署指的是在使用物理主机或虚拟主机上部署程序，你通常需要在一个 Linux 系统上完成所有的部署操作；云部署则是使用其他公司提供的云平台，这些平台为你设置好了底层服务，包括 Web 服务器、数据库等等，你只需要上传代码并进行一些简单设置即可完成部署。这一章我们会介绍使用云平台 [PythonAnywhere](https://www.pythonanywhere.com) 来部署程序。
+Web 程序通常有两种部署方式：传统部署和云部署。传统部署指的是在使用物理主机或虚拟主机上部署程序，你通常需要在一个 Linux 系统上完成所有的部署操作；云部署则是使用其他公司提供的云平台，这些平台为你设置好了底层服务，包括 Web 服务器、数据库等等，你只需要上传代码并进行一些简单设置即可完成部署。这一章我们会介绍使用云平台[PythonAnywhere](https://www.pythonanywhere.com)来部署程序。
 
 ## 部署前的准备
 
@@ -55,7 +55,7 @@ $ git push
 
 ## 使用 PythonAnywhere 部署程序
 
-首先访问 [注册页面](https://www.pythonanywhere.com/registration/register/beginner/) 注册一个免费账户。注册时填入的用户名将作为你的程序域名的子域部分，以及分配给你的 Linux 用户名。比如，如果你的用户名为 greyli，最终为你分配的程序域名就是 http://greyli.pythonanywhere.com/ 。
+首先访问[注册页面](https://www.pythonanywhere.com/registration/register/beginner/)注册一个免费账户。注册时填入的用户名将作为你的程序域名的子域部分，以及分配给你的 Linux 用户名。比如，如果你的用户名为 greyli，最终为你分配的程序域名就是<http://greyli.pythonanywhere.com/>。
 
 注册完成后会有一个简单的教程，你可以跳过，也可以跟着了解一下基本用法。管理面板主页如下所示：
 
@@ -201,7 +201,7 @@ PythonAnywhere 会自动从这个文件里导入名称为 `application` 的程�
 
 ![重载程序](images/11-11.png)
 
-现在访问你的程序网址“https://用户名.pythonanywhere.com”（Web 面板顶部的链接），比如 https://greyli.pythonanywhere.com 即可访问程序。
+现在访问你的程序网址“<https://用户名.pythonanywhere.com>”（Web 面板顶部的链接），比如<https://greyli.pythonanywhere.com>即可访问程序。
 
 最后还要注意的是，免费账户需要每三个月点击一次黄色的激活按钮（在过期前你会收到提醒邮件）：
 
@@ -228,4 +228,4 @@ $ git pull
 
 *  因为 PythonAnywhere 支持在线管理文件、编辑代码、执行命令，你可以在学习编程的过程中使用它来在线开发 Web 程序。
 *  PythonAnywhere 的 Web 面板还有一些功能设置：Log files 部分可以查看你的程序日志，Traffic 部分显示了你的程序访问流量情况，Security 部分可以为你的程序程序开启强制启用 HTTPS 和密码保护。
-*  如果你是 [《Flask Web 开发实战》](http://helloflask.com/book/) 的读者，第 14 章详细介绍了部署 Flask 程序的两种方式，传统部署和云部署。
+*  如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 14 章详细介绍了部署 Flask 程序的两种方式，传统部署和云部署。

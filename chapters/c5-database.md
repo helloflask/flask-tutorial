@@ -1,12 +1,12 @@
 # 第 5 章：数据库
 
-大部分程序都需要保存数据，所以不可避免要使用数据库。用来操作数据库的数据库管理系统（DBMS）有很多选择，对于不同类型的程序，不同的使用场景，都会有不同的选择。在这个教程中，我们选择了属于关系型数据库管理系统（RDBMS）的 [SQLite](https://www.sqlite.org/)，它基于文件，不需要单独启动数据库服务器，适合在开发时使用，或是在数据库操作简单、访问量低的程序中使用。
+大部分程序都需要保存数据，所以不可避免要使用数据库。用来操作数据库的数据库管理系统（DBMS）有很多选择，对于不同类型的程序，不同的使用场景，都会有不同的选择。在这个教程中，我们选择了属于关系型数据库管理系统（RDBMS）的[SQLite](https://www.sqlite.org/)，它基于文件，不需要单独启动数据库服务器，适合在开发时使用，或是在数据库操作简单、访问量低的程序中使用。
 
 ## 使用 SQLAlchemy 操作数据库
 
-为了简化数据库操作，我们将使用 [SQLAlchemy](https://www.sqlalchemy.org/)——一个 Python 数据库工具（ORM，即对象关系映射）。借助 SQLAlchemy，你可以通过定义 Python 类来表示数据库里的一张表（类属性表示表中的字段 / 列），通过对这个类进行各种操作来代替写 SQL 语句。这个类我们称之为**模型类**，类中的属性我们将称之为**字段**。
+为了简化数据库操作，我们将使用[SQLAlchemy](https://www.sqlalchemy.org/)——一个 Python 数据库工具（ORM，即对象关系映射）。借助 SQLAlchemy，你可以通过定义 Python 类来表示数据库里的一张表（类属性表示表中的字段 / 列），通过对这个类进行各种操作来代替写 SQL 语句。这个类我们称之为**模型类**，类中的属性我们将称之为**字段**。
 
-Flask 有大量的第三方扩展，这些扩展可以简化和第三方库的集成工作。我们下面将使用一个叫做 [Flask-SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/) 的官方扩展来集成 SQLAlchemy。
+Flask 有大量的第三方扩展，这些扩展可以简化和第三方库的集成工作。我们下面将使用一个叫做[Flask-SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/)的官方扩展来集成 SQLAlchemy。
 
 首先安装它：
 
@@ -74,7 +74,7 @@ db = SQLAlchemy(app)
 
 如果你固定在某一个操作系统上进行开发，部署时也使用相同的操作系统，那么可以不用这么做，直接根据你的需要写出前缀即可。
 
-> **提示** 你可以访问  [Flask 文档的配置页面](http://flask.pocoo.org/docs/1.0/config/) 查看 Flask 内置的配置变量；同样的，在 [Flask-SQLAlchemy 文档的配置页面](http://flask-sqlalchemy.pocoo.org/2.1/config/) 可以看到 Flask-SQLAlchemy 提供的配置变量。
+> **提示** 你可以访问[Flask 文档的配置页面](http://flask.pocoo.org/docs/1.0/config/)查看 Flask 内置的配置变量；同样的，在[Flask-SQLAlchemy 文档的配置页面](http://flask-sqlalchemy.pocoo.org/2.1/config/)可以看到 Flask-SQLAlchemy 提供的配置变量。
 
 ## 创建数据库模型
 
@@ -133,7 +133,7 @@ class Movie(db.Model):  # 表名将会是 movie
 >>> db.create_all()
 ```
 
-注意这会一并删除所有数据，如果你想在不破坏数据库内的数据的前提下变更表的结构，需要使用数据库迁移工具，比如集成了 [Alembic](https://alembic.sqlalchemy.org/en/latest/) 的 [Flask-Migrate](https://github.com/miguelgrinberg/Flask-Migrate) 扩展。
+注意这会一并删除所有数据，如果你想在不破坏数据库内的数据的前提下变更表的结构，需要使用数据库迁移工具，比如集成了[Alembic](https://alembic.sqlalchemy.org/en/latest/)的[Flask-Migrate](https://github.com/miguelgrinberg/Flask-Migrate)扩展。
 
 > **提示** 上面打开 Python Shell 使用的是 `flask shell`命令，而不是 `python`。使用这个命令启动的 Python Shell 激活了“程序上下文”，它包含一些特殊变量，这对于某些操作是必须的（比如上面的 `db.create_all()`调用）。请记住，后续的 Python Shell 都会使用这个命令打开。
 
@@ -241,7 +241,7 @@ def initdb(drop):
 
 > **提示** 我们在说 Movie 模型的时候，实际指的是数据库中的 movie 表。表的实际名称是模型类的小写形式（自动生成），如果你想自己指定表名，可以定义 `__tablename__` 属性。
 
-对于最基础的 `filter()` 过滤方法，SQLAlchemy 支持丰富的查询操作符，具体可以访问 [文档相关页面](http://docs.sqlalchemy.org/en/latest/core/sqlelement.html#sqlalchemy.sql.operators.ColumnOperators) 查看。除此之外，还有更多的查询方法、过滤方法和数据库函数可以使用，具体可以访问文档的 [Query API](https://docs.sqlalchemy.org/en/latest/orm/query.html) 部分查看。
+对于最基础的 `filter()` 过滤方法，SQLAlchemy 支持丰富的查询操作符，具体可以访问[文档相关页面](http://docs.sqlalchemy.org/en/latest/core/sqlelement.html#sqlalchemy.sql.operators.ColumnOperators)查看。除此之外，还有更多的查询方法、过滤方法和数据库函数可以使用，具体可以访问文档的[Query API](https://docs.sqlalchemy.org/en/latest/orm/query.html)部分查看。
 
 ### 更新
 
@@ -346,6 +346,6 @@ $ git push
 ## 进阶提示
 
 * 在生产环境，你可以更换更合适的 DBMS，因为 SQLAlchemy 支持多种 SQL 数据库引擎，通常只需要改动非常少的代码。
-* 我们的程序只有一个用户，所以没有将 User 表和 Movie 表建立关联。访问 Flask-SQLAlchemy 文档的”[声明模型](http://flask-sqlalchemy.pocoo.org/2.3/models/#one-to-many-relationships)“章节可以看到相关内容。 
-* 阅读 [SQLAlchemy 官方文档和教程](https://docs.sqlalchemy.org/en/latest/) 详细了解它的用法。注意我们在这里使用 Flask-SQLAlchemy 来集成它，所以用法和单独使用 SQLAlchemy 有一些不同。作为参考，你可以同时阅读 [Flask-SQLAlchemy 官方文档](http://flask-sqlalchemy.pocoo.org/2.3/)。
-* 如果你是 [《Flask Web 开发实战》](http://helloflask.com/book/) 的读者，第 5 章详细介绍了 SQLAlchemy 和 Flask-Migrate 的使用，第 8 章和第 9 章引入了更复杂的模型关系和查询方法。
+* 我们的程序只有一个用户，所以没有将 User 表和 Movie 表建立关联。访问 Flask-SQLAlchemy 文档的“[声明模型](http://flask-sqlalchemy.pocoo.org/2.3/models/#one-to-many-relationships)”章节可以看到相关内容。 
+* 阅读[SQLAlchemy 官方文档和教程](https://docs.sqlalchemy.org/en/latest/)详细了解它的用法。注意我们在这里使用 Flask-SQLAlchemy 来集成它，所以用法和单独使用 SQLAlchemy 有一些不同。作为参考，你可以同时阅读[Flask-SQLAlchemy 官方文档](http://flask-sqlalchemy.pocoo.org/2.3/)。
+* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 5 章详细介绍了 SQLAlchemy 和 Flask-Migrate 的使用，第 8 章和第 9 章引入了更复杂的模型关系和查询方法。

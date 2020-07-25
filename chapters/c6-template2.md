@@ -288,5 +288,5 @@ $ git push
 ## 进阶提示
 
 * 本章介绍的自定义错误页面是为了引出两个重要的知识点，因此并没有着重介绍错误页面本身。这里只为 404 错误编写了自定义错误页面，对于另外两个常见的错误 400 错误和 500 错误，你可以自己试着为它们编写错误处理函数和对应的模板。
-* 因为示例程序的语言和电影标题使用了英文，所以电影网站的搜索链接使用了 IMDb，对于中文，你可以使用豆瓣电影或时光网。以豆瓣电影为例，它的搜索链接为 [https://movie.douban.com/subject_search?search_text=关键词](https://movie.douban.com/subject_search?search_text=关键词)，对应的 `href` 属性即 `https://movie.douban.com/subject_search?search_text={{ movie.title }}`。
+* 因为示例程序的语言和电影标题使用了英文，所以电影网站的搜索链接使用了 IMDb，对于中文，你可以使用豆瓣电影或时光网。以豆瓣电影为例，它的搜索链接为<https://movie.douban.com/subject_search?search_text=关键词>，对应的 `href` 属性即 `https://movie.douban.com/subject_search?search_text={{ movie.title }}`。
 * 因为基模板会被所有其他页面模板继承，如果你在基模板中使用了某个变量，那么这个变量也需要使用模板上下文处理函数注入到模板里。
