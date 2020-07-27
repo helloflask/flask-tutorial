@@ -201,7 +201,7 @@ PythonAnywhere 会自动从这个文件里导入名称为 `application` 的程�
 
 ![重载程序](images/11-11.png)
 
-现在访问你的程序网址“<https://用户名.pythonanywhere.com>”（Web 面板顶部的链接），比如<https://greyli.pythonanywhere.com>即可访问程序。
+现在访问你的程序网址“<https://用户名.pythonanywhere.com>”（Web 面板顶部的链接），比如 <https://greyli.pythonanywhere.com> 即可访问程序。
 
 最后还要注意的是，免费账户需要每三个月点击一次黄色的激活按钮（在过期前你会收到提醒邮件）：
 
