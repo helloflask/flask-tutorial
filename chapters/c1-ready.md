@@ -129,13 +129,11 @@ $ git remote add origin git@github.com:greyli/watchlist.git  # 注意更换地�
 
 这会为本地仓库关联一个名为“origin”的远程仓库，**注意将仓库地址中的“greyli”换成你的 GitHub 用户名**。
 
-如果还没有创建本地仓库，则可以直接将远程仓库克隆到本地：
+如果还没有创建本地仓库，则可以直接将远程仓库克隆到本地（这会在当前目录创建一个名为 watchlist 的文件夹）：
 
 ```bash
 $ git clone git@github.com:greyli/watchlist.git  # 注意更换地址中的用户名
 ```
-
-> **注意** 这种克隆方式要求你创建的仓库为公有类型。
 
 ## 创建虚拟环境
 
