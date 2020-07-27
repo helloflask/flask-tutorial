@@ -31,11 +31,11 @@ def hello():
 * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
 
-现在打开浏览器，访问<http://localhost:5000>即可访问我们的程序主页，并看到我们在程序里返回的问候语，如下图所示：
+现在打开浏览器，访问 <http://localhost:5000> 即可访问我们的程序主页，并看到我们在程序里返回的问候语，如下图所示：
 
 ![主页](images/2-1.png)
 
-执行 `flask run` 命令时，Flask 会使用内置的开发服务器来运行程序。这个服务器默认监听本地机的 5000 端口，也就是说，我们可以通过在地址栏输入<http://127.0.0.1:5000>或是<http://localhost:5000>访问程序。
+执行 `flask run` 命令时，Flask 会使用内置的开发服务器来运行程序。这个服务器默认监听本地机的 5000 端口，也就是说，我们可以通过在地址栏输入 <http://127.0.0.1:5000> 或是 <http://localhost:5000> 访问程序。
 
 > **注意** 内置的开发服务器只能用于开发时使用，部署上线的时候要换用性能更好的服务器，我们会在最后一章学习。
 
@@ -64,11 +64,11 @@ def hello():
 
 填入 `app.route()` 装饰器的第一个参数是 URL 规则字符串，这里的 `/`指的是根地址。
 
-我们只需要写出相对地址，主机地址、端口号等都不需要写出。所以说，这里的 `/` 对应的是主机名后面的路径部分，完整 URL 就是<http://localhost:5000/>。如果我们这里定义的 URL 规则是 `/hello`，那么完整 URL 就是<http://localhost:5000/hello>。
+我们只需要写出相对地址，主机地址、端口号等都不需要写出。所以说，这里的 `/` 对应的是主机名后面的路径部分，完整 URL 就是 <http://localhost:5000/>。如果我们这里定义的 URL 规则是 `/hello`，那么完整 URL 就是 <http://localhost:5000/hello>。
 
 整个请求的处理过程如下所示：
 
-1. 当用户在浏览器地址栏访问这个地址，在这里即<http://localhost:5000/>
+1. 当用户在浏览器地址栏访问这个地址，在这里即 <http://localhost:5000/>
 2. 服务器解析请求，发现请求 URL 匹配的 URL 规则是 `/`，因此调用对应的处理函数 `hello()`
 3. 获取 `hello()` 函数的返回值，处理后返回给客户端（浏览器）
 4. 浏览器接受响应，将其显示在窗口上
@@ -149,7 +149,7 @@ def hello():
     return 'Welcome to My Watchlist!'
 ```
 
-保存修改，这时刷新浏览器，则会看到一个 404 错误提示，提示页面未找到（Page Not Found）。这是因为视图函数的 URL 改成了 `/home`，而我们刷新后访问的地址仍然是旧的 `/`。如果我们把访问地址改成<http://localhost:5000/home>，就会正确看到返回值。
+保存修改，这时刷新浏览器，则会看到一个 404 错误提示，提示页面未找到（Page Not Found）。这是因为视图函数的 URL 改成了 `/home`，而我们刷新后访问的地址仍然是旧的 `/`。如果我们把访问地址改成 <http://localhost:5000/home>，就会正确看到返回值。
 
 一个视图函数也可以绑定多个 URL，这通过附加多个装饰器实现，比如：
 
@@ -161,7 +161,7 @@ def hello():
     return 'Welcome to My Watchlist!'
 ```
 
-现在无论是访问<http://localhost:5000/>、<http://localhost:5000/home>还是<http://localhost:5000/index>都可以看到返回值。
+现在无论是访问 <http://localhost:5000/>、<http://localhost:5000/home> 还是 <http://localhost:5000/index> 都可以看到返回值。
 
 在前面，我们之所以把传入 `app.route` 装饰器的参数称为 URL 规则，是因为我们也可以在 URL 里定义变量部分。比如下面这个视图函数会处理所有类似 `/user/<name>` 的请求：
 
@@ -171,7 +171,7 @@ def user_page(name):
     return 'User page'
 ```
 
-不论你访问<http://localhost:5000/user/greyli>，还是<http://localhost:5000/user/peter>，抑或是<http://localhost:5000/user/甲>，都会触发这个函数。通过下面的方式，我们也可以在视图函数里获取到这个变量值：
+不论你访问 <http://localhost:5000/user/greyli>，还是 <http://localhost:5000/user/peter>，抑或是 <http://localhost:5000/user/甲>，都会触发这个函数。通过下面的方式，我们也可以在视图函数里获取到这个变量值：
 
 ```python
 from flask import escape

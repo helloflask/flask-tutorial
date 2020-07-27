@@ -87,7 +87,7 @@ Done.
 
 ## 使用 Flask-Login 实现用户认证
 
-扩展[Flask-Login](https://github.com/maxcountryman/flask-login)提供了实现用户认证需要的各类功能函数，我们将使用它来实现程序的用户认证，首先来安装它：
+扩展 [Flask-Login](https://github.com/maxcountryman/flask-login) 提供了实现用户认证需要的各类功能函数，我们将使用它来实现程序的用户认证，首先来安装它：
 
 ```bash
 (env) $ pip install flask-login
@@ -369,5 +369,5 @@ $ git push
 
 ## 进阶提示
 
-* 访问[Flask-Login 文档](https://github.com/maxcountryman/flask-login)了解更多细节和用法。
+* 访问 [Flask-Login 文档](https://github.com/maxcountryman/flask-login)了解更多细节和用法。
 * 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 2 章通过一个示例介绍了用户认证的实现方式；第 8 章包含对 Flask-Login 更详细的介绍。

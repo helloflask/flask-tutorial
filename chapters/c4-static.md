@@ -61,7 +61,7 @@ $ mkdir images
 <img alt="Walking Totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">
 ```
 
-> **提示** 这两张图片你可以自己替换为任意的图片（注意更新文件名），也可以在示例程序的[GitHub 仓库](https://github.com/greyli/watchlist/tree/master/watchlist/static/images)下载。
+> **提示** 这两张图片你可以自己替换为任意的图片（注意更新文件名），也可以在示例程序的 [GitHub 仓库](https://github.com/greyli/watchlist/tree/master/watchlist/static/images)下载。
 
 ## 添加 CSS
 
@@ -173,5 +173,5 @@ $ git push
 
 ## 进阶提示
 
-* 如果你对 CSS 很头疼，可以借助前端框架来完善页面样式，比如[Bootstrap](https://getbootstrap.com/)、[Semantic-UI](http://semantic-ui.com/)、[Foundation](https://foundation.zurb.com/)等。它们提供了大量的 CSS 定义和动态效果，使用起来非常简单。
-* 扩展[Bootstrap-Flask](https://github.com/greyli/bootstrap-flask)可以简化在 Flask 项目里使用 Bootstrap 4 的步骤。
+* 如果你对 CSS 很头疼，可以借助前端框架来完善页面样式，比如 [Bootstrap](https://getbootstrap.com/)、[Semantic-UI](http://semantic-ui.com/)、[Foundation](https://foundation.zurb.com/) 等。它们提供了大量的 CSS 定义和动态效果，使用起来非常简单。
+* 扩展 [Bootstrap-Flask](https://github.com/greyli/bootstrap-flask) 可以简化在 Flask 项目里使用 Bootstrap 4 的步骤。

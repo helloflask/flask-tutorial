@@ -1,6 +1,6 @@
 # Flask 入门教程
 
-这是一本 Flask 入门教程，提供了入门 Flask 所需的最少信息，你可以跟随本书自己动手开发一个简单的[Watchlist 程序](https://github.com/greyli/watchlist)。本书主页为 <http://helloflask.com/tutorial>。
+这是一本 Flask 入门教程，提供了入门 Flask 所需的最少信息，你可以跟随本书自己动手开发一个简单的 [Watchlist 程序](https://github.com/greyli/watchlist)。本书主页为 <http://helloflask.com/tutorial>。
 
 ## 关于作者
 
@@ -37,4 +37,4 @@
 
 © 2018 [李辉](http://greyli.com)（Grey Li）/ [HelloFlask.com](http://helloflask.com)
 
-本书采用[CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh)协议授权，禁止商用、演绎后分发或无署名转载。
+本书采用 [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh) 协议授权，禁止商用、演绎后分发或无署名转载。
