@@ -33,7 +33,14 @@ $ python --version
 Python 2.7.11
 ```
 
-对于 Windows（非 WSL） 用户，如果你对不同系统下终端命令的区别不熟悉，那么建议在这个教程的学习过程中使用 Git Bash（安装 Git for Windows 后附带的终端程序，下一节会介绍 Git 安装） 来代替系统自带的 cmd.exe 或 Powershell。Git Bash 支持一些在 Linux 或 macOS 下才能使用的命令（程序），比如 ls、cat、nano、ssh 等，这些命令我们在后面会用到。
+在 Linux 和 macOS 中，对应 Python 3 版本的命令将会是 `python3`（类似的，Python 3 对应的 pip 命令为 `pip3`）：
+
+```bash
+$ python3 --version
+Python 3.8.3
+```
+
+对于 Windows（非 WSL） 用户，如果你对不同系统下终端命令的区别不熟悉，可以考虑在这个教程的学习过程中使用 Git Bash（安装 Git for Windows 后附带的终端程序，下一节会介绍 Git 安装） 来代替系统自带的 cmd.exe 或 Powershell。Git Bash 支持一些在 Linux 或 macOS 下才能使用的命令（程序），比如 ls、cat、nano、ssh 等，这些命令我们在后面会用到。
 
 > **提示** 如果你打算在这个教程的学习中继续使用 cmd.exe 或 Powershell，那么需要注意下列命令的区别：
 >
@@ -143,9 +150,23 @@ $ git clone git@github.com:greyli/watchlist.git  # 注意更换地址中的用�
 * 指定不同的依赖版本
 * 方便记录和管理依赖
 
-我们将使用 Python 3 内置的 venv 模块创建虚拟环境。
+我们将使用 Python 3 内置的 venv 模块创建虚拟环境，使用下面的命令即可为当前项目创建一个虚拟环境：
 
-如果你使用 Python 2，则需要安装 virtualenv 作为替代：
+```bash
+$ python -m venv env  # Windows
+```
+
+或：
+
+```bash
+$ python3 -m venv env  # Linux 和 macOS
+```
+
+> **提示** 上述命令的最后一个参数是虚拟环境名称，你可以自由定义，比如 venv、env、.venv，或是“项目名-venv”，这里使用了 env。
+
+这会在当前目录创建一个包含 Python 解释器环境的虚拟环境文件夹，名称为 env。
+
+如果你使用 Python 2，则需要安装 virtualenv 来代替 venv：
 
 ```bash
 $ pip install virtualenv  # Windows
@@ -157,23 +178,15 @@ $ pip install virtualenv  # Windows
 $ sudo pip install virtualenv  # Linux 或 macOS
 ```
 
-现在我们来创建虚拟环境，使用下面的命令即可为当前项目创建一个虚拟环境：
-
-```bash
-$ python -m venv env
-```
-
-Python 2 用户则需要使用：
+创建虚拟环境时使用下面的命令：
 
 ```bash
 $ virtualenv env
 ```
 
-> **提示** 上述命令的最后一个参数是虚拟环境名称，你可以自由定义，比如 venv、env、.venv，或是项目名 -venv，这里使用了 env。
+## 激活虚拟环境
 
-这会在当前目录创建一个包含 Python 解释器环境的虚拟环境文件夹，名称为 env。
-
-创建虚拟环境后，我们可以使用下面的命令来激活虚拟环境，如下所示（执行 `deactivate` 可以退出虚拟环境）：
+创建虚拟环境后，我们可以使用下面的命令来激活虚拟环境（通过执行/“source”激活脚本实现）：
 
 ```bash
 $ env\Scripts\activate  # Windows
@@ -191,6 +204,15 @@ $ . env/bin/activate  # Linux 或 macOS
 
 ```bash
 (env) $
+```
+
+在激活虚拟环境后，无论操作系统和 Python 版本，都可以统一使用 `python` 和 `pip` 命令来调用当前虚拟环境内的 Python 和 pip 程序/二进制文件。此时执行 `python` 或 `pip` 命令指向的程序和激活脚本在同一个目录下，在 Windows 下所在目录为 `env\Scripts\`，Linux 和 macOS 下所在目录为 `env/bin/`。
+
+最后，执行 `deactivate` 即可退出虚拟环境：
+
+```bash
+(env) $ deactivate
+$
 ```
 
 > **注意** 除了 Git 相关命令外，除非特别说明，本书后续的所有命令均需要在激活虚拟环境后执行。
