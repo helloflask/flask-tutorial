@@ -77,7 +77,23 @@ def hello():
 
 ## 程序发现机制
 
-如果你把上面的程序保存成其他的名字，比如 hello.py，接着执行 `flask run` 命令会返回一个错误提示。这是因为 Flask 默认会假设你把程序存储在名为 app.py 或 wsgi.py 的文件中。如果你使用了其他名称，就要设置系统环境变量 `FLASK_APP` 来告诉 Flask 你要启动哪个程序。
+如果你把上面的程序保存成其他的名字，比如 hello.py，接着执行 `flask run` 命令会返回一个错误提示。这是因为 Flask 默认会假设你把程序存储在名为 app.py 或 wsgi.py 的文件中。如果你使用了其他名称，就要设置系统环境变量 `FLASK_APP` 来告诉 Flask 你要启动哪个程序：
+
+```bash
+$ export FLASK_APP=hello.py
+```
+
+在 Windows CMD 中使用 set 命令：
+
+```bash
+> set FLASK_APP=hello.py
+```
+
+在 Windows PowerShell 中则使用下面的命令：
+
+```bash
+> $env:FLASK_APP = "hello.py"
+```
 
 Flask 通过读取这个环境变量值对应的模块寻找要运行的程序实例，你可以把它设置成下面这些值：
 
@@ -89,13 +105,19 @@ Flask 通过读取这个环境变量值对应的模块寻找要运行的程序�
 
 现在在启动 Flask 程序的时候，我们通常要和两个环境变量打交道：`FLASK_APP` 和 `FLASK_ENV`。因为我们的程序现在的名字是 app.py，暂时不需要设置 `FLASK_APP`；`FLASK_ENV` 用来设置程序运行的环境，默认为 `production`。在开发时，我们需要开启调试模式（debug mode）。调试模式可以通过将系统环境变量 `FLASK_ENV` 设为 `development` 来开启。调试模式开启后，当程序出错，浏览器页面上会显示错误信息；代码出现变动后，程序会自动重载。
 
-为了不用每次打开新的终端会话都要设置环境变量，我们安装用来管理系统环境变量的 python-dotenv：
+下面是手动设置环境变量 `FLASK_ENV` 来开启调试模式的示例：
+
+```bash
+$ export FLASK_ENV=development  # 注意在 Windows 系统使用 set 或 $env: 替代 export，参考前面的示例
+```
+
+为了不用每次打开新的终端会话都要设置环境变量，我们安装用来自动导入系统环境变量的 python-dotenv：
 
 ```bash
 (env) $ pip install python-dotenv
 ```
 
-当 python-dotenv 安装后，Flask 会从项目根目录的 .flaskenv 和 .env 文件读取环境变量并设置。我们分别使用文本编辑器创建这两个文件，或是使用更方便的 `touch` 命令创建：
+当 python-dotenv 安装后，Flask 会从项目根目录的 .flaskenv 和 .env 文件读取环境变量并设置。我们分别使用文本编辑器创建这两个文件，或是使用更方便的 `touch` 命令创建（注意不要漏掉文件名开头的点）：
 
 ```bash
 $ touch .env .flaskenv
@@ -110,6 +132,7 @@ $ touch .env .flaskenv
 在新创建的 .flaskenv 文件里，我们写入一行 `FLASK_ENV=development` ，将环境变量 `FLASK_ENV` 的值设为 `development`，以便开启调试模式：
 
 ```bash
+# .flaskenv 文件
 FLASK_ENV=development
 ```
 
