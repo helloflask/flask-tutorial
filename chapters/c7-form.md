@@ -191,7 +191,7 @@ app.config['SECRET_KEY'] = 'dev'  # 等同于 app.secret_key = 'dev'
 通过在 `<input>` 元素内添加 `required` 属性实现的验证（客户端验证）并不完全可靠，我们还要在服务器端追加验证：
 
 ```python
-if not title or not year or len(year) > 4 or len(title) > 60:
+if not title or not year or len(year) != 4 or len(title) > 60:
     flash('Invalid input.')  # 显示错误提示
     return redirect(url_for('index'))
 # ...
@@ -209,7 +209,7 @@ flash('Item created.')  # 显示成功创建的提示
 根据验证情况，我们发送不同的提示消息，最后都把页面重定向到主页，这里的主页 URL 均使用 `url_for()` 函数生成：
 
 ```python
-if not title or not year or len(year) > 4 or len(title) > 60:
+if not title or not year or len(year) != 4 or len(title) > 60:
     flash('Invalid title or year!')  
     return redirect(url_for('index'))  # 重定向回主页
 flash('Item created.')
@@ -231,7 +231,7 @@ def edit(movie_id):
         title = request.form['title']
         year = request.form['year']
         
-        if not title or not year or len(year) > 4 or len(title) > 60:
+        if not title or not year or len(year) != 4 or len(title) > 60:
             flash('Invalid input.')
             return redirect(url_for('edit', movie_id=movie_id))  # 重定向回对应的编辑页面
         
