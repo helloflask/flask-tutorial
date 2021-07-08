@@ -8,7 +8,7 @@
 
 ## 单元测试
 
-单元测试指对程序中的函数等独立单元编写的测试，它是自动化测试最主要的形式。这一章我们将会使用 Python 标准库中的测试框架 unittest 来编写单元测试，首先通过一个简单的例子来了解一些基本概念。假设我们编写了下面这个函数：
+单元测试指对程序中的函数等独立单元编写的测试，它是自动化测试最主要的形式。这一章我们将会使用 Python 标准库中的测试框架 unittest 来编写单元测试，首先通过一个简单的例子来了解一些基本概念。假设我们编写了下面这个函数，并保存到一个 hello.py 模块里：
 
 ```python
 def sayhello(to=None):
@@ -22,7 +22,7 @@ def sayhello(to=None):
 ```python
 import unittest
 
-from module_foo import sayhello
+from hello import sayhello
 
 
 class SayHelloTestCase(unittest.TestCase):  # 测试用例
