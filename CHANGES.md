@@ -8,6 +8,7 @@ Released: 2022/7/16
 - 针对 Flask 2.1.3 版本进行更新
 - 去掉 Python 2.x 相关内容
 - 优化部分章节的措辞
+- 添加 Netlify 镜像到 tutorial.helloflask.com
 
 
 ## 2.0

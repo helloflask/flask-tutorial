@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block announce %}
+📌《Flask 入门教程》第 3 版已于 2022 年 7 月 16 日发布，新版本基于 Flask 2.1.x 版本和 Python 3.6+ 版本改写。欢迎关注 <a href="https://twitter.com/helloflask" target="_blank" style="color: #526cfe">Twitter</a> 或<a href="https://greyli.com/files/qrcode_gh.jpg" target="_blank" style="color: #526cfe">微信公众号</a>获取更多动态。
+{% endblock %}
+
+{% block extrahead %}
+{% set title = config.site_name %}
+{% if page and page.title and not page.is_homepage %}
+  {% set title = config.site_name ~ " - " ~ page.title | striptags %}
+{% endif %}
+{% set image = config.site_url ~ '_assets/banner.png' %}
+{% set fav_image = config.site_url ~ '_assets/favicon.png' %}
+<!-- Open graph meta tags -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{ title }}" />
+<meta property="og:description" content="{{ config.site_description }}" />
+<meta property="og:url" content="{{ page.canonical_url }}" />
+<meta property="og:image" content="{{ image }}" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1280" />·
+<meta property="og:image:height" content="640" />
+<!-- Twitter meta tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@helloflask" />
+<meta name="twitter:creator" content="@helloflask" />
+<meta name="twitter:title" content="{{ title }}" />
+<meta name="twitter:description" content="{{ config.site_description }}" />
+<meta name="twitter:image" content="{{ fav_image }}" />
+{% endblock %}
+
+{% block analytics %}
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7VL99X405Z"></script>
+<script>
+if (window.location.hostname != "localhost") {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7VL99X405Z');
+}
+</script>
+{% endblock %}
