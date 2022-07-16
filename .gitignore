@@ -1,3 +1,6 @@
 .DS_Store
 _book
 _ebook
+env
+venv
+site
