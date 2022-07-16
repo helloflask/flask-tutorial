@@ -1,8 +1,9 @@
 # 第 2 章：Hello, Flask!
 
-追溯到最初，Flask 诞生于 Armin Ronacher 在 2010 年愚人节开的一个玩笑。后来，它逐渐发展成为一个成熟的 Python Web 框架，越来越受到开发者的喜爱。目前它在 GitHub 上是 Star 数量最多的 Python Web 框架，没有之一。
+追溯到最初，Flask 诞生于 Armin Ronacher 在 2010 年愚人节开的一个玩笑。后来，它逐渐发展成为一个成熟的 Python Web 框架，越来越受到开发者的喜爱。目前它在 GitHub 上是 Star 数量最多的 Python Web 框架，没有之一。根据 2018、2019、2020、2021 连续四年的《[Python 开发者调查报告](https://lp.jetbrains.com/python-developers-survey-2021)》统计数据，它也是目前最流行的 Python Web 框架。
 
 Flask 是典型的微框架，作为 Web 框架来说，它仅保留了核心功能：**请求响应处理**和**模板渲染**。这两类功能分别由 Werkzeug（WSGI 工具库）完成和 Jinja（模板渲染库）完成，因为 Flask 包装了这两个依赖，我们暂时不用深入了解它们。
+
 
 ## 主页
 
@@ -12,6 +13,7 @@ Flask 是典型的微框架，作为 Web 框架来说，它仅保留了核心功
 
 ```python
 from flask import Flask
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -31,13 +33,14 @@ def hello():
 * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
 
-现在打开浏览器，访问 <http://localhost:5000> 即可访问我们的程序主页，并看到我们在程序里返回的问候语，如下图所示：
+现在打开浏览器，输入 <http://localhost:5000> 并按下 Enter 即可访问我们的程序主页，并看到我们在程序里返回的问候语，如下图所示：
 
 ![主页](images/2-1.png)
 
 执行 `flask run` 命令时，Flask 会使用内置的开发服务器来运行程序。这个服务器默认监听本地机的 5000 端口，也就是说，我们可以通过在地址栏输入 <http://127.0.0.1:5000> 或是 <http://localhost:5000> 访问程序。
 
-> **注意** 内置的开发服务器只能用于开发时使用，部署上线的时候要换用性能更好的服务器，我们会在最后一章学习。
+> **注意** 内置的开发服务器只能用于开发时使用，部署上线的时候要换用性能更好的生产服务器，我们会在最后一章学习。
+
 
 ## 解剖时间
 
@@ -47,6 +50,7 @@ def hello():
 
 ```python
 from flask import Flask
+
 app = Flask(__name__)
 ```
 
@@ -75,6 +79,7 @@ def hello():
 
 > **提示** 在 Web 程序的语境下，虽然客户端可能有多种类型，但在本书里通常是指浏览器。
 
+
 ## 程序发现机制
 
 如果你把上面的程序保存成其他的名字，比如 hello.py，接着执行 `flask run` 命令会返回一个错误提示。这是因为 Flask 默认会假设你把程序存储在名为 app.py 或 wsgi.py 的文件中。如果你使用了其他名称，就要设置系统环境变量 `FLASK_APP` 来告诉 Flask 你要启动哪个程序：
@@ -101,6 +106,7 @@ Flask 通过读取这个环境变量值对应的模块寻找要运行的程序�
 * Python 导入路径
 * 文件目录路径
 
+
 ## 管理环境变量
 
 现在在启动 Flask 程序的时候，我们通常要和两个环境变量打交道：`FLASK_APP` 和 `FLASK_ENV`。因为我们的程序现在的名字是 app.py，暂时不需要设置 `FLASK_APP`；`FLASK_ENV` 用来设置程序运行的环境，默认为 `production`。在开发时，我们需要开启调试模式（debug mode）。调试模式可以通过将系统环境变量 `FLASK_ENV` 设为 `development` 来开启。调试模式开启后，当程序出错，浏览器页面上会显示错误信息；代码出现变动后，程序会自动重载。
@@ -123,22 +129,24 @@ $ export FLASK_ENV=development  # 注意在 Windows 系统使用 set 或 $env: �
 $ touch .env .flaskenv
 ```
 
-.flaskenv 用来存储 Flask 命令行系统相关的公开环境变量；而 .env 则用来存储敏感数据，不应该提交进Git仓库，我们把文件名 `.env` 添加到 .gitignore 文件的结尾（新建一行）来让 Git 忽略它。你可以使用编辑器打开这个文件，然后添加下面这一行内容：
+.flaskenv 用来存储 Flask 命令行系统相关的公开环境变量；而 .env 则用来存储敏感数据，不应该提交进 Git 仓库，我们把文件名 `.env` 添加到 .gitignore 文件的结尾（新建一行）来让 Git 忽略它。你可以使用编辑器打开这个文件，然后添加下面这一行内容：
 
 ```
 .env
 ```
 
-在新创建的 .flaskenv 文件里，我们写入一行 `FLASK_ENV=development` ，将环境变量 `FLASK_ENV` 的值设为 `development`，以便开启调试模式：
+在新创建的 .flaskenv 文件里，我们写入一行 `FLASK_ENV=development`，将环境变量 `FLASK_ENV` 的值设为 `development`，以便开启调试模式：
 
 ```bash
 # .flaskenv 文件
 FLASK_ENV=development
 ```
 
+
 ## 实验时间
 
 在这个小节，我们可以通过做一些实验，来扩展和加深对本节内容的理解。
+
 
 ### 修改视图函数返回值
 
@@ -147,7 +155,7 @@ FLASK_ENV=development
 ```python
 @app.route('/')
 def hello():
-    return u'欢迎来到我的 Watchlist！'
+    return '欢迎来到我的 Watchlist！'
 ```
 
 返回值作为响应的主体，默认会被浏览器作为 HTML 格式解析，所以我们可以添加一个 HTML 元素标记：
@@ -161,6 +169,7 @@ def hello():
 保存修改后，只需要在浏览器里刷新页面，你就会看到页面上的内容也会随之变化。
 
 ![2-2](images/2-2.png)
+
 
 ### 修改 URL 规则
 
@@ -197,23 +206,25 @@ def user_page(name):
 不论你访问 <http://localhost:5000/user/greyli>，还是 <http://localhost:5000/user/peter>，抑或是 <http://localhost:5000/user/甲>，都会触发这个函数。通过下面的方式，我们也可以在视图函数里获取到这个变量值：
 
 ```python
-from flask import escape
+from markupsafe import escape
 
 @app.route('/user/<name>')
 def user_page(name):
-    return 'User: %s' % escape(name)
+    return f'User: {escape(name)}'
 ```
 
-> **注意** 用户输入的数据会包含恶意代码，所以不能直接作为响应返回，需要使用 Flask 提供的 escape() 函数对 name 变量进行转义处理，比如把 `<` 转换成 `&lt;`。这样在返回响应时浏览器就不会把它们当做代码执行。
+> **注意** 用户输入的数据会包含恶意代码，所以不能直接作为响应返回，需要使用 MarkupSafe（Flask 的依赖之一）提供的 `escape()` 函数对 `name` 变量进行转义处理，比如把 `<` 转换成 `&lt;`。这样在返回响应时浏览器就不会把它们当做代码执行。
+
 
 ### 修改视图函数名？
 
 最后一个可以修改的部分就是视图函数的名称了。首先，视图函数的名字是自由定义的，和 URL 规则无关。和定义其他函数或变量一样，只需要让它表达出所要处理页面的含义即可。
 
-除此之外，它还有一个重要的作用：作为代表某个路由的端点（endpoint），同时用来生成 URL。对于程序内的 URL，为了避免手写，Flask 提供了一个 `url_for` 函数来生成 URL，它接受的第一个参数就是端点值，默认为视图函数的名称：
+除此之外，它还有一个重要的作用：作为代表某个路由的端点（endpoint），同时用来生成视图函数对应的 URL。对于程序内的 URL，为了避免手写，Flask 提供了一个 `url_for` 函数来生成 URL，它接受的第一个参数就是端点值，默认为视图函数的名称：
 
 ```python
-from flask import url_for, escape
+from flask import url_for
+from markupsafe import escape
 
 # ...
 
@@ -223,12 +234,12 @@ def hello():
 
 @app.route('/user/<name>')
 def user_page(name):
-    return 'User: %s' % escape(name)
+    return f'User: {escape(name)}'
 
 @app.route('/test')
 def test_url_for():
-    # 下面是一些调用示例（请在命令行窗口查看输出的 URL）：
-    print(url_for('hello'))  # 输出：/
+    # 下面是一些调用示例（请访问 http://localhost:5000/test 后在命令行窗口查看输出的 URL）：
+    print(url_for('hello'))  # 生成 hello 视图函数对应的 URL，将会输出：/
     # 注意下面两个调用是如何生成包含 URL 变量的 URL 的
     print(url_for('user_page', name='greyli'))  # 输出：/user/greyli
     print(url_for('user_page', name='peter'))  # 输出：/user/peter
@@ -238,7 +249,8 @@ def test_url_for():
     return 'Test page'
 ```
 
-实验过程中编写的代码可以删掉，也可以保留，但记得为根地址返回一行问候，这可是我们这一章的任务。
+实验过程中编写的代码可以删掉，也可以保留，但记得为根地址返回一行问候，这是我们这一章的任务。
+
 
 ## 本章小结
 
@@ -252,15 +264,15 @@ $ git push
 
 为了保持简单，我们统一在章节最后一次提交所有改动。在现实世界里，通常会根据需要分为多个 commit；同样的，这里使用 `-m` 参数给出简单的提交信息。在现实世界里，你可能需要撰写更完整的提交信息。
 
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[eca06dc](https://github.com/greyli/watchlist/commit/eca06dcdf682dfa2883a8632814e4c65b6eae141)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[eca06dc](https://github.com/helloflask/watchlist/commit/eca06dcdf682dfa2883a8632814e4c65b6eae141)。
+
 
 ## 进阶提示
 
-* 如果你使用 Python 2.7，为了使程序正常工作，需要在脚本首行添加编码声明 `# -*- coding: utf-8-*-` ，并在包含中文的字符串前面添加 `u` 前缀。本书中对于包含中文的字符串均添加了 `u` 前缀，这在 Python 3 中并不需要。
-* 对于 URL 变量，Flask 还支持在 URL 规则字符串里对变量设置处理器，对变量进行预处理。比如 `/user/<int:number>` 会将 URL 中的 number 部分处理成整型，同时这个变量值接收传入数字。
+* 对于 URL 变量，Flask 支持在 URL 规则字符串里对变量设置处理器，对变量进行预处理。比如 `/user/<int:number>` 会将 URL 中的 number 部分转换成整型。
 * 因为 Flask 的上下文机制，有一些变量和函数（比如 `url_for`函数）只能在特定的情况下才能正确执行，比如视图函数内。我们先暂时不用纠结，后面再慢慢了解。
 * 名字以 `.` 开头的文件默认会被隐藏，执行 `ls` 命令时会看不到它们，这时你可以使用 `ls -f` 命令来列出所有文件。
 * 了解 HTTP 基本知识将会有助于你了解 Flask 的工作原理。
-* 阅读文章[《互联网是如何工作的》](https://tutorial.djangogirls.org/zh/how_the_internet_works/)。
-* 阅读文章[《从HTTP请求 - 响应循环探索Flask的基本工作方式》](https://zhuanlan.zhihu.com/p/42231394)。
-* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，这部分的进阶内容可以在第 1 章《初识 Flask》和第 2 章《HTTP 和 Flask》找到。
+    * 阅读文章[《互联网是如何工作的》](https://tutorial.djangogirls.org/zh/how_the_internet_works/)。
+    * 阅读文章[《从 HTTP 请求 - 响应循环探索 Flask 的基本工作方式》](https://zhuanlan.zhihu.com/p/42231394)。
+* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/1)的读者，这部分的进阶内容可以在第 1 章《初识 Flask》和第 2 章《HTTP 和 Flask》找到。

@@ -2,6 +2,7 @@
 
 这一章我们会继续完善模板，学习几个非常实用的模板编写技巧，为下一章实现创建、编辑电影条目打下基础。
 
+
 ## 自定义错误页面
 
 为了引出相关知识点，我们首先要为 Watchlist 编写一个错误页面。目前的程序中，如果你访问一个不存在的 URL，比如 /hello，Flask 会自动返回一个 404 错误响应。默认的错误页面非常简陋，如下图所示：
@@ -35,7 +36,7 @@
         </li>
     </ul>
     <footer>
-        <small>&copy; 2018 <a href="http://helloflask.com/tutorial">HelloFlask</a></small>
+        <small>&copy; 2018 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
 	</footer>
 </body>
 </html>
@@ -64,6 +65,7 @@ def page_not_found(e):  # 接受异常对象作为参数
 * 错误页面模板和主页模板有大量重复的代码，比如 `<head>` 标签的内容，页首的标题，页脚信息等。这种重复不仅带来不必要的工作量，而且会让修改变得更加麻烦。举例来说，如果页脚信息需要更新，那么每个页面都要一一进行修改。
 
 显而易见，这两个问题有更优雅的处理方法，下面我们来一一了解。
+
 
 ## 模板上下文处理函数
 
@@ -102,11 +104,13 @@ def index():
 
 同样的，后面我们创建的任意一个模板，都可以在模板中直接使用 `user` 变量。
 
+
 ## 使用模板继承组织模板
 
 对于模板内容重复的问题，Jinja2 提供了模板继承的支持。这个机制和 Python 类继承非常类似：我们可以定义一个父模板，一般会称之为基模板（base template）。基模板中包含完整的 HTML 结构和导航栏、页首、页脚等通用部分。在子模板里，我们可以使用 `extends` 标签来声明继承自某个基模板。
 
 基模板中需要在实际的子模板中追加或重写的部分则可以定义成块（block）。块使用 `block` 标签创建， `{% block 块名称 %}` 作为开始标记，`{% endblock %}` 或 `{% endblock 块名称 %}` 作为结束标记。通过在子模板里定义一个同样名称的块，你可以向基模板的对应块位置追加或重写内容。
+
 
 ### 编写基础模板
 
@@ -138,7 +142,7 @@ def index():
     </nav>
     {% block content %}{% endblock %}
     <footer>
-        <small>&copy; 2018 <a href="http://helloflask.com/tutorial">HelloFlask</a></small>
+        <small>&copy; 2018 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
 	</footer>
 </body>
 </html>
@@ -148,7 +152,7 @@ def index():
 
 在编写子模板之前，我们先来看一下基模板中的两处新变化。
 
-第一处，我们添加了一个新的 `<meta>` 元素，这个元素会设置页面的视口，让页面根据设备的宽度来自动缩放页面，让移动设备拥有更好的浏览体验：
+第一处，我们添加了一个新的 `<meta>` 元素，这个元素会设置页面的视口，让页面根据设备的宽度来自动缩放页面，这样会让移动设备拥有更好的浏览体验：
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -191,6 +195,7 @@ nav li a:hover {
     background-color: #111;
 }
 ```
+
 
 ### 编写子模板
 
@@ -239,6 +244,7 @@ nav li a:hover {
 {% endblock %}
 ```
 
+
 ## 添加 IMDb 链接
 
 在主页模板里，我们还为每一个电影条目右侧添加了一个 IMDb 链接：
@@ -273,6 +279,7 @@ nav li a:hover {
 
 ![添加导航栏和 IMDb 链接](images/6-3.png)
 
+
 ## 本章小结
 
 本章我们主要学习了 Jinja2 的模板继承机制，去掉了大量的重复代码，这让后续的模板编写工作变得更加轻松。结束前，让我们提交代码：
@@ -283,7 +290,8 @@ $ git commit -m "Add base template and error template"
 $ git push
 ```
 
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[3bca489](https://github.com/greyli/watchlist/commit/3bca489421cc498289734cfef9d6ff90232df8be)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[3bca489](https://github.com/helloflask/watchlist/commit/3bca489421cc498289734cfef9d6ff90232df8be)。
+
 
 ## 进阶提示
 
