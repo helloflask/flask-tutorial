@@ -36,6 +36,7 @@ markdown_extensions:
         permalink: True
 nav:
   - 简介: README.md
+  - 封面: cover.md
   - 前言: preface.md
   - 第 1 章：准备工作: ready.md
   - 第 2 章：Hello, Flask!: hello.md
