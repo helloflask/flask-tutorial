@@ -2,11 +2,12 @@
 
 大部分程序都需要保存数据，所以不可避免要使用数据库。用来操作数据库的数据库管理系统（DBMS）有很多选择，对于不同类型的程序，不同的使用场景，都会有不同的选择。在这个教程中，我们选择了属于关系型数据库管理系统（RDBMS）的 [SQLite](https://www.sqlite.org/)，它基于文件，不需要单独启动数据库服务器，适合在开发时使用，或是在数据库操作简单、访问量低的程序中使用。
 
+
 ## 使用 SQLAlchemy 操作数据库
 
 为了简化数据库操作，我们将使用 [SQLAlchemy](https://www.sqlalchemy.org/)——一个 Python 数据库工具（ORM，即对象关系映射）。借助 SQLAlchemy，你可以通过定义 Python 类来表示数据库里的一张表（类属性表示表中的字段 / 列），通过对这个类进行各种操作来代替写 SQL 语句。这个类我们称之为**模型类**，类中的属性我们将称之为**字段**。
 
-Flask 有大量的第三方扩展，这些扩展可以简化和第三方库的集成工作。我们下面将使用一个叫做 [Flask-SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/) 的官方扩展来集成 SQLAlchemy。
+Flask 有大量的第三方扩展，这些扩展可以简化和第三方库的集成工作。我们下面将使用一个叫做 [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x) 的扩展来集成 SQLAlchemy。
 
 首先安装它：
 
@@ -74,7 +75,8 @@ db = SQLAlchemy(app)
 
 如果你固定在某一个操作系统上进行开发，部署时也使用相同的操作系统，那么可以不用这么做，直接根据你的需要写出前缀即可。
 
-> **提示** 你可以访问 [Flask 文档的配置页面](http://flask.pocoo.org/docs/1.0/config/)查看 Flask 内置的配置变量；同样的，在 [Flask-SQLAlchemy 文档的配置页面](http://flask-sqlalchemy.pocoo.org/2.1/config/)可以看到 Flask-SQLAlchemy 提供的配置变量。
+> **提示** 你可以访问 [Flask 文档的配置页面](https://flask.palletsprojects.com/config/)查看 Flask 内置的配置变量；同样的，在 [Flask-SQLAlchemy 文档的配置页面](https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/)可以看到 Flask-SQLAlchemy 提供的配置变量。
+
 
 ## 创建数据库模型
 
@@ -86,6 +88,7 @@ db = SQLAlchemy(app)
 class User(db.Model):  # 表名将会是 user（自动生成，小写处理）
     id = db.Column(db.Integer, primary_key=True)  # 主键
     name = db.Column(db.String(20))  # 名字
+
 
 class Movie(db.Model):  # 表名将会是 movie
     id = db.Column(db.Integer, primary_key=True)  # 主键
@@ -109,6 +112,7 @@ class Movie(db.Model):  # 表名将会是 movie
 | db.DateTime      | 时间日期，Python `datetime` 对象              |
 | db.Float         | 浮点数                                        |
 | db.Boolean       | 布尔值                                        |
+
 
 ## 创建数据库表
 
@@ -144,7 +148,8 @@ class Movie(db.Model):  # 表名将会是 movie
 ```python
 import click
 
-@app.cli.command()  # 注册为命令
+
+@app.cli.command()  # 注册为命令，可以传入 name 参数来自定义命令
 @click.option('--drop', is_flag=True, help='Create after drop.')  # 设置选项
 def initdb(drop):
     """Initialize the database."""
@@ -154,7 +159,7 @@ def initdb(drop):
     click.echo('Initialized database.')  # 输出提示信息
 ```
 
-默认情况下，函数名称就是命令的名字，现在执行 `flask initdb` 命令就可以创建数据库表：
+默认情况下，如果没有指定，函数名称就是命令的名字（注意函数名中的下划线会被转换为连接线），现在执行 `flask initdb` 命令就可以创建数据库表：
 
 ```bash
 (env) $ flask initdb
@@ -166,9 +171,11 @@ def initdb(drop):
 (env) $ flask initdb --drop
 ```
 
+
 ## 创建、读取、更新、删除
 
 在前面打开的 Python Shell 里，我们来测试一下常见的数据库操作。你可以跟着示例代码来操作，也可以自由练习。
+
 
 ### 创建
 
@@ -188,6 +195,7 @@ def initdb(drop):
 > **提示** 在实例化模型类的时候，我们并没有传入 `id` 字段（主键），因为 SQLAlchemy 会自动处理这个字段。
 
 最后一行 `db.session.commit()` 很重要，只有调用了这一行才会真正把记录提交进数据库，前面的 `db.session.add()` 调用是将改动添加进数据库会话（一个临时区域）中。
+
 
 ### 读取
 
@@ -243,6 +251,7 @@ def initdb(drop):
 
 对于最基础的 `filter()` 过滤方法，SQLAlchemy 支持丰富的查询操作符，具体可以访问[文档相关页面](http://docs.sqlalchemy.org/en/latest/core/sqlelement.html#sqlalchemy.sql.operators.ColumnOperators)查看。除此之外，还有更多的查询方法、过滤方法和数据库函数可以使用，具体可以访问文档的 [Query API](https://docs.sqlalchemy.org/en/latest/orm/query.html) 部分查看。
 
+
 ### 更新
 
 下面的操作更新了 `Movie` 模型中主键为 `2` 的记录：
@@ -268,6 +277,7 @@ def initdb(drop):
 
 经过上面的一番练习，我们可以在 Watchlist 里进行实际的数据库操作了。
 
+
 ### 在主页视图读取数据库记录
 
 因为设置了数据库，负责显示主页的 `index` 可以从数据库里读取真实的数据：
@@ -286,6 +296,7 @@ def index():
 {{ user.name }}'s Watchlist
 ```
 
+
 ### 生成虚拟数据
 
 因为有了数据库，我们可以编写一个命令函数把虚拟数据添加到数据库里。下面是用来生成虚拟数据的命令函数：
@@ -294,6 +305,7 @@ def index():
 
 ```python
 import click
+
 
 @app.cli.command()
 def forge():
@@ -331,6 +343,7 @@ def forge():
 (env) $ flask forge
 ```
 
+
 ## 本章小结
 
 本章我们学习了使用 SQLAlchemy 操作数据库，后面你会慢慢熟悉相关的操作。结束前，让我们提交代码：
@@ -341,11 +354,12 @@ $ git commit -m "Add database support with Flask-SQLAlchemy"
 $ git push
 ```
 
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[4d2442a](https://github.com/greyli/watchlist/commit/4d2442a41e55fb454e092864206af08e4e3eeddf)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[4d2442a](https://github.com/helloflask/watchlist/commit/4d2442a41e55fb454e092864206af08e4e3eeddf)。
+
 
 ## 进阶提示
 
 * 在生产环境，你可以更换更合适的 DBMS，因为 SQLAlchemy 支持多种 SQL 数据库引擎，通常只需要改动非常少的代码。
-* 我们的程序只有一个用户，所以没有将 User 表和 Movie 表建立关联。访问 Flask-SQLAlchemy 文档的“[声明模型](http://flask-sqlalchemy.pocoo.org/2.3/models/#one-to-many-relationships)”章节可以看到相关内容。 
-* 阅读 [SQLAlchemy 官方文档和教程](https://docs.sqlalchemy.org/en/latest/)详细了解它的用法。注意我们在这里使用 Flask-SQLAlchemy 来集成它，所以用法和单独使用 SQLAlchemy 有一些不同。作为参考，你可以同时阅读 [Flask-SQLAlchemy 官方文档](http://flask-sqlalchemy.pocoo.org/2.3/)。
-* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 5 章详细介绍了 SQLAlchemy 和 Flask-Migrate 的使用，第 8 章和第 9 章引入了更复杂的模型关系和查询方法。
+* 我们的程序只有一个用户，所以没有将 User 表和 Movie 表建立关联。访问 Flask-SQLAlchemy 文档的“[声明模型](https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/#one-to-many-relationships)”章节可以看到相关内容。 
+* 阅读 [SQLAlchemy 官方文档和教程](https://docs.sqlalchemy.org/en/latest/)详细了解它的用法。注意我们在这里使用 Flask-SQLAlchemy 来集成它，所以用法和单独使用 SQLAlchemy 有一些不同。作为参考，你可以同时阅读 [Flask-SQLAlchemy 官方文档](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)。
+* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/1)的读者，第 5 章详细介绍了 SQLAlchemy 和 Flask-Migrate 的使用，第 8 章和第 9 章引入了更复杂的模型关系和查询方法。

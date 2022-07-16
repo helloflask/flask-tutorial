@@ -6,6 +6,7 @@
 
 > **注意** 为了便于介绍，本书统一在这里介绍关于测试的内容。在实际的项目开发中，你应该在开发每一个功能后立刻编写相应的测试，确保测试通过后再开发下一个功能。
 
+
 ## 单元测试
 
 单元测试指对程序中的函数等独立单元编写的测试，它是自动化测试最主要的形式。这一章我们将会使用 Python 标准库中的测试框架 unittest 来编写单元测试，首先通过一个简单的例子来了解一些基本概念。假设我们编写了下面这个函数，并保存到一个 hello.py 模块里：
@@ -13,7 +14,7 @@
 ```python
 def sayhello(to=None):
     if to:
-        return 'Hello, %s!' % to
+        return f'Hello, {to}!'
     return 'Hello!'
 ```
 
@@ -124,6 +125,7 @@ class WatchlistTestCase(unittest.TestCase):
 接着，我们调用 `db.create_all()` 创建数据库和表，然后添加测试数据到数据库中。在 `setUp()` 方法最后创建的两个类属性分别为测试客户端和测试命令运行器，前者用来模拟客户端请求，后者用来触发自定义命令，下一节会详细介绍。
 
 在 `tearDown()` 方法中，我们调用 `db.session.remove()` 清除数据库会话并调用 `db.drop_all()` 删除数据库表。测试时的程序状态和真实的程序运行状态不同，所以需要调用 `db.session.remove()` 来确保数据库会话被清除。
+
 
 ### 测试客户端
 
@@ -366,6 +368,7 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertIn('Invalid input.', data)
 ```
 
+
 ### 测试命令
 
 除了测试程序的各个视图函数，我们还需要测试自定义命令。`app.test_cli_runner()` 方法返回一个命令运行器对象，我们创建类属性 `self.runner` 来保存它。通过对它调用 `invoke()` 方法可以执行命令，传入命令函数对象，或是使用 `args` 关键字直接给出命令参数列表。`invoke()` 方法返回的命令执行结果对象，它的 `output` 属性返回命令的输出信息。下面是我们为各个自定义命令编写的测试方法：
@@ -414,6 +417,7 @@ class WatchlistTestCase(unittest.TestCase):
 
 在这几个测试中，大部分的断言是在检查执行命令后的数据库数据是否发生了正确的变化，或是判断命令行输出（`result.output`）是否包含预期的字符。
 
+
 ### 运行测试
 
 最后，我们在程序结尾添加下面的代码：
@@ -435,6 +439,7 @@ OK
 ```
 
 如果测试出错，你会看到详细的错误信息，进而可以有针对性的修复对应的程序代码，或是调整测试方法。
+
 
 ## 测试覆盖率
 
@@ -474,6 +479,7 @@ htmlcov/
 .coverage
 ```
 
+
 ## 本章小结
 
 通过测试后，我们就可以准备上线程序了。结束前，让我们提交代码：
@@ -484,10 +490,10 @@ $ git commit -m "Add unit test with unittest"
 $ git push
 ```
 
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[66dc487](https://github.com/greyli/watchlist/commit/66dc48719c797da00a9e29355b39d77abb45f574)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[66dc487](https://github.com/helloflask/watchlist/commit/66dc48719c797da00a9e29355b39d77abb45f574)。
 
 ## 进阶提示
 
 * 访问 [Coverage.py 文档](https://coverage.readthedocs.io)或执行 coverage help 命令来查看更多用法。
 * 使用标准库中的 unittest 编写单元测试并不是唯一选择，你也可以使用第三方测试框架，比如非常流行的 [pytest](https://pytest.org)。
-* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 12 章详细介绍了测试 Flask 程序的相关知识，包括使用 [Selenium](https://www.seleniumhq.org/) 编写用户界面测试，使用 [Flake8](https://github.com/PyCQA/flake8) 检查代码质量等。 
+* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/1)的读者，第 12 章详细介绍了测试 Flask 程序的相关知识，包括使用 [Selenium](https://www.seleniumhq.org/) 编写用户界面测试，使用 [Flake8](https://github.com/PyCQA/flake8) 检查代码质量等。 

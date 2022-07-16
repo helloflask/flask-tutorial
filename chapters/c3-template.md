@@ -10,6 +10,7 @@
 $ mkdir templates
 ```
 
+
 ## 模板基本语法
 
 在社交网站上，每个人都有一个主页，借助 Jinja2 就可以写出一个通用的模板：
@@ -30,6 +31,7 @@ Jinja2 的语法和 Python 大致相同，你在后面会陆续接触到一些�
 - `{# ... #}` 用来写注释。
 
 模板中使用的变量需要在渲染的时候传递进去，具体我们后面会了解。
+
 
 ## 编写主页模板
 
@@ -54,7 +56,7 @@ Jinja2 的语法和 Python 大致相同，你在后面会陆续接触到一些�
         {% endfor %}  {# 使用 endfor 标签结束 for 语句 #}
     </ul>
     <footer>
-        <small>&copy; 2018 <a href="http://helloflask.com/tutorial">HelloFlask</a></small>
+        <small>&copy; 2018 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
 	</footer>
 </body>
 </html>
@@ -68,7 +70,8 @@ Jinja2 的语法和 Python 大致相同，你在后面会陆续接触到一些�
 
 左侧是变量，右侧是过滤器名。比如，上面的模板里使用 `length` 过滤器来获取 `movies` 的长度，类似 Python 里的 `len()` 函数。
 
-> **提示** 访问 <http://jinja.pocoo.org/docs/2.10/templates/#list-of-builtin-filters> 查看所有可用的过滤器。
+> **提示** 访问 <https://jinja.palletsprojects.com/en/3.0.x/templates/#builtin-filters> 查看所有可用的过滤器。
+
 
 ## 准备虚拟数据
 
@@ -91,6 +94,7 @@ movies = [
     {'title': 'The Pork of Music', 'year': '2012'},
 ]
 ```
+
 
 ## 渲染主页模板
 
@@ -118,6 +122,7 @@ def index():
 
 ![主页电影列表](images/3-1.png)
 
+
 ## 本章小结
 
 这一章我们编写了一个简单的主页。结束前，让我们提交代码：
@@ -128,10 +133,11 @@ $ git commit -m "Add index page"
 $ git push
 ```
 
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[8537d98](https://github.com/greyli/watchlist/commit/8537d98bdd7828b1f7aa2431bbd5a16e757a3cc4)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[8537d98](https://github.com/helloflask/watchlist/commit/8537d98bdd7828b1f7aa2431bbd5a16e757a3cc4)。
+
 
 ## 进阶提示
 
 * 使用 [Faker](https://github.com/joke2k/faker) 可以实现自动生成虚拟数据，它支持丰富的数据类型，比如时间、人名、地名、随机字符等。
-* 除了过滤器，Jinja2 还在模板中提供了一些测试器、全局函数可以使用；除此之外，还有更丰富的控制结构支持，有一些我们会在后面学习到，更多的内容则可以访问 [Jinja2 文档](http://jinja.pocoo.org/docs/2.10/templates/)学习。
-* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，模板相关内容可以在第 3 章《模板》找到，Faker 相关内容可以在第 7 章找到。
+* 除了过滤器，Jinja2 还在模板中提供了一些测试器、全局函数可以使用；除此之外，还有更丰富的控制结构支持，有一些我们会在后面学习到，更多的内容则可以访问 [Jinja2 文档](https://jinja.palletsprojects.com/en/3.0.x/templates)学习。
+* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/1)的读者，模板相关内容可以在第 3 章《模板》找到，Faker 相关内容可以在第 7 章找到。

@@ -4,6 +4,7 @@
 
 Web 程序通常有两种部署方式：传统部署和云部署。传统部署指的是在使用物理主机或虚拟主机上部署程序，你通常需要在一个 Linux 系统上完成所有的部署操作；云部署则是使用其他公司提供的云平台，这些平台为你设置好了底层服务，包括 Web 服务器、数据库等等，你只需要上传代码并进行一些简单设置即可完成部署。这一章我们会介绍使用云平台 [PythonAnywhere](https://www.pythonanywhere.com) 来部署程序。
 
+
 ## 部署前的准备
 
 首先，我们需要生成一个依赖列表，方便在部署环境里安装。使用下面的命令把当前依赖列表写到一个 requirements.txt 文件里：
@@ -51,7 +52,8 @@ $ git commit -m "Ready to deploy"
 $ git push
 ```
 
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[92eabc8](https://github.com/greyli/watchlist/commit/92eabc89a669a8b3e2d2a56177a875938923fd52)。
+> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[92eabc8](https://github.com/helloflask/watchlist/commit/92eabc89a669a8b3e2d2a56177a875938923fd52)。
+
 
 ## 使用 PythonAnywhere 部署程序
 
@@ -93,6 +95,7 @@ $ git push
 
 接下来我们需要进行一系列程序初始化操作，最后再回到 Web 面板进行具体的设置。
 
+
 ## 初始化程序运行环境
 
 我们首先要考虑把代码上传到 PythonAnywhere 的服务器上。上传代码一般有两种方式：
@@ -107,7 +110,7 @@ $ git push
 在命令行下输入下面的命令：
 
 ```bash
-$ git clone https://github.com/greyli/watchlist  # 注意替换 Git 仓库地址
+$ git clone https://github.com/helloflask/watchlist  # 注意替换 Git 仓库地址
 $ cd watchlist  # 切换进程序仓库
 ```
 
@@ -151,9 +154,11 @@ $ . env/bin/activate  # 激活虚拟环境
 
 先不要关闭这个标签页，后面我们还要在这里执行一些命令。点击右上角的菜单按钮，并在浏览器的新标签页打开 Web 面板。
 
+
 ## 设置并启动程序
 
 代码部分我们已经设置完毕，接下来进行一些简单设置就可以启动程序了。
+
 
 ### 代码
 
@@ -179,6 +184,7 @@ from wsgi import app as application
 
 PythonAnywhere 会自动从这个文件里导入名称为 `application` 的程序实例，所以我们从项目目录的 wsgi 模块中导入程序实例 `app`，并将名称映射为 `application`。
 
+
 ### 虚拟环境
 
 为了让程序正确运行，我们需要在 Virtualenv 部分填入虚拟环境文件夹的路径：
@@ -187,6 +193,7 @@ PythonAnywhere 会自动从这个文件里导入名称为 `application` 的程�
 
 对应我们的项目就是 `/home/greyli/watchlist/env/`，注意替换其中的用户名、项目名称和虚拟环境名称部分。点击 Virtualenv 部分的红色字体链接，填入并保存。
 
+
 ### 静态文件
 
 静态文件可以交给 PythonAnywhere 设置的服务器来处理，这样会更高效。要让 PythonAnywhere 处理静态文件，我们只需要在 Static files 部分指定静态文件 URL 和对应的静态文件文件夹目录，如下所示：
@@ -194,6 +201,7 @@ PythonAnywhere 会自动从这个文件里导入名称为 `application` 的程�
 ![静态文件配置](images/11-10.png)
 
 注意更新目录中的用户名和项目文件夹名称。
+
 
 ### 启动程序
 
@@ -207,6 +215,7 @@ PythonAnywhere 会自动从这个文件里导入名称为 `application` 的程�
 
 ![激活程序](images/11-12.png)
 
+
 ## 更新部署后的程序
 
 当你需要更新程序时，流程和部署类似。在本地完成更新，确保程序通过测试后，将代码推送到 GitHub 上的远程仓库。登录到 PythonAnywhere，打开一个命令行会话（Bash），切换到项目目录，使用 git pull 命令从远程仓库拉取更新：
@@ -218,14 +227,16 @@ $ git pull
 
 然后你可以执行一些必要的操作，比如安装新的依赖等等。最后在 Web 面板点击绿色的重载（Reload）按钮即可完成更新。
 
+
 ## 本章小结
 
 程序部署上线以后，你可以考虑继续为它开发新功能，也可以从零编写一个新的程序。虽然本书即将接近尾声，但你的学习之路才刚刚开始，因为本书只是介绍了 Flask 入门所需的基础知识，你还需要进一步学习。在后记中，你可以看到进一步学习的推荐读物。
 
 接下来，有一个挑战在等着你。
 
+
 ## 进阶提示
 
 *  因为 PythonAnywhere 支持在线管理文件、编辑代码、执行命令，你可以在学习编程的过程中使用它来在线开发 Web 程序。
 *  PythonAnywhere 的 Web 面板还有一些功能设置：Log files 部分可以查看你的程序日志，Traffic 部分显示了你的程序访问流量情况，Security 部分可以为你的程序程序开启强制启用 HTTPS 和密码保护。
-*  如果你是[《Flask Web 开发实战》](http://helloflask.com/book/)的读者，第 14 章详细介绍了部署 Flask 程序的两种方式，传统部署和云部署。
+*  如果你是[《Flask Web 开发实战》](http://helloflask.com/book/1)的读者，第 14 章详细介绍了部署 Flask 程序的两种方式：传统部署和云部署。
