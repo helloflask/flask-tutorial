@@ -12,8 +12,10 @@ Flask 有大量的第三方扩展，这些扩展可以简化和第三方库的�
 首先安装它：
 
 ```bash
-(env) $ pip install flask-sqlalchemy
+(env) $ pip install flask-sqlalchemy==2.5.1
 ```
+
+> **提示** Flask-SQLAlchemy 3.x 版本有一些大的变化，这里固定安装 2.5.1 版本。后续教程改写后会删除这里的版本限制。
 
 大部分扩展都需要执行一个“初始化”操作。你需要导入扩展类，实例化并传入 Flask 程序实例：
 
