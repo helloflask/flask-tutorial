@@ -109,12 +109,17 @@ Flask 通过读取这个环境变量值对应的模块寻找要运行的程序�
 
 ## 管理环境变量
 
-现在在启动 Flask 程序的时候，我们通常要和两个环境变量打交道：`FLASK_APP` 和 `FLASK_ENV`。因为我们的程序现在的名字是 app.py，暂时不需要设置 `FLASK_APP`；`FLASK_ENV` 用来设置程序运行的环境，默认为 `production`。在开发时，我们需要开启调试模式（debug mode）。调试模式可以通过将系统环境变量 `FLASK_ENV` 设为 `development` 来开启。调试模式开启后，当程序出错，浏览器页面上会显示错误信息；代码出现变动后，程序会自动重载。
+现在在启动 Flask 程序的时候，我们通常要和两个环境变量打交道：`FLASK_APP` 和 `FLASK_ENV`。因为我们的程序现在的名字是 app.py，暂时不需要设置 `FLASK_APP`；`FLASK_ENV` 用来设置程序运行的环境，默认为 `production`。在开发时，我们需要开启调试模式（debug mode）。调试模式可以通过将系统环境变量 `FLASK_ENV` 设为 `development` 来开启。需要注意的是'FLASK_ENV'从Flask2.3开始将不会被支持，Flask用'FLASK_DEBUG'替代了它。调试模式开启后，当程序出错，浏览器页面上会显示错误信息；代码出现变动后，程序会自动重载。
 
-下面是手动设置环境变量 `FLASK_ENV` 来开启调试模式的示例：
+下面是手动设置环境变量 `FLASK_ENV`/`FLASK_DEBUG` 来开启调试模式的示例：
 
+Flask 2.3之前  
 ```bash
 $ export FLASK_ENV=development  # 注意在 Windows 系统使用 set 或 $env: 替代 export，参考前面的示例
+```
+Flask 2.3之后
+```bash
+$ export FLASK_DEBUG=TRUE  # 注意在 Windows 系统使用 set 或 $env: 替代 export，参考前面的示例
 ```
 
 为了不用每次打开新的终端会话都要设置环境变量，我们安装用来自动导入系统环境变量的 python-dotenv：
@@ -137,11 +142,17 @@ $ touch .env .flaskenv
 
 在新创建的 .flaskenv 文件里，我们写入一行 `FLASK_ENV=development`，将环境变量 `FLASK_ENV` 的值设为 `development`，以便开启调试模式：
 
+Flask2.3之前  
 ```bash
 # .flaskenv 文件
 FLASK_ENV=development
 ```
 
+Flask2.3之后  
+```bash
+# .flaskenv 文件
+FLASK_DEBUG=TRUE
+```
 
 ## 实验时间
 
