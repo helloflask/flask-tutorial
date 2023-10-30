@@ -5,7 +5,7 @@
 
 ## 留言 & 打卡
 
-欢迎前往 HelloFlask 论坛上的[这个主题](https://discuss.helloflask.com/t/topic/64) 或是[本书主页](http://helloflask.com/book/3)下方的留言区打卡纪念，欢迎分享你的心得体会、经验总结以及你部署在线上的 Watchlist 程序。如果你对这本书有改进建议，可以在[这个主题](https://discuss.helloflask.com/t/topic/502)留言反馈。
+欢迎前往代码厨房社区的[这个主题](https://codekitchen.community/t/topic/64) 或是[本书主页](http://helloflask.com/book/3)下方的留言区打卡纪念，欢迎分享你的心得体会、经验总结以及你部署在线上的 Watchlist 程序。如果你对这本书有改进建议，可以在[这个主题](https://codekitchen.community/t/topic/502)留言反馈。
 
 
 ## 进阶阅读
@@ -26,4 +26,4 @@
 
 再或者，这个教程或许会升级为一本完整的书，使用类似的编写模式，引入一个更加丰富有趣的程序，包含优化后的入门知识和 Flask 进阶内容。
 
-如果你期待这样一本进阶教程 / 书的出现，欢迎[让我知道](https://discuss.helloflask.com/t/topic/64)。
+如果你期待这样一本进阶教程 / 书的出现，欢迎[让我知道](https://codekitchen.community/t/topic/64)。
