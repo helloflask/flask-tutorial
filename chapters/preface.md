@@ -33,7 +33,6 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 * [代码厨房社区](https://codekitchen.community)（最容易获得回答）
 * [HelloFlask QQ 群](http://shang.qq.com/wpa/qunwpa?idkey=3cbf3e3ede8252eb3ae584a356131123ed68a9f3bd5bcee0652b401914eb01bb)（419980814）
-* [HelloFlask Telegram 群组](https://t.me/helloflask)（@helloflask）
 
 
 ## 反馈与勘误

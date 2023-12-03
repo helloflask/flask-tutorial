@@ -19,7 +19,7 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/helloflask/flask-tutorial
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/helloflask
+      link: https://twitter.com/greylihui
 copyright: Copyright &copy; 2018 <a href="https://greyli.com" target="_blank" rel="noopener">Grey Li</a>
 markdown_extensions:
   - admonition
