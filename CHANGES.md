@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0
+
+Released: -
+
+- 引入对 uv 的介绍
+- 针对 Flask 3.1.x 进行内容更新
 
 ## 3.0
 
