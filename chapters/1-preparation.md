@@ -4,10 +4,9 @@
 
 * 《[使用 HTML、CSS 和 Javascript 构建简单的网站](https://docs.microsoft.com/learn/modules/build-simple-website/?WT.mc_id=OSS-MVP-5003485)》 - Microsoft Learn
 * 《[Web 入门教程](https://developer.mozilla.org/zh-CN/docs/learn)》 - MDN
-* 《[使用 Python 迈出第一步](https://docs.microsoft.com/learn/paths/python-first-steps/?WT.mc_id=OSS-MVP-5003485)》 - Microsoft Learn
 * 《[Python 教程](https://docs.python.org/zh-cn/3/tutorial/)》 - Python.org
 
-这个教程对你的操作系统没有要求：你可以使用 Windows，也可以使用 macOS 或 Linux。不过你的 Python 版本需要是 3.6 及以上版本。
+这个教程对你的操作系统没有要求：你可以使用 Windows，也可以使用 macOS 或 Linux。不过你的 Python 版本需要是 3.9 及以上版本。
 
 
 ## 安装编辑器和浏览器
@@ -16,14 +15,14 @@
 
 ## 使用命令行
 
-在本书中，你需要使用命令行窗口来执行许多操作。你可以使用 Windows 下的 CMD.exe，或是 macOS 和 Linux 下的终端（Terminal）。下面我们执行一个最简单的 `whoami` 命令（即 Who Am I？）：
+在本书中，你需要使用命令行窗口来执行许多操作。在 Windows 下，推荐使用 Powershell 而不是 CMD.exe，在 macOS 和 Linux 下则可以使用任何你喜欢的终端程序（默认为 Terminal）。下面我们执行一个最简单的 `whoami` 命令（即 Who Am I？）：
 
 ```bash
 $ whoami
 greyli
 ```
 
-这个命令会打印出当前计算机用户的名称。其他常用的命令还有 `cd` 命令，用来切换目录（**c**hange **d**irectory）；`mkdir` 命令，用来创建目录（**m**a**k**e **dir**ectory）。在不同的操作系统上，执行某个操作的命令可能会有所不同，在必要的地方，书里会进行提示。
+这个命令会打印出当前计算机用户的名称。其他常用的命令还有 `cd` 命令，用来切换目录（**c**hange **d**irectory）；`mkdir` 命令，用来创建目录（**m**a**k**e **dir**ectory）。在不同的操作系统上，执行某个操作的命令可能会有所不同，在必要的地方，本书会进行提示。
 
 我们先来为我们的程序创建一个文件夹：
 
@@ -45,10 +44,10 @@ Python 3.9.10
 
 ```bash
 $ python3 --version
-Python 3.8.3
+Python 3.9.10
 ```
 
-对于 Windows（非 WSL） 用户，如果你对不同系统下终端命令的区别不熟悉，可以考虑在这个教程的学习过程中使用 Git Bash（安装 Git for Windows 后附带的终端程序，下一节会介绍 Git 安装） 来代替系统自带的 CMD.exe 或 Powershell。Git Bash 支持一些在 Linux 或 macOS 下才能使用的命令（程序），比如 ls、cat、nano、ssh 等，这些命令我们在后面会用到。
+对于 Windows 用户，可以考虑在这个教程的学习过程中使用 [WSL](https://learn.microsoft.com/en-us/windows/wsl/install?WT.mc_id=OSS-MVP-5003485)（Windows Subsystem for Linux，在 Windows 上运行的 Linux 子系统）或是 Git Bash（安装 Git for Windows 后附带的终端程序，下一节会介绍 Git 安装） 来代替系统自带的 CMD.exe 或 Powershell。Git Bash 支持一些在 Linux 或 macOS 下才能使用的命令（程序），比如 ls、cat、nano、ssh 等，这些命令我们在后面会用到。
 
 > **提示** 如果你打算在这个教程的学习中继续使用 CMD.exe 或 Powershell，那么需要注意下列命令的区别：
 >
@@ -61,7 +60,7 @@ Python 3.8.3
 
 [Git](https://git-scm.com) 是一个流行的版本控制工具，我们可以用它来记录程序源码和文件的变动情况，或是在开发时进行多人协作，你可以把它看做一个代码变动备份工具。
 
-如果你还不熟悉 Git 也没关系，可以先按照书中的命令去做，有时间再去了解原理。现在要做的第一件事就是在你的电脑上[安装 Git](https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)。
+如果你还不熟悉 Git 也没关系，可以先按照书中的命令去操作，有时间再去了解原理。现在要做的第一件事就是在你的电脑上[安装 Git](https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)。
 
 > **附注** 阅读短教程[《Git 简明指南》](http://rogerdudler.github.io/git-guide/index.zh.html)或访问 Microsoft Learn 上的引导式教程《[Git 简介](https://docs.microsoft.com/zh-cn/learn/modules/intro-to-git?WT.mc_id=OSS-MVP-5003485)》了解相关基础知识。
 
@@ -75,8 +74,8 @@ git version 2.17.1
 为了让 Git 知道你是谁，以便在提交代码到版本仓库的时候进行记录，使用下面的命令设置你的信息：
 
 ```bash
-$ git config --global user.name "Grey Li"  # 替换成你的名字
-$ git config --global user.email "withlihui@gmail.com"  # 替换成你的邮箱地址
+$ git config --global user.name "Your Name"  # 替换成你的名字
+$ git config --global user.email "your_email@example.com"  # 替换成你的邮箱地址
 ```
 
 现在为我们的项目文件夹创建一个 Git 仓库，这会在我们的项目根目录创建一个 .git 文件夹：
@@ -106,7 +105,7 @@ __pycache__
 
 ## 将程序托管到 GitHub（可选）
 
-这一步是可选的。将程序托管到 GitHub、GitLab 或是 BitBucket 等平台上，可以更方便地备份、协作和部署。这些托管平台作为 Git 服务器，你可以为本地仓库创建远程仓库。
+这一步是可选的。将程序托管到 GitHub、GitLab 或是 BitBucket 等平台上，可以更方便地备份、协作和部署。这些托管平台作为 Git 服务器，你可以为本地仓库创建一个远程仓库，然后将其上传到这些平台上。
 
 首先要注册一个 GitHub 账户，点击访问[注册页面](https://github.com/join)，根据指示完成注册流程。登录备用。
 
@@ -117,26 +116,32 @@ __pycache__
 
 一般情况下，当推送本地改动到远程仓库时，需要输入用户名和密码。因为传输通常是通过 SSH 加密，所以可以通过设置 SSH 密钥来省去验证账号的步骤。
 
-首先使用下面的命令检查是否已经创建了 SSH 密钥：
+使用下面的命令生成 SSH 密钥对，否则复制输出的值备用：
 
 ```bash
-$ cat ~/.ssh/id_rsa.pub
+$ ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-如果显示“No such file or directory”，就使用下面的命令生成 SSH 密钥对，否则复制输出的值备用：
+替换上面命令中的邮箱地址，然后一路按下 Enter 采用默认值，最后会在用户根目录 .ssh 文件夹下创建两个文件，id_ed25519 和 id_ed25519.pub，前者是私钥，不能泄露出去，后者是公钥，用于认证身份，就是我们要保存到 GitHub 上的密钥值。再次使用前面提到的命令获得文件内容：
 
 ```bash
-$ ssh-keygen
-```
-
-一路按下 Enter 采用默认值，最后会在用户根目录创建一个 .ssh 文件夹，其中包含两个文件，id_rsa 和 id_rsa.pub，前者是私钥，不能泄露出去，后者是公钥，用于认证身份，就是我们要保存到 GitHub 上的密钥值。再次使用前面提到的命令获得文件内容：
-
-```bash
-$ cat ~/.ssh/id_rsa.pub
+$ cat ~/.ssh/id_ed25519.pub
 ssh-rsa AAAAB3Nza...省略 N 个字符...3aph book@greyli
 ```
 
-选中并复制输出的内容，访问 GitHub 的 [SSH 设置页面](https://github.com/settings/keys)（导航栏头像 - Settings - SSH and GPG keys），点击 New SSH key 按钮，将复制的内容粘贴到 Key 输入框里，再填一个标题，比如“My PC”，最后点击“Add SSH key”按钮保存。 
+如果你使用的 OpenSSH 版本过低，无法使用更安全的 ed25519 算法，可以使用下面的命令使用 RSA 算法：
+
+```shell
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+这时生成为密钥文件则分别为 id_rsa 和 id_rsa.pub，获取公钥内容的命令相应变为：
+
+```shell
+$ cat ~/.ssh/id_rsa.pub
+```
+
+选中并复制输出的公钥内容，访问 GitHub 的 [SSH 设置页面](https://github.com/settings/keys)（导航栏头像 - Settings - SSH and GPG keys），点击 New SSH key 按钮，将复制的内容粘贴到 Key 输入框里，再填一个标题，比如“My PC”，最后点击“Add SSH key”按钮保存。 
 
 
 ### 创建远程仓库
@@ -169,48 +174,49 @@ $ git clone git@github.com:greyli/watchlist.git  # 注意更换地址中的用�
 我们将使用 Python 3 内置的 venv 模块创建虚拟环境，使用下面的命令即可为当前项目创建一个虚拟环境：
 
 ```bash
-$ python -m venv env  # Windows
+$ python -m venv .venv  # Windows
 ```
 
 或：
 
 ```bash
-$ python3 -m venv env  # Linux 和 macOS
+$ python3 -m venv .venv  # Linux 和 macOS
 ```
 
-> **提示** 上述命令的最后一个参数是虚拟环境名称，你可以自由定义，比如 venv、env、.venv，或是“项目名-venv”，这里使用了 env。
+如果
 
-这会在当前目录创建一个包含 Python 解释器环境的虚拟环境文件夹，名称为 env。
+> **提示** 上述命令的最后一个参数是虚拟环境名称，你可以自由定义，比如 venv、env、.venv，或是“项目名-venv”，这里使用了 .venv。
 
+这会在当前目录创建一个包含 Python 解释器环境的虚拟环境文件夹，名称为 .venv。这个文件的内容不需要提交到 Git 仓库，因此需要将文件夹名称 `.venv` 加入到项目根目录的 .gitignore 文件中。
 
 ## 激活虚拟环境
 
-创建虚拟环境后，我们可以使用下面的命令来激活虚拟环境（通过执行/“source”环境内的激活脚本实现）：
+创建虚拟环境后，我们可以使用下面的命令来激活虚拟环境（通过执行环境内的激活脚本实现）：
 
 ```bash
-$ env\Scripts\activate  # Windows
+$ .venv\Scripts\activate  # Windows
 ```
 
-> **提示** 如果你在 Windows 中使用 Git Bash，则需要使用`. env/Scripts/activate` 命令
+> **提示** 如果你在 Windows 中使用 Git Bash，则需要使用`source .venv/Scripts/activate` 命令
 
 或：
 
 ```bash
-$ . env/bin/activate  # Linux 或 macOS
+$ source .venv/bin/activate  # Linux 或 macOS
 ```
 
 这时命令提示符前会显示虚拟环境的名称，表示已经激活成功：
 
 ```bash
-(env) $
+(.venv) $
 ```
 
-在激活虚拟环境后，无论操作系统和 Python 版本，都可以统一使用 `python` 和 `pip` 命令来调用当前虚拟环境内的 Python 和 pip 程序/二进制文件。此时执行 `python` 或 `pip` 命令指向的程序和激活脚本在同一个目录下，在 Windows 下所在目录为 `env\Scripts\`，Linux 和 macOS 下所在目录为 `env/bin/`。
+在激活虚拟环境后，无论操作系统和 Python 版本，都可以统一使用 `python` 和 `pip` 命令来调用当前虚拟环境内的 Python 和 pip 程序/二进制文件。此时执行 `python` 或 `pip` 命令指向的程序和激活脚本在同一个目录下，在 Windows 下所在目录为 `.venv\Scripts\`，Linux 和 macOS 下所在目录为 `.venv/bin/`。
 
 最后，执行 `deactivate` 即可退出虚拟环境：
 
 ```bash
-(env) $ deactivate
+(.venv) $ deactivate
 $
 ```
 
@@ -224,17 +230,79 @@ $
 激活虚拟环境后，使用下面的命令来安装 Flask：
 
 ```bash
-(env) $ pip install flask
-Successfully installed Jinja2-3.1.2 MarkupSafe-2.1.1 Werkzeug-2.1.2 click-8.1.3 flask-2.1.3 importlib-metadata-4.12.0 itsdangerous-2.1.2 zipp-3.8.1
+(.venv) $ pip install flask
 ```
 
-这会把 Flask 以及相关的一些依赖包安装到对应的虚拟环境。本书写作时的 Flask 最新版本为 2.1.3，你执行这条命令时也许会安装更新的版本。如果你想指定安装 2.1.3 版本，可以使用下面的命令：
+这会把 Flask 以及相关的一些依赖包安装到对应的虚拟环境。本书写作时的 Flask 最新版本为 3.1.1，你执行这条命令时也许会安装更新的版本。如果你想指定安装 3.1.1 版本，可以使用下面的命令：
 
 ```bash
-(env) $ pip install flask==2.1.3
+(.venv) $ pip install flask==3.1.1
 ```
 
 > **提示** 如果你没有使用虚拟环境，记得将 Flask 更新到最新版本（`pip install -U flask`）。
+
+
+## 使用 uv 管理虚拟环境和依赖（可选）
+
+uv（<https://github.com/astral-sh/uv>）是一个使用 Rust 编写的 Python 依赖和虚拟环境管理工具。前面我们学习了如何使用 venv 模块创建虚拟环境，以及用 pip 来安装依赖包。你可以使用 uv 可以加速这些操作。
+
+首先安装 uv。macOS 或 Linux：
+
+```shell
+$ curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Windows：
+
+```shell
+$ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+你也可以使用 pip 进行安装：
+
+```shell
+$ pip install --user uv
+```
+
+现在使用 uv 重新创建虚拟环境：
+
+```shell
+$ uv venv
+```
+
+uv 默认也使用 .venv 作为虚拟环境文件夹名称，所以会提示是否覆盖已有的虚拟环境，按下 y 确认即可。现在激活虚拟环境：
+
+```shell
+$ source .venv/bin/activate  # Windows 使用 .venv\Scripts\activate 命令
+```
+
+然后使用 uv 安装依赖：
+
+```shell
+$ uv pip install flask
+```
+
+除了像这样使用 uv 来代理 pip 操作，你也可以完成使用 uv 自带的依赖管理系统，详情可以访问文档 <https://docs.astral.sh/uv/guides/projects/> 了解。
+
+除此之外，uv 也可以用来管理 Python 版本。下面是一些常用的命令示例。
+
+安装指定的 Python 版本，之后可以使用 python3.10、python3.11、python3.12 来打开对应的 Python 解释器：
+
+```shell
+$ uv python install 3.10 3.11 3.12
+```
+
+用指定的版本创建虚拟环境：
+
+```shell
+$ uv venv --python 3.12
+```
+
+固定当前项目使用的 Python 版本，将会写入版本信息到 `.python-version` 文件（这个文件不需要提交到仓库，因此需要写入文件名到 .gitignore 文件）：
+
+```shell
+$ uv python pin 3.12
+```
 
 
 ## 本章小结
@@ -249,14 +317,11 @@ $ git status
 
 ```bash
 $ git add .
-$ git commit -m "I'm ready!"
-$ git push -u origin master # 如果你没有把仓库托管到 GitHub，则跳过这条命令，后面章节亦同
+$ git commit -m "Init the project"
+$ git push -u origin main # 如果你没有把仓库托管到 GitHub，则跳过这条命令，后面章节亦同
 ```
 
 这里最后一行命令添加了 `-u` 参数，会将推送的目标仓库和分支设为默认值，后续的推送直接使用 `git push` 命令即可。在 GitHub 上，你可以通过 [https://github.com/你的用户名/watchlist](https://github.com/helloflask/watchlist) 查看你的仓库内容。
-
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[1b6fe4a](https://github.com/helloflask/watchlist/commit/1b6fe4ae117c2b964f247d8b12d79753ea69406f)。
-
 
 ## 进阶提示
 

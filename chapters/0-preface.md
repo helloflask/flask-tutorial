@@ -1,6 +1,6 @@
 # 前言
 
-Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效地编写 Web 程序。Web 程序即“网站”或“网页程序”，是指可以通过浏览器进行交互的程序。我们日常使用浏览器访问的豆瓣、知乎、百度等网站都是 Web 程序。
+Flask（https://github.com/pallets/flask）是一个使用 Python 语言编写的 Web 框架，它可以让你高效地编写 Web 程序。Web 程序即“网站”或“网页程序”，是指可以通过浏览器进行交互的程序。我们日常使用浏览器访问的豆瓣、知乎、百度等网站都是 Web 程序。
 
 通过这本书，你会学到 Flask 开发的基础知识，并开发出一个简单的 Watchlist（观影清单）程序。
 
@@ -13,7 +13,7 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 ## 本书特点
 
-- 基于 Flask 最新的 2.1.x 版本
+- 基于 Flask 最新的 3.1.x 版本
 - 使用一个 Watchlist 程序作为示例
 - 复原完整的开发流程
 - 只提供入门所需的最少信息
@@ -31,7 +31,7 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 如果你想和其他同学交流 Flask、Web 开发等相关话题，或是在学习中遇到了问题，想要寻求帮助，下面是一些好去处：
 
-* [代码厨房社区](https://codekitchen.community)（最容易获得回答）
+* [代码厨房社区](https://codekitchen.community)（Steak Overcooked 板块）
 * [HelloFlask QQ 群](http://shang.qq.com/wpa/qunwpa?idkey=3cbf3e3ede8252eb3ae584a356131123ed68a9f3bd5bcee0652b401914eb01bb)（419980814）
 
 
@@ -41,7 +41,6 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 
 * 在源码仓库[创建 Issue](https://github.com/helloflask/flask-tutorial/issues/new)。
 * 在 [代码厨房社区](https://codekitchen.community)发布帖子，并选择“Flask 入门教程”分类。
-* 在 [HelloFlask 专栏](https://zhuanlan.zhihu.com/flask)对应的连载文章下面撰写评论。
 
 
 ## 相关资源
@@ -49,5 +48,6 @@ Flask 是一个使用 Python 语言编写的 Web 框架，它可以让你高效�
 * 本书主页：<http://helloflask.com/book/3>
 * 本书论坛：<https://codekitchen.community>
 * 本书源码：<https://github.com/helloflask/flask-tutorial>
-* 本书示例程序源码：<https://github.com/helloflask/watchlist>
+* 示例程序源码：<https://github.com/helloflask/watchlist>
+* 示例程序源码下载：<https://helloflask.com/downloads/watchlist.zip>
 * 示例程序在线 Demo：<http://watchlist.helloflask.com>
