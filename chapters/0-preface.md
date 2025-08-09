@@ -1,6 +1,6 @@
 # 前言
 
-Flask（https://github.com/pallets/flask）是一个使用 Python 语言编写的 Web 框架，它可以让你高效地编写 Web 程序。Web 程序即“网站”或“网页程序”，是指可以通过浏览器进行交互的程序。我们日常使用浏览器访问的豆瓣、知乎、百度等网站都是 Web 程序。
+Flask（<https://github.com/pallets/flask>）是一个使用 Python 语言编写的 Web 框架，它可以让你高效地编写 Web 程序。Web 程序即“网站”或“网页程序”，是指可以通过浏览器进行交互的程序。我们日常使用浏览器访问的豆瓣、知乎、百度等网站都是 Web 程序。
 
 通过这本书，你会学到 Flask 开发的基础知识，并开发出一个简单的 Watchlist（观影清单）程序。
 
@@ -8,7 +8,7 @@ Flask（https://github.com/pallets/flask）是一个使用 Python 语言编写�
 
 ![Watchlist 程序](images/7-2.png)
 
-你可以访问 <http://watchlist.helloflask.com/> 查看示例程序的在线 Demo。
+你可以访问 <http://watchlist.helloflask.com> 查看示例程序的在线 Demo。示例程序源码可以在 <https://github.com/helloflask/watchlist> 找到。如果你无法访问 GitHub，可以~~想办法让自己能够正常访问~~点击[这里](http://helloflask.com/downloads/watchlist.zip) 下载示例程序源码。
 
 
 ## 本书特点

@@ -197,7 +197,7 @@ $ python3 -m venv .venv  # Linux 和 macOS
 $ .venv\Scripts\activate  # Windows
 ```
 
-> **提示** 如果你在 Windows 中使用 Git Bash，则需要使用`source .venv/Scripts/activate` 命令
+> **提示** 如果你在 Windows 中使用 Git Bash，则需要使用 `source .venv/Scripts/activate` 命令
 
 或：
 
