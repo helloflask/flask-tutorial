@@ -1,6 +1,6 @@
 # 第 7 章：表单
 
-在 HTML 页面里，我们需要编写表单来获取用户输入。一个典型的表单如下所示：
+在 HTML 页面里，我们需要编写表单来获取用户输入。一个典型的表单定义如下所示：
 
 ```html
 <form method="post">  <!-- 指定提交方法为 POST -->
@@ -15,12 +15,12 @@
 编写表单的 HTML 代码有下面几点需要注意：
 
 * 在 `<form>` 标签里使用 `method` 属性将提交表单数据的 HTTP 请求方法指定为 POST。如果不指定，则会默认使用 GET 方法，这会将表单数据通过 URL 提交，容易导致数据泄露，而且不适用于包含大量数据的情况。
-* `<input>` 元素必须要指定 `name`  属性，否则无法提交数据，在服务器端，我们也需要通过这个 `name` 属性值来获取对应字段的数据。
+* `<input>` 元素必须要指定 `name`  属性，否则无法提交数据。在服务器端，我们也需要通过 `name` 属性值来获取对应字段的数据。
 
-> **提示** 填写输入框标签文字的 `<label>` 元素不是必须的，只是为了辅助鼠标用户。当使用鼠标点击标签文字时，会自动激活对应的输入框，这对复选框来说比较有用。`for` 属性填入要绑定的 `<input>` 元素的 `id` 属性值。
+> **提示**  `<label>` 元素不仅仅用来显示输入框的名称标签。当使用 `for` 属性填入要绑定的 `<input>` 元素的 `id` 属性值时，还可以辅助鼠标用户。使用鼠标点击标签文字时，会自动激活对应的输入框，这对复选框来说尤其有用。
 
 
-## 创建新条目
+## 创建新的电影条目
 
 创建新条目可以放到一个新的页面来实现，也可以直接在主页实现。这里我们采用后者，首先在主页模板里添加一个表单：
 
@@ -35,7 +35,7 @@
 </form>
 ```
 
-在这两个输入字段中，`autocomplete` 属性设为 `off` 来关闭自动完成（按下输入框不显示历史输入记录）；另外还添加了 `required` 标志属性，如果用户没有输入内容就按下了提交按钮，浏览器会显示错误提示。
+在这两个输入字段中，`autocomplete` 属性设为 `off` 来关闭自动完成（按下输入框不显示历史输入记录）；另外还添加了 `required` 标志属性，如果用户没有输入内容就按下了提交按钮，浏览器会显示内置的错误提示。
 
 两个输入框和提交按钮相关的 CSS 定义如下：
 
@@ -77,13 +77,13 @@ input[name=year] {
 
 ## 处理表单数据
 
-默认情况下，当表单中的提交按钮被按下，浏览器会创建一个新的请求，默认发往当前 URL（在 `<form>` 元素使用 `action` 属性可以自定义目标 URL）。
+默认情况下，当表单中的提交按钮被按下，浏览器会创建一个新的请求，默认发往当前页面的 URL（在 `<form>` 元素使用 `action` 属性可以自定义目标 URL）。
 
 因为我们在模板里为表单定义了 POST 方法，当你输入数据，按下提交按钮，一个携带输入信息的 POST 请求会发往根地址。接着，你会看到一个 405 Method Not Allowed 错误提示。这是因为处理根地址请求的 `index` 视图默认只接受 GET 请求。
 
 > **提示** 在 HTTP 中，GET 和 POST 是两种最常见的请求方法，其中 GET 请求用来获取资源，而 POST 则用来创建 / 更新资源。我们访问一个链接时会发送 GET 请求，而提交表单通常会发送 POST 请求。
 
-为了能够处理 POST 请求，我们需要修改一下视图函数：
+为了能够同时处理 GET 和 POST 请求，我们需要修改一下视图函数：
 
 ```python
 @app.route('/', methods=['GET', 'POST'])
@@ -91,11 +91,17 @@ input[name=year] {
 
 在 `app.route()` 装饰器里，我们可以用 `methods` 关键字传递一个包含 HTTP 方法字符串的列表，表示这个视图函数处理哪种方法类型的请求。默认只接受 GET 请求，上面的写法表示同时接受 GET 和 POST 请求。
 
-两种方法的请求有不同的处理逻辑：对于 GET 请求，返回渲染后的页面；对于 POST 请求，则获取提交的表单数据并保存。为了在函数内加以区分，我们添加一个 if 判断：
+两种方法的请求有不同的处理逻辑：
+
+- 对于 GET 请求（用户在地址栏输入 URL 访问或是点击页面链接时发送的请求类型），返回渲染后的页面
+- 对于 POST 请求（提交页面表单时发送的请求类型），则获取提交的表单数据并保存
+
+为了在函数内加以区分，我们添加一个 if 判断：
 
 *app.py：创建电影条目*
 
 ```python
+from sqlalchemy import select
 from flask import request, url_for, redirect, flash
 
 # ...
@@ -117,11 +123,11 @@ def index():
         flash('Item created.')  # 显示成功创建的提示
         return redirect(url_for('index'))  # 重定向回主页
 
-    movies = Movie.query.all()
+    movies = db.session.execute(select(Movie)).scalars()
     return render_template('index.html', movies=movies)
 ```
 
-在 `if` 语句内，我们编写了处理表单数据的代码，其中涉及 3 个新的知识点，下面来一一了解。
+在 `if` 语句内，我们编写了处理表单数据的代码，其中涉及 3 个新的知识点，下面会逐一介绍。
 
 
 ### 请求对象
@@ -138,14 +144,15 @@ from flask import request
 
 ```python
 if request.method == 'POST':
-    title = request.form.get('title')
-    year = request.form.get('year')
+    title = request.form.get('title').strip()
+    year = request.form.get('year').strip()
 ```
 
+这里对表单字段值调用了 `strip()` 来去除首尾的空格。
 
 ### flash 消息
 
-在用户执行某些动作后，我们通常在页面上显示一个提示消息。最简单的实现就是在视图函数里定义一个包含消息内容的变量，传入模板，然后在模板里渲染显示它。因为这个需求很常用，Flask 内置了相关的函数。其中 `flash()` 函数用来在视图函数里向模板传递提示消息，`get_flashed_messages()` 函数则用来在模板中获取提示消息。
+在用户执行某些动作后，我们通常在页面上显示一个提示消息。最简单的实现就是在视图函数里定义一个包含消息内容的变量，传入模板，然后在模板里渲染显示它。因为这个需求很常用，Flask 内置了相关的函数：`flash()` 函数用来在视图函数里向模板传递提示消息，`get_flashed_messages()` 函数则用来在模板中获取提示消息。
 
 `flash()` 的用法很简单，首先从 `flask` 包导入 `flash` 函数：
 
@@ -177,6 +184,8 @@ app.config['SECRET_KEY'] = 'dev'  # 等同于 app.secret_key = 'dev'
 <h2>...</h2>
 ```
 
+`get_flashed_messages()` 返回消息的同时还会从 Cookie 中清除掉消息数据，所以可以确保消息只在当前页面上显示。这也是为什么发送消息的函数被命名为 flash，这一过程也被称为”消息闪现“。
+
 `alert` 类为提示消息增加样式：
 
 ```css
@@ -202,7 +211,7 @@ if not title or not year or len(year) != 4 or len(title) > 60:
 flash('Item created.')  # 显示成功创建的提示
 ```
 
-> **提示** 在真实世界里，你会进行更严苛的验证，比如对数据去除首尾的空格。一般情况下，我们会使用第三方库（比如 [WTForms](https://github.com/wtforms/wtforms)）来实现表单数据的验证工作。
+> **提示** 在真实世界里，你会进行更严苛的验证。一般情况下，我们会使用第三方库（比如 [WTForms](https://github.com/pallets-eco/wtforms)）来实现表单数据的验证工作。
 
 如果输入的某个数据为空，或是长度不符合要求，就显示错误提示“Invalid input.”，否则显示成功创建的提示“Item Created.”。
 
@@ -222,7 +231,7 @@ return redirect(url_for('index'))  # 重定向回主页
 ```
 
 
-## 编辑条目
+## 编辑电影条目
 
 编辑的实现和创建类似，我们先创建一个用于显示编辑页面和处理编辑表单提交请求的视图函数：
 
@@ -231,11 +240,11 @@ return redirect(url_for('index'))  # 重定向回主页
 ```python
 @app.route('/movie/edit/<int:movie_id>', methods=['GET', 'POST'])
 def edit(movie_id):
-    movie = Movie.query.get_or_404(movie_id)
+    movie = db.get_or_404(Movie, movie_id)
 
     if request.method == 'POST':  # 处理编辑表单的提交请求
-        title = request.form['title']
-        year = request.form['year']
+        title = request.form.get('title').strip()
+        year = request.form.get('year').strip()
         
         if not title or not year or len(year) != 4 or len(title) > 60:
             flash('Invalid input.')
@@ -287,7 +296,7 @@ def edit(movie_id):
 ![编辑电影条目](images/7-1.png)
 
 
-## 删除条目
+## 删除电影条目
 
 因为不涉及数据的传递，删除条目的实现更加简单。首先创建一个视图函数执行删除操作，如下所示：
 
@@ -296,7 +305,7 @@ def edit(movie_id):
 ```python
 @app.route('/movie/delete/<int:movie_id>', methods=['POST'])  # 限定只接受 POST 请求
 def delete(movie_id):
-    movie = Movie.query.get_or_404(movie_id)  # 获取电影记录
+    movie = db.get_or_404(Movie, movie_id)  # 获取电影记录
     db.session.delete(movie)  # 删除对应的记录
     db.session.commit()  # 提交数据库会话
     flash('Item deleted.')
@@ -336,16 +345,14 @@ def delete(movie_id):
 
 ```bash
 $ git add .
-$ git commit -m "Create, edit and delete item by form"
+$ git commit -m "Add forms to create, edit and delete items"
 $ git push
 ```
-
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[84e766f](https://github.com/helloflask/watchlist/commit/84e766f276a25cb2b37ab43a468b2b707ed3489c)。在后续的 [commit](https://github.com/helloflask/watchlist/commit/bb892c5f4721208619e656ccda7827c821fb301a) 里，我们为另外两个常见的 HTTP 错误：400（Bad Request） 和 500（Internal Server Error） 错误编写了错误处理函数和对应的模板，前者会在请求格式不符要求时返回，后者则会在程序内部出现任意错误时返回（关闭调试模式的情况下）。
 
 
 ## 进阶提示
 
-- 从上面的代码可以看出，手动验证表单数据既麻烦又不可靠。对于复杂的程序，我们一般会使用集成了 WTForms 的扩展 [Flask-WTF](https://github.com/wtforms/flask-wtf) 来简化表单处理。通过编写表单类，定义表单字段和验证器，它可以自动生成表单对应的 HTML 代码，并在表单提交时验证表单数据，返回对应的错误消息。更重要的，它还内置了 CSRF（跨站请求伪造） 保护功能。你可以阅读 [Flask-WTF 文档](https://flask-wtf.readthedocs.io)和 Hello, Flask! 专栏上的[表单系列文章](https://zhuanlan.zhihu.com/p/23577026)了解具体用法。
+- 从上面的代码可以看出，手动验证表单数据既麻烦又不可靠。对于复杂的程序，我们一般会使用集成了 WTForms 的扩展 [Flask-WTF](https://github.com/wtforms/flask-wtf) 来简化表单处理。通过编写表单类，定义表单字段和验证器，它可以自动生成表单对应的 HTML 代码，并在表单提交时验证表单数据，返回对应的错误消息。更重要的是，它还内置了 CSRF（跨站请求伪造） 保护功能。你可以阅读 [Flask-WTF 文档](https://flask-wtf.readthedocs.io)和 Hello, Flask! 专栏上的[表单系列文章](https://zhuanlan.zhihu.com/p/23577026)了解具体用法。
 - CSRF 是一种常见的攻击手段。以我们的删除表单为例，某恶意网站的页面中内嵌了一段代码，访问时会自动发送一个删除某个电影条目的 POST 请求到我们的程序。如果我们访问了这个恶意网站，就会导致电影条目被删除，因为我们的程序没法分辨请求发自哪里。解决方法通常是在表单里添加一个包含随机字符串的隐藏字段，同时在 Cookie 中也创建一个同样的随机字符串，在提交时通过对比两个值是否一致来判断是否是用户自己发送的请求。在我们的程序中没有实现 CSRF 保护。
 - 使用 Flask-WTF 时，表单类在模板中的渲染代码基本相同，你可以编写宏来渲染表单字段。如果你使用 Bootstap，那么扩展 [Bootstrap-Flask](https://github.com/helloflask/bootstrap-flask) 内置了多个表单相关的宏，可以简化渲染工作。
 - 你可以把删除按钮的行内 JavaScript  代码改为事件监听函数，写到单独的 JavaScript 文件里。再进一步，你也可以使用 JavaScript 来监听点击删除按钮的动作，并发送删除条目的 POST 请求，这样删除按钮就可以使用普通 `<a>` 标签（CSRF 令牌存储在元素属性里），而不用创建表单元素。

@@ -2,7 +2,7 @@
 
 目前为止，虽然程序的功能大部分已经实现，但还缺少一个非常重要的部分——用户认证保护。页面上的编辑和删除按钮是公开的，所有人都可以看到。假如我们现在把程序部署到网络上，那么任何人都可以执行编辑和删除条目的操作，这显然是不合理的。
 
-这一章我们会为程序添加用户认证功能，这会把用户分成两类，一类是管理员，通过用户名和密码登入程序，可以执行数据相关的操作；另一个是访客，只能浏览页面。在此之前，我们先来看看密码应该如何安全的存储到数据库中。
+这一章我们会为程序添加用户认证功能，这会把用户分成两类，一类是管理员，通过用户名和密码登入程序，可以执行数据相关的操作；另一个是访客，只能浏览页面。在此之前，我们先来看看密码应该如何安全地存储到数据库中。
 
 
 ## 安全存储密码
@@ -44,7 +44,7 @@ class User(db.Model):
 因为模型（表结构）发生变化，我们需要重新生成数据库（这会清空数据）：
 
 ```bash
-(env) $ flask initdb --drop
+(.venv) $ flask init-db --drop
 ```
 
 ## 生成管理员账户
@@ -52,6 +52,7 @@ class User(db.Model):
 因为程序只允许一个人使用，没有必要编写一个注册页面。我们可以编写一个命令来创建管理员账户，下面是实现这个功能的 `admin()` 函数：
 
 ```python
+from sqlalchemy import select
 import click
 
 
@@ -62,7 +63,7 @@ def admin(username, password):
     """Create user."""
     db.create_all()
 
-    user = User.query.first()
+    user = db.session.execute(select(User)).scalar()
     if user is not None:
         click.echo('Updating user...')
         user.username = username
@@ -77,10 +78,10 @@ def admin(username, password):
     click.echo('Done.')
 ```
 
-使用 `click.option()` 装饰器设置的两个选项分别用来接受输入用户名和密码。执行 `flask admin` 命令，输入用户名和密码后，即可创建管理员账户。如果执行这个命令时账户已存在，则更新相关信息：
+使用 `click.option()` 装饰器设置的两个选项分别用来接受输入用户名和密码。执行 `flask admin` 命令，输入用户名和密码后，即可创建管理员账户。如果执行这个命令时账户已存在，则会更新相关信息：
 
 ```bash
-(env) $ flask admin
+(.venv) $ flask admin
 Username: greyli
 Password: 123  # hide_input=True 会让密码输入隐藏
 Repeat for confirmation: 123  # confirmation_prompt=True 会要求二次确认输入
@@ -94,7 +95,7 @@ Done.
 扩展 [Flask-Login](https://github.com/maxcountryman/flask-login) 提供了实现用户认证需要的各类功能函数，我们将使用它来实现程序的用户认证，首先来安装它：
 
 ```bash
-(env) $ pip install flask-login
+(.venv) $ pip install flask-login
 ```
 
 这个扩展的初始化步骤稍微有些不同，除了实例化扩展类之外，我们还要实现一个“用户加载回调函数”，具体代码如下所示：
@@ -108,11 +109,11 @@ login_manager = LoginManager(app)  # 实例化扩展类
 
 @login_manager.user_loader
 def load_user(user_id):  # 创建用户加载回调函数，接受用户 ID 作为参数
-    user = User.query.get(int(user_id))  # 用 ID 作为 User 模型的主键查询对应的用户
+    user = db.session.get(User, int(user_id))  # 用 ID 作为 User 模型的主键查询对应的用户
     return user  # 返回用户对象
 ```
 
-Flask-Login 提供了一个 `current_user` 变量，注册这个函数的目的是，当程序运行后，如果用户已登录， `current_user` 变量的值会是当前用户的用户模型类记录。
+Flask-Login 提供了一个 `current_user` 变量，用于获取当前用户信息。这个回调函数的作用即用来加载当前用户的数据库记录。当程序运行后，如果用户已登录，这个函数会被调用以获取用户记录，用户记录会被赋值到 `current_user` 变量。
 
 另一个步骤是让存储用户的 User 模型类继承 Flask-Login 提供的 `UserMixin` 类：
 
@@ -141,14 +142,14 @@ from flask_login import login_user
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form.get('username')
+        password = request.form.get('password')
 
         if not username or not password:
             flash('Invalid input.')
             return redirect(url_for('login'))
         
-        user = User.query.first()
+        user = db.session.execute(select(User)).scalar()
         # 验证用户名和密码是否一致
         if username == user.username and user.validate_password(password):
             login_user(user)  # 登入用户
@@ -204,7 +205,7 @@ def logout():
 
 ## 认证保护
 
-在 Web 程序中，有些页面或 URL 不允许未登录的用户访问，而页面上有些内容则需要对未登陆的用户隐藏，这就是认证保护。
+在 Web 程序中，有些页面或 URL 不允许未登录的用户访问，而页面上有些内容则需要对未登陆的用户隐藏，这就是对页面（视图）进行认证保护。
 
 
 ### 视图保护
@@ -223,7 +224,7 @@ def logout():
 @app.route('/movie/delete/<int:movie_id>', methods=['POST'])
 @login_required  # 登录保护
 def delete(movie_id):
-    movie = Movie.query.get_or_404(movie_id)
+    movie = db.get_or_404(Movie, movie_id)
     db.session.delete(movie)
     db.session.commit()
     flash('Item deleted.')
@@ -236,7 +237,7 @@ def delete(movie_id):
 login_manager.login_view = 'login'
 ```
 
-> **提示** 如果你需要的话，可以通过设置 `login_manager.login_message` 来自定义错误提示消息。
+> **提示** 如果需要的话，还可以通过设置 `login_manager.login_message` 来自定义错误提示消息。
 
 编辑视图同样需要附加这个装饰器：
 
@@ -247,7 +248,7 @@ def edit(movie_id):
     # ...
 ```
 
-创建新条目的操作稍微有些不同，因为对应的视图同时处理显示页面的 GET 请求和创建新条目的 POST 请求，我们仅需要禁止未登录用户创建新条目，因此不能使用 `login_required`，而是在函数内部的 POST 请求处理代码前进行过滤：
+创建新条目的操作稍微有些不同，因为对应的视图同时处理显示页面的 GET 请求和创建新条目的 POST 请求，我们仅需要禁止未登录用户创建新条目（对应 POST 请求），因此不能使用 `login_required`，而是在函数内部的 POST 请求处理代码前进行过滤：
 
 ```python
 from flask_login import login_required, current_user
@@ -275,21 +276,21 @@ from flask_login import login_required, current_user
 @login_required
 def settings():
     if request.method == 'POST':
-        name = request.form['name']
-        
+        name = request.form.get('name')
+
         if not name or len(name) > 20:
             flash('Invalid input.')
             return redirect(url_for('settings'))
-        
-        current_user.name = name
+
+        current_user.name = name  # 更新当前用户的名字
         # current_user 会返回当前登录用户的数据库记录对象
         # 等同于下面的用法
-        # user = User.query.first()
+        # user = db.session.execute(select(User)).scalar()
         # user.name = name
         db.session.commit()
         flash('Settings updated.')
         return redirect(url_for('index'))
-    
+
     return render_template('settings.html')
 ```
 
@@ -331,7 +332,7 @@ def settings():
 {% endif %}
 ```
 
-在模板渲染时，会先判断当前用户的登录状态（`current_user.is_authenticated`）。如果用户没有登录（`current_user.is_authenticated` 返回 `False`），就不会渲染表单部分的 HTML 代码，即上面代码块中 `{% if ... %}` 和  `{% endif %}` 之间的代码。类似的还有编辑和删除按钮：
+在模板渲染时，我们先判断当前用户的登录状态（`current_user.is_authenticated`）。如果用户没有登录（`current_user.is_authenticated` 返回 `False`），就不会渲染表单部分的 HTML 代码，即上面代码块中 `{% if ... %}` 和  `{% endif %}` 之间的代码。类似的还有编辑和删除按钮：
 
 ```jinja2
 {% if current_user.is_authenticated %}
@@ -342,7 +343,7 @@ def settings():
 {% endif %}
 ```
 
-有些地方则需要根据登录状态分别显示不同的内容，比如基模板（base.html）中的导航栏。如果用户已经登录，就显示设置和登出链接，否则显示登录链接：
+有些地方则需要根据登录状态分别显示不同的内容，比如基模板（base.html）中的导航栏。如果用户已经登录，就显示设置（Settings）和登出（Logout）链接，否则显示登录（Login）链接：
 
 ```jinja2
 {% if current_user.is_authenticated %}
@@ -375,8 +376,6 @@ $ git add .
 $ git commit -m "User authentication with Flask-Login"
 $ git push
 ```
-
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[6c60b7d](https://github.com/helloflask/watchlist/commit/6c60b7d552921cb758e716de567e76f3a1ea578e)。
 
 
 ## 进阶提示
