@@ -5,6 +5,7 @@
 Released: -
 
 - 引入对 uv 的介绍
+- 升级到 SQLAlchemy 2.x
 - 针对 Flask 3.1.x 进行内容更新
 
 ## 3.0

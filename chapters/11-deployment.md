@@ -148,7 +148,7 @@ DATABASE_FILE=data-prod.db
 $ python3 -m venv env  # 创建虚拟环境
 $ . env/bin/activate  # 激活虚拟环境
 (env) $ pip install -r requirements.txt  # 安装所有依赖
-(env) $ flask initdb  # 初始化数据库
+(env) $ flask init-db  # 初始化数据库
 (env) $ flask admin  # 创建管理员账户
 ```
 
