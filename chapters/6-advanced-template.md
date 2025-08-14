@@ -76,6 +76,8 @@ def page_not_found(error):  # 接受异常对象作为参数
 *app.py：模板上下文处理函数*
 
 ```python
+from sqlalchemy import select
+
 @app.context_processor
 def inject_user():  # 函数名可以随意修改
     user = db.session.execute(select(User)).scalar()

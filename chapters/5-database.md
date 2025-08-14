@@ -39,11 +39,11 @@ db = SQLAlchemy(app, model_class=Base)  # 初始化扩展，传入程序实例 a
 下面写入了一个 `SQLALCHEMY_DATABASE_URI` 变量来告诉 SQLAlchemy 数据库连接地址：
 
 ```python
-import os
+from pathlib import Path
 
 # ...
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + os.path.join(app.root_path, 'data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + str(Path(app.root_path) / 'data.db')
 ```
 
 > **注意** 这个配置变量的最后一个单词是 URI，而不是 URL。
@@ -67,14 +67,10 @@ import sys
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-WIN = sys.platform.startswith('win')
-if WIN:  # 如果是 Windows 系统，使用三个斜线
-    prefix = 'sqlite:///'
-else:  # 否则使用四个斜线
-    prefix = 'sqlite:////'
+SQLITE_PREFIX = 'sqlite:///' if sys.platform.startswith('win') else 'sqlite:////'
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = prefix + os.path.join(app.root_path, 'data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLITE_PREFIX + str(Path(app.root_path) / 'data.db')
 db = SQLAlchemy(app)
 ```
 
