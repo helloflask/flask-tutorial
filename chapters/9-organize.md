@@ -102,8 +102,8 @@ app.register_blueprint(auth_bp)
 from flask import Flask
 
 def create_app():
-    app = Flask(__name__)
-	return app
+    app = Flask(__name__)  # 创建程序实例
+	return app  # 返回程序实例
 ```
 
 > **提示** 按照惯例，工厂函数一般会被命名为 create_app 或 make_app。
@@ -259,16 +259,17 @@ $ touch blueprints/auth.py blueprints/main.py  # 创建蓝本模块
 
 我们把这个包称为程序包，包里目前包含的模块和作用如下表所示：
 
-| 模块                 | 作用             |
-| ------------------ | -------------- |
-| \_\_init\_\_.py    | 包构造文件，包含工厂函数定义 |
-| settings.py        | 程序配置           |
-| errors.py          | 错误处理函数         |
-| models.py          | 模型类            |
-| commands.py        | 命令函数           |
-| extensions.py      | 扩展相关代码         |
-| blueprints/main.py | main 蓝本和相关视图函数 |
-| blueprints/auth.py | auth 蓝本和相关视图函数 |
+| 模块                         | 作用             |
+| -------------------------- | -------------- |
+| \_\_init\_\_.py            | 包构造文件，包含工厂函数定义 |
+| settings.py                | 程序配置           |
+| errors.py                  | 错误处理函数         |
+| models.py                  | 模型类            |
+| commands.py                | 命令函数           |
+| extensions.py              | 扩展相关代码         |
+| blueprints/\_\_init\_\_.py | 蓝本子包的构造文件，内容为空 |
+| blueprints/main.py         | main 蓝本和相关视图函数 |
+| blueprints/auth.py         | auth 蓝本和相关视图函数 |
 
 > **提示** 除了包构造文件外，其他的模块文件名你可以自由修改，比如 settings.py 也可以叫 config.py。
 
@@ -334,6 +335,8 @@ def load_user(user_id):
 	from watchlist.models import User
 	user = db.session.get(User, int(user_id))
 	return user
+
+login_manager.login_view = 'login'
 ```
 
 因为 models.py 模块需要导入存放在 extensions.py 中的 db 对象，为了避免循环依赖，`load_user()` 函数中使用的 User 模型类在函数内进行导入。
@@ -377,7 +380,7 @@ def create_app(config_name='development'):
 	return app
 ```
 
-我们为两个蓝本在 blueprints 子目录下分别创建了对应的模块。以认证蓝本为例，我们把 auth 蓝本的定义和相关视图函数放到了 auth.py 模块下。
+我们为两个蓝本在 blueprints 子包下分别创建了对应的模块（记得为 blueprints 子包创建一个构造文件 `__init__.py`）。以认证蓝本为例，我们把 auth 蓝本的定义和相关视图函数放到了 auth.py 模块下。
 
 *watchlist/blueprints/auth.py：认证蓝本*
 
@@ -397,10 +400,10 @@ def logout():
     ...
 ```
 
-其他代码则按照分类分别放到各自的模块中，这里不再给出代码，具体可参考[源码仓库](https://github.com/helloflask/watchlist)。在移动代码之后，注意添加并更新导入语句，比如使用下面的导入语句来导入程序实例：
+其他代码则按照分类分别放到各自的模块中，这里不再给出代码，具体可参考[源码仓库](https://github.com/helloflask/watchlist)。在移动代码之后，注意添加并更新导入语句，比如使用下面的导入语句来导入工厂函数：
 
 ```python
-from watchlist import app
+from watchlist import create_app
 ```
 
 使用下面的导入语句来导入扩展对象模型类和扩展对象：
@@ -452,11 +455,20 @@ def bad_request(e):
 FLASK_APP=watchlist
 ```
 
+为了更直观，我们也可以在项目根目录创建一个程序入口脚本，将其命名为 app.py：
+
+```python
+from watchlist import create_app
+
+app = create_app(config_name='development')
+```
+
 最终的项目文件结构如下所示：
 
 ```
 watchlist
 ├── .flaskenv
+├── app.py  # 可选的入口脚本
 └── watchlist  # 程序包
     ├── __init__.py
     ├── commands.py
@@ -465,6 +477,7 @@ watchlist
     ├── settings.py
 	├── extensions.py
     ├── blueprints
+	│   ├── __main__.py
     │   ├── main.py
     │   └── auth.py
     ├── static

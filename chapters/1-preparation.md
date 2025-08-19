@@ -279,7 +279,7 @@ $ source .venv/bin/activate  # Windows 使用 .venv\Scripts\activate 命令
 然后使用 uv 安装依赖：
 
 ```shell
-$ uv pip install flask
+(.venv) $ uv pip install flask
 ```
 
 除了像这样使用 uv 来代理 pip 操作，你也可以完成使用 uv 自带的依赖管理系统，详情可以访问文档 <https://docs.astral.sh/uv/guides/projects/> 了解。

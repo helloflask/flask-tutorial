@@ -71,7 +71,8 @@ SQLITE_PREFIX = 'sqlite:///' if sys.platform.startswith('win') else 'sqlite:////
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLITE_PREFIX + str(Path(app.root_path) / 'data.db')
-db = SQLAlchemy(app)
+
+db = SQLAlchemy(app, model_class=Base)
 ```
 
 如果你固定在某一个操作系统上进行开发，部署时也使用相同的操作系统，那么可以不用这么做，直接根据你的需要写出前缀即可。

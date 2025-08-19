@@ -25,14 +25,17 @@ False
 我们在存储用户信息的 `User` 模型类添加 `username` 字段和 `password_hash` 字段，分别用来存储登录所需的用户名和密码散列值，同时添加两个方法来实现设置密码和验证密码的功能：
 
 ```python
+from sqlalchemy import String
+from sqlalchemy.orm import Mapped, mapped_column
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20))
-    username = db.Column(db.String(20))  # 用户名
-    password_hash = db.Column(db.String(128))  # 密码散列值
+    __tablename__ = 'user' # 定义表名称
+    id: Mapped[int] = mapped_column(primary_key=True)  # 主键
+    name: Mapped[str] = mapped_column(String(20))  # 名字
+    username: Mapped[str] = mapped_column(String(20))  # 用户名
+    password_hash: Mapped[str] = mapped_column(String(128))  # 密码散列值
 
     def set_password(self, password):  # 用来设置密码的方法，接受密码作为参数
         self.password_hash = generate_password_hash(password)  # 将生成的密码保持到对应字段
@@ -149,9 +152,9 @@ def login():
             flash('Invalid input.')
             return redirect(url_for('login'))
         
-        user = db.session.execute(select(User)).scalar()
-        # 验证用户名和密码是否一致
-        if username == user.username and user.validate_password(password):
+        user = db.session.get(select(User).filter_by(username=username)).scalar()
+        # 验证密码是否一致
+        if user is not None and user.validate_password(password):
             login_user(user)  # 登入用户
             flash('Login success.')
             return redirect(url_for('index'))  # 重定向到主页
@@ -285,7 +288,7 @@ def settings():
         current_user.name = name  # 更新当前用户的名字
         # current_user 会返回当前登录用户的数据库记录对象
         # 等同于下面的用法
-        # user = db.session.execute(select(User)).scalar()
+        # user = db.session.get(User, current_user.id)
         # user.name = name
         db.session.commit()
         flash('Settings updated.')
