@@ -1,14 +1,26 @@
 # 前言
 
+## 关于作者
+
+李辉（Grey Li）
+
+我从 2015 年开始自学编程，Python 和 Flask 是我最先学习的语言和框架。在经过一些学习和探索后，我开始写作[《Flask Web 开发实战》](http://helloflask.com/book/1)。并在这本书出版的同一年成为 Flask 的维护者，也在之后的许多年里为 Flask 以及许多 Flask 扩展提交代码贡献。
+
+时至今日，Flask 仍然是我最喜欢的 Python Web 框架。希望未来可以为 Flask 社区作出更多贡献。
+
+欢迎访问我的[个人主页](http://greyli.com)了解更多信息。
+
+## 关于本书
+
 Flask（<https://github.com/pallets/flask>）是一个使用 Python 语言编写的 Web 框架，它可以让你高效地编写 Web 程序。Web 程序即“网站”或“网页程序”，是指可以通过浏览器进行交互的程序。我们日常使用浏览器访问的豆瓣、知乎、百度等网站都是 Web 程序。
 
-通过这本书，你会学到 Flask 开发的基础知识，并开发出一个简单的 Watchlist（观影清单）程序。
+通过这本书，你会学到 Flask 开发的基础知识，并开发出一个简单的 Watchlist（观影清单）程序。如果感兴趣的话，可以来这里看看其他读者朋友的读后感和成果分享：<https://codekitchen.community/t/topic/64>。
 
 当你想要完成一个比较大的目标时，通常你会把这个目标分解成多个小目标，然后逐一去完成。开发程序也是这样，在一开始就编写出像豆瓣、IMDB 这样的程序恐怕不太现实，但是你可以先模仿其中的一小部分。我们要完成的 Watchlist 程序就是一个很好的开始。在功能上，这个程序可以看做是简化版的 IMDB Watchlist / 豆瓣豆单：你可以添加、删除和修改你收藏的电影信息。
 
 ![Watchlist 程序](images/7-2.png)
 
-你可以访问 <http://watchlist.helloflask.com> 查看示例程序的在线 Demo。示例程序源码可以在 <https://github.com/helloflask/watchlist> 找到。如果你无法访问 GitHub，可以~~想办法让自己能够正常访问~~点击[这里](http://helloflask.com/downloads/watchlist.zip) 下载示例程序源码。
+你可以访问 <http://watchlist.helloflask.com> 查看示例程序的在线 Demo。示例程序源码可以在 <https://github.com/helloflask/watchlist> 找到。如果你无法访问 GitHub，可以~~想办法让自己能够正常访问~~点击[这里](http://helloflask.com/downloads/watchlist.zip) 下载示例程序源码。阅读源码仓库中的 README.md 文件了解如何运行示例程序。
 
 
 ## 本书特点
@@ -42,6 +54,10 @@ Flask（<https://github.com/pallets/flask>）是一个使用 Python 语言编写
 * 在源码仓库[创建 Issue](https://github.com/helloflask/flask-tutorial/issues/new)。
 * 在 [代码厨房社区](https://codekitchen.community)发布帖子，并选择“Flask 入门教程”分类。
 
+
+## 联系作者
+
+其他问题可以通过邮箱 <book@greyli.com> 联系我。
 
 ## 相关资源
 
