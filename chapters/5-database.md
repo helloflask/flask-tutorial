@@ -108,7 +108,7 @@ class Movie(db.Model):  # 表名将会是 movie
 * 模型类要声明继承 `db.Model`。
 * 使用 `__tablename__` 属性定义表名称。
 * 每一个类属性（字段）的类型通过类型标注（type hint）定义，类型信息通过 `Mapped[]` 传入。下面的表格列出了常用的字段类型和对应的类型对象。
-* 如果对字段有额外的设置，可以使用 `mapped_column()` 调用传入额外的参数。比如，`primary_key` 设置当前字段是否为主键。除此之外，常用的选项还有 `nullable`（布尔值，是否允许为空值）、`index`（布尔值，是否设置索引）、`unique`（布尔值，是否允许重复值）、`default`（设置默认值）等。
+* 如果对字段有额外的设置，可以使用 `mapped_column()` 调用传入额外的参数。比如，`primary_key` 设置当前字段是否为主键。除此之外，常用的选项还有 `index`（布尔值，是否设置索引）、`unique`（布尔值，是否允许重复值）、`default`（设置默认值）等。
 
 常用的字段类型如下表所示：
 
@@ -344,11 +344,11 @@ movie = db.session.scalar(select(Movie))
 @app.route('/')
 def index():
     user = db.session.execute(select(User)).scalar()  # 读取用户记录
-    movies = db.session.execute(select(Movie)).scalars()  # 读取所有电影记录
+    movies = db.session.execute(select(Movie)).scalars().all()  # 读取所有电影记录
     return render_template('index.html', user=user, movies=movies)
 ```
 
-> **提示** 这里我们获取电影记录时，仅调用了 `scalars()` 而不是 `scalars().all()`。因为我们在模板中唯一用到这个 movies 的地方就是用来在 for 循环中迭代所有电影条目，而 `scalars()` 返回的 Result 对象可以直接作为迭代器使用。这样处理会比后者把所有结果都加载出来再进行 for 循环性能更好。
+> **提示**  `scalars()` 返回的 Result 对象可以直接作为迭代器使用。如果你对返回的结果只需要调用 for 循环迭代，那么可以仅调用 `scalars()` 而不是 `scalars().all()`，这样会比后者把所有结果都加载出来再进行 for 循环性能更好。
 
 在 `index` 视图中，原来传入模板的 `name` 变量被 `user` 实例取代，模板 index.html 中的两处 `name` 变量也要相应的更新为 `user.name` 属性：
 
@@ -370,8 +370,9 @@ import click
 @app.cli.command()
 def forge():
     """Generate fake data."""
+    db.drop_all()
     db.create_all()
-    
+
     # 全局的两个变量移动到这个函数内
     name = 'Grey Li'
     movies = [
@@ -386,13 +387,13 @@ def forge():
         {'title': 'WALL-E', 'year': '2008'},
         {'title': 'The Pork of Music', 'year': '2012'},
     ]
-    
+
     user = User(name=name)
     db.session.add(user)
     for m in movies:
         movie = Movie(title=m['title'], year=m['year'])
         db.session.add(movie)
-    
+
     db.session.commit()
     click.echo('Done.')
 ```

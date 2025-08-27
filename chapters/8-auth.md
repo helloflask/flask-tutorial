@@ -50,6 +50,12 @@ class User(db.Model):
 (.venv) $ flask init-db --drop
 ```
 
+注意同时更新命令函数 `forge()`，在创建用户记录时传入这两个新字段的值：
+
+```python
+user = User(name=name, username='admin')
+user.set_password('helloflask')
+```
 ## 生成管理员账户
 
 因为程序只允许一个人使用，没有必要编写一个注册页面。我们可以编写一个命令来创建管理员账户，下面是实现这个功能的 `admin()` 函数：

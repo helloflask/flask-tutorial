@@ -90,8 +90,13 @@ class WatchlistTestCase(unittest.TestCase):
 
     def setUp(self):
         # 使用测试配置创建程序实例
-        app = create_app(config_name='testing')
-        # 创建数据库和表
+        self.app = create_app(config_name='testing')
+        # 创建程序上下文
+		self.context = self.app.app_context()
+		# 激活上下文
+		self.context.push()
+
+		# 创建数据库和表
         db.create_all()
         # 创建测试数据，一个用户，一个电影条目
         user = User(name='Test', username='test')
@@ -101,12 +106,13 @@ class WatchlistTestCase(unittest.TestCase):
         db.session.add_all([user, movie])
         db.session.commit()
 
-        self.client = app.test_client()  # 创建测试客户端
-        self.runner = app.test_cli_runner()  # 创建测试命令运行器
+        self.client = self.app.test_client()  # 创建测试客户端
+        self.runner = self.app.test_cli_runner()  # 创建测试命令运行器
 
     def tearDown(self):
         db.session.remove()  # 清除数据库会话
         db.drop_all()  # 删除数据库表
+        self.context.pop()  # 清除上下文
     
     # 测试程序实例是否存在
     def test_app_exist(self):
@@ -127,9 +133,16 @@ class TestingConfig(BaseConfig):
 
 这里将 `TESTING` 设为 `True` 来开启测试模式，这样在出错时不会输出多余信息；然后将 `SQLALCHEMY_DATABASE_URI` 设为 `'sqlite:///:memory:'`，这会使用 SQLite 内存型数据库，不会干扰开发时使用的数据库文件。你也可以使用不同文件名的 SQLite 数据库文件，但内存型数据库速度更快。
 
+某些程序操作需要在激活 Flask 上下文时执行，比如前面介绍的 `url_for()` 函数，或是创建数据库表的 `db.session.create_all()` 操作。我们在 `setUp()` 方法中创建并激活程序上下文：
+
+```python
+self.context = self.app.app_context()
+self.context.push()
+```
+
 接着，我们调用 `db.create_all()` 创建数据库和表，然后添加测试数据到数据库中。在 `setUp()` 方法最后创建的两个类属性分别为测试客户端和测试命令运行器，前者用来模拟客户端请求，后者用来触发自定义命令，下一节会详细介绍。
 
-在 `tearDown()` 方法中，我们调用 `db.session.remove()` 清除数据库会话并调用 `db.drop_all()` 删除数据库表。测试时的程序状态和真实的程序运行状态不同，所以需要调用 `db.session.remove()` 来确保数据库会话被清除。
+在 `tearDown()` 方法中，我们调用 `db.session.remove()` 清除数据库会话并调用 `db.drop_all()` 删除数据库表。测试时的程序状态和真实的程序运行状态不同，所以需要调用 `db.session.remove()` 来确保数据库会话被清除。最后调用 `self.context.pop()` 清除上下文。
 
 
 ### 测试程序功能
@@ -468,25 +481,27 @@ OK
 
 ```bash
 $ coverage report
-Name                    Stmts   Miss  Cover
--------------------------------------------
-watchlist\__init__.py      25      1    96%
-watchlist\commands.py      35      1    97%
-watchlist\errors.py         8      2    75%
-watchlist\models.py        16      0   100%
-watchlist\extensions.py    77      2    97%
-...
--------------------------------------------
-TOTAL                     161      6    96%
+Name                               Stmts   Miss  Cover
+------------------------------------------------------
+watchlist/__init__.py                 23      0   100%
+watchlist/blueprints/__init__.py       0      0   100%
+watchlist/blueprints/auth.py          28      0   100%
+watchlist/blueprints/main.py          61      1    98%
+watchlist/commands.py                 41      1    98%
+watchlist/errors.py                   11      2    82%
+watchlist/extensions.py               13      3    77%
+watchlist/models.py                   20      0   100%
+watchlist/settings.py                 15      0   100%
+------------------------------------------------------
+TOTAL                                212      7    97%
 ```
 
 测试覆盖率报告列出了包内文件的覆盖率情况，包括每个文件的行数（Stmts），没测试到的代码行数（Miss），以及测试覆盖率（Cover）。
 
-你还可以使用 coverage html 命令获取详细的 HTML 格式的覆盖率报告，它会在当前目录生成一个 htmlcov 文件夹，打开其中的 index.html 即可查看覆盖率报告。点击文件名可以看到具体的代码覆盖情况，如下图所示：
+你还可以使用 `coverage html` 命令获取详细的 HTML 格式的覆盖率报告，它会在当前目录生成一个 htmlcov 文件夹，打开其中的 index.html 即可查看覆盖率报告。点击文件名可以看到具体的代码覆盖情况，如下图所示：
+![Coverage report](images/9-1.png)
 
-![覆盖率报告](images/9-1.png)
-
-记得在 .gitignore 文件后追加下面两行，忽略掉生成的覆盖率报告文件：
+最后记得在 .gitignore 文件后追加下面两行，忽略掉生成的覆盖率报告文件：
 
 ```
 htmlcov/
