@@ -273,4 +273,4 @@ $ git push
 * 了解 HTTP 基本知识将会有助于你了解 Flask 的工作原理。
     * 阅读文章[《互联网是如何工作的》](https://tutorial.djangogirls.org/zh/how_the_internet_works/)。
     * 阅读文章[《从 HTTP 请求 - 响应循环探索 Flask 的基本工作方式》](https://zhuanlan.zhihu.com/p/42231394)。
-* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/1)的读者，这部分的进阶内容可以在第 1 章《初识 Flask》和第 2 章《HTTP 和 Flask》找到。
+

@@ -525,5 +525,4 @@ $ git push
 
 ## 进阶提示
 
-- 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/1)的读者，第 7 章介绍了使用包组织程序，第 8 章介绍了大型项目结构以及如何使用蓝本和工厂函数组织程序。 
 - 查看《Flask Web 开发实战》示例程序 [Greybook 的源码](https://github.com/greyli/greybook)，了解更大的程序的代码组织结构示例。

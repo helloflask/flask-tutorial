@@ -148,4 +148,4 @@ $ git push
 
 * 使用 [Faker](https://github.com/joke2k/faker) 可以实现自动生成虚拟数据，它支持丰富的数据类型，比如时间、人名、地名、随机字符等。
 * 除了过滤器，Jinja2 还在模板中提供了一些测试器、全局函数可以使用；除此之外，还有更丰富的控制结构支持，有一些我们会在后面学习到，更多的内容则可以访问 [Jinja2 文档](https://jinja.palletsprojects.com/en/3.0.x/templates)学习。
-* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/1)的读者，模板相关内容可以在第 3 章《模板》找到，Faker 相关内容可以在第 7 章找到。
+
