@@ -2,7 +2,7 @@
 
 在通过这本书学习 Flask 开发前，我假设你已经了解了 Python 和 HTML 的基础知识。如果还没有，那么可以先从下面这些在线资源入手：
 
-* 《[使用 HTML、CSS 和 Javascript 构建简单的网站](https://docs.microsoft.com/learn/modules/build-simple-website/?WT.mc_id=OSS-MVP-5003485)》 - Microsoft Learn
+* 《[使用 HTML、CSS 和 Javascript 构建简单的网站](https://learn.microsoft.com/zh-cn/training/modules/get-started-with-web-development/?WT.mc_id=OSS-MVP-5003485)》 - Microsoft Learn
 * 《[Web 入门教程](https://developer.mozilla.org/zh-CN/docs/learn)》 - MDN
 * 《[Python 教程](https://docs.python.org/zh-cn/3/tutorial/)》 - Python.org
 
