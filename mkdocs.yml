@@ -7,6 +7,8 @@ theme:
   custom_dir: chapters/_templates
   logo: _assets/favicon.png
   favicon: _assets/favicon.png
+  features:
+    - content.code.copy
   palette:
     primary: black
   icon:
@@ -20,7 +22,7 @@ extra:
       link: https://github.com/helloflask/flask-tutorial
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/greylihui
-copyright: Copyright &copy; 2018 <a href="https://greyli.com" target="_blank" rel="noopener">Grey Li</a>
+copyright: Copyright &copy; 2025 <a href="https://greyli.com" target="_blank" rel="noopener">Grey Li</a>
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -35,21 +37,21 @@ markdown_extensions:
   - toc:
         permalink: True
 nav:
-  - 简介: README.md
-  - 封面: cover.md
+  - 目录: README.md
   - 前言: preface.md
-  - 第 1 章：准备工作: ready.md
-  - 第 2 章：Hello, Flask!: hello.md
-  - 第 3 章：模板: template.md
-  - 第 4 章：静态文件: static.md
-  - 第 5 章：数据库: database.md
-  - 第 6 章：模板优化: template2.md
-  - 第 7 章：表单: form.md
-  - 第 8 章：用户认证: login.md
-  - 第 9 章：测试: test.md
-  - 第 10 章：组织你的代码: organize.md
-  - 第 11 章：部署上线: deploy.md
-  - 小挑战: challenge.md
+  - 为本书付费: pay.md
+  - 第 1 章：准备工作: 1-preparation.md
+  - 第 2 章：Hello, Flask!: 2-hello.md
+  - 第 3 章：模板: 3-template.md
+  - 第 4 章：静态文件: 4-static.md
+  - 第 5 章：数据库: 5-database.md
+  - 第 6 章：模板优化: 6-advanced-template.md
+  - 第 7 章：表单: 7-form.md
+  - 第 8 章：用户认证: 8-auth.md
+  - 第 9 章：组织你的代码: 9-organize.md
+  - 第 10 章：测试: 10-test.md
+  - 第 11 章：部署上线: 11-deployment.md
+  - 第 12 章：小挑战: 12-challenge.md
   - 后记: postscript.md
   - 教程主页↗: https://helloflask.com/book/3
   - 书稿源码↗: https://github.com/helloflask/flask-tutorial

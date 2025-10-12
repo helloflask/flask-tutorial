@@ -1,6 +1,6 @@
 # Flask 入门教程
 
-![Book cover](cover.jpg)
+<img src="cover.jpg" width="400px"></img>
 
 当前版本：4.0（2025.8.16）
 
@@ -19,7 +19,7 @@
 * [第 9 章：组织你的代码](9-organize.md)
 * [第 10 章：测试](10-test.md)
 * [第 11 章：部署上线](11-deployment.md)
-* [小挑战](12-challenge.md)
+* [第 12 章：小挑战](12-challenge.md)
 * [后记](13-postscript.md)
 
 ## 版权信息

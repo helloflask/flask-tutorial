@@ -4,7 +4,7 @@
 
 **李辉（Grey Li）**
 
-我从 2015 年开始自学编程，Python 和 Flask 是我最先学习的语言和框架。在经过一些学习和探索后，我开始写作[《Flask Web 开发实战》](http://helloflask.com/book/1)。在这本书出版的同一年成为 Flask 的维护者，也在之后的这些年里为 Flask 以及许多 Flask 扩展提交大量代码贡献。
+我从 2015 年开始自学编程，Python 和 Flask 是我最先学习的语言和框架。在经过一些学习和探索后，我开始写作[《Flask Web 开发实战》](http://helloflask.com/book/1)。在这本书出版的同一年成为 Flask 的维护者，也在之后的这些年里为 Flask 以及许多 Flask 扩展提交大量代码贡献。作为第一本书的升级版，我的新书[《Flask 从入门到进阶》](http://helloflask.com/book/4)也将在 2025 年 11 月出版上市。
 
 时至今日，Flask 仍然是我最喜欢的 Python Web 框架。希望未来可以为 Flask 社区作出更多贡献。
 
@@ -20,7 +20,7 @@ Flask（<https://github.com/pallets/flask>）是一个使用 Python 语言编写
 
 ![Watchlist 程序](images/7-2.png)
 
-你可以访问 <http://watchlist.helloflask.com> 查看示例程序的在线 Demo。示例程序源码可以在 <https://github.com/helloflask/watchlist> 找到。如果你无法访问 GitHub，可以~~想办法让自己能够正常访问~~点击[这里](http://helloflask.com/downloads/watchlist.zip) 下载示例程序源码。阅读源码仓库中的 README.md 文件了解如何运行示例程序。
+你可以访问 <http://watchlist.helloflask.com> 查看示例程序的在线 Demo。示例程序源码可以在 <https://github.com/helloflask/watchlist> 找到。如果你无法访问 GitHub，可以<del>想办法让自己能够正常访问</del>点击[这里](http://helloflask.com/downloads/watchlist.zip)下载示例程序源码。阅读源码仓库中的 README.md 文件了解如何运行示例程序。
 
 ## 本书特点
 
@@ -48,11 +48,11 @@ Flask（<https://github.com/pallets/flask>）是一个使用 Python 语言编写
 欢迎通过下面的方式提出反馈、建议和勘误：
 
 * 在源码仓库[创建 Issue](https://github.com/helloflask/flask-tutorial/issues/new)。
-* 在 [代码厨房社区](https://codekitchen.community)发布帖子，并选择“Flask 入门教程”分类。
+* 在[代码厨房社区](https://codekitchen.community)发布帖子，并选择“Flask 入门教程”分类。
 
 ## 联系作者
 
-其他问题可以通过邮箱 <book@greyli.com> 联系我。
+其他问题可以通过邮箱 <flasktutorial@greyli.com> 联系我。
 
 ## 相关资源
 

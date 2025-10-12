@@ -2,7 +2,7 @@
 
 ## 4.0
 
-Released: -
+Released: 2025/10/12
 
 - 增加对 uv 的介绍
 - 升级到 SQLAlchemy 2.x
