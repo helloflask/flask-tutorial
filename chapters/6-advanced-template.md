@@ -47,9 +47,11 @@
 *app.py：404 错误处理函数*
 
 ```python
+from sqlalchemy import select
+
 @app.errorhandler(404)  # 传入要处理的错误代码
-def page_not_found(e):  # 接受异常对象作为参数
-    user = User.query.first()
+def page_not_found(error):  # 接受异常对象作为参数
+    user = db.session.execute(select(User)).scalar()
     return render_template('404.html', user=user), 404  # 返回模板和状态码
 ```
 
@@ -74,9 +76,11 @@ def page_not_found(e):  # 接受异常对象作为参数
 *app.py：模板上下文处理函数*
 
 ```python
+from sqlalchemy import select
+
 @app.context_processor
 def inject_user():  # 函数名可以随意修改
-    user = User.query.first()
+    user = db.session.execute(select(User)).scalar()
     return dict(user=user)  # 需要返回字典，等同于 return {'user': user}
 ```
 
@@ -87,22 +91,22 @@ def inject_user():  # 函数名可以随意修改
 ```python
 @app.context_processor
 def inject_user():
-    user = User.query.first()
+    user = db.session.execute(select(User)).scalar()
     return dict(user=user)
 
 
 @app.errorhandler(404)
-def page_not_found(e):
+def page_not_found(error):
     return render_template('404.html'), 404
 
 
 @app.route('/')
 def index():
-    movies = Movie.query.all()
+    movies = db.session.execute(select(Movies)).scalars()
     return render_template('index.html', movies=movies)
 ```
 
-同样的，后面我们创建的任意一个模板，都可以在模板中直接使用 `user` 变量。
+类似地，后面我们创建的任意一个模板，都可以在模板中直接使用 `user` 变量。
 
 
 ## 使用模板继承组织模板
@@ -223,7 +227,7 @@ nav li a:hover {
 
 第一行使用 `extends` 标签声明扩展自模板 base.html，可以理解成“这个模板继承自 base.html“。接着我们定义了 `content` 块，这里的内容会插入到基模板中 `content` 块的位置。
 
-> **提示** 默认的块重写行为是覆盖，如果你想向父块里追加内容，可以在子块中使用 `super()` 声明，即 `{{ super() }}`。
+> **提示** 默认的块重写行为是覆盖，如果你想向父块里追加内容，可以在子块中使用 `super()` 声明，即在块的开始插入一行 `{{ super() }}`。
 
 404 错误页面的模板类似，如下所示：
 
@@ -290,11 +294,10 @@ $ git commit -m "Add base template and error template"
 $ git push
 ```
 
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[3bca489](https://github.com/helloflask/watchlist/commit/3bca489421cc498289734cfef9d6ff90232df8be)。
-
 
 ## 进阶提示
 
 * 本章介绍的自定义错误页面是为了引出两个重要的知识点，因此并没有着重介绍错误页面本身。这里只为 404 错误编写了自定义错误页面，对于另外两个常见的错误 400 错误和 500 错误，你可以自己试着为它们编写错误处理函数和对应的模板。
-* 因为示例程序的语言和电影标题使用了英文，所以电影网站的搜索链接使用了 IMDb，对于中文，你可以使用豆瓣电影或时光网。以豆瓣电影为例，它的搜索链接为 <https://movie.douban.com/subject_search?search_text=关键词>，对应的 `href` 属性即 `https://movie.douban.com/subject_search?search_text={{ movie.title }}`。
+* `abort()` 函数接受传入一个 description 参数，你可以使用它来传入自定义错误消息。在错误处理函数中，记得从错误对象获取这个参数的值（`error.description`），并将其渲染到错误页面中。类似地，上一章介绍的 `get_or_404()` 和 `first_or_404()` 也支持传入 description 参数。
+* 因为示例程序的语言和电影标题使用了英文，所以电影网站的搜索链接使用了 IMDb。对于中文，你可以使用豆瓣电影或时光网。以豆瓣电影为例，它的搜索链接为 <https://movie.douban.com/subject_search?search_text=关键词>，对应的 `href` 属性值即 `https://movie.douban.com/subject_search?search_text={{ movie.title }}`。
 * 因为基模板会被所有其他页面模板继承，如果你在基模板中使用了某个变量，那么这个变量也需要使用模板上下文处理函数注入到模板里。

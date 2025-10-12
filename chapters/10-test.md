@@ -1,15 +1,15 @@
-# 第 9 章：测试
+# 第 10 章：测试
 
-在此之前，每次为程序添加了新功能，我们都要手动在浏览器里访问程序进行测试。除了测试新添加的功能，你还要确保旧的功能依然正常工作。在功能复杂的大型程序里，如果每次修改代码或添加新功能后手动测试所有功能，那会产生很大的工作量。另一方面，手动测试并不可靠，重复进行测试操作也很枯燥。
+在前几章我们开发的过程中，每次为程序添加了新功能，都要手动在浏览器里访问程序进行测试。除了测试新添加的功能，你还要确保旧的功能依然正常工作。在功能复杂的大型程序里，如果每次修改代码或添加新功能后手动测试所有功能，那会产生很大的工作量。另一方面，手动测试并不可靠，重复进行测试操作也很枯燥。
 
 基于这些原因，为程序编写自动化测试就变得非常重要。
 
-> **注意** 为了便于介绍，本书统一在这里介绍关于测试的内容。在实际的项目开发中，你应该在开发每一个功能后立刻编写相应的测试，确保测试通过后再开发下一个功能。
+> **注意** 为了便于行文，本书统一在这里介绍关于测试的内容。在实际的项目开发中，你应该在开发每一个功能后立刻编写相应的测试，确保全部测试通过后再开发下一个功能。
 
 
 ## 单元测试
 
-单元测试指对程序中的函数等独立单元编写的测试，它是自动化测试最主要的形式。这一章我们将会使用 Python 标准库中的测试框架 unittest 来编写单元测试，首先通过一个简单的例子来了解一些基本概念。假设我们编写了下面这个函数，并保存到一个 hello.py 模块里：
+单元测试指对程序中的函数等独立单元编写的测试，它是自动化测试最主要的形式。这一章我们将会使用 Python 标准库中的测试框架 unittest 来编写单元测试。首先通过一个简单的例子来了解一些基本概念。我们编写了下面这个用来打招呼的 sayhello 函数，并保存到一个 hello.py 模块里：
 
 ```python
 def sayhello(to=None):
@@ -22,8 +22,6 @@ def sayhello(to=None):
 
 ```python
 import unittest
-
-from hello import sayhello
 
 
 class SayHelloTestCase(unittest.TestCase):  # 测试用例
@@ -47,15 +45,15 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-测试用例继承 `unittest.TestCase` 类，在这个类中创建的以 `test_` 开头的方法将会被视为测试方法。
+测试用例（test case）继承 `unittest.TestCase` 类，在这个类中创建的以 `test_` 开头的方法将会被视为测试方法。
 
-内容为空的两个方法很特殊，它们是测试固件，用来执行一些特殊操作。比如 `setUp()` 方法会在每个测试方法执行前被调用，而 `tearDown()` 方法则会在每一个测试方法执行后被调用（注意这两个方法名称的大小写）。
+内容为空的两个方法很特殊，它们是测试固件（test fixtures），用来执行一些特殊操作。比如 `setUp()` 方法会在每个测试方法执行前被调用，而 `tearDown()` 方法则会在每一个测试方法执行后被调用（注意这两个方法名称的大小写）。
 
-如果把执行测试方法比作战斗，那么准备弹药、规划战术的工作就要在 `setUp()` 方法里完成，而打扫战场则要在 `tearDown()` 方法里完成。
+如果把执行测试方法比作烹饪，那么准备食材、规划要做哪些菜的工作就要在 `setUp()` 方法里完成，而打扫厨房则要在 `tearDown()` 方法里完成。
 
-每一个测试方法（名称以 `test_`  开头的方法）对应一个要测试的函数 / 功能 / 使用场景。在上面我们创建了两个测试方法，`test_sayhello()` 方法测试 `sayhello()` 函数，`test_sayhello_to_somebody()` 方法测试传入参数时的 `sayhello()` 函数。
+每一个测试方法（名称以 `test_`  开头的方法）对应一个要测试的函数 / 功能 / 使用场景。在上面我们创建了两个测试方法，`test_sayhello()` 方法测试直接调用 `sayhello()` 函数，`test_sayhello_to_somebody()` 方法测试传入参数时的 `sayhello()` 函数。
 
-在测试方法里，我们使用断言方法来判断程序功能是否正常。以第一个测试方法为例，我们先把 `sayhello()` 函数调用的返回值保存为 `rv` 变量（return value），然后使用 `self.assertEqual(rv, 'Hello!')` 来判断返回值内容是否符合预期。如果断言方法出错，就表示该测试方法未通过。
+在测试方法里，我们使用断言（assert）方法来判断程序功能是否正常。以第一个测试方法为例，我们先把 `sayhello()` 函数调用的返回值保存为 `rv` 变量（return value），然后使用 `self.assertEqual(rv, 'Hello!')` 来判断返回值内容是否符合预期。如果断言方法出错，就表示该测试方法未通过。
 
 下面是一些常用的断言方法：
 
@@ -70,31 +68,35 @@ if __name__ == '__main__':
 - assertIn(a, b) 
 - assertNotIn(a, b) 
 
-这些方法的作用从方法名称上基本可以得知。
+这些方法的作用从方法名称上基本可以得知。它们由测试用例类继承的 `unittest.TestCase` 提供，通过 `self.<assert-method>` 的形式调用。你可以访问[测试用例类的 API 文档](https://docs.python.org/zh-cn/3.13/library/unittest.html#unittest.TestCase)详细了解所有所有断言方法。
 
 假设我们把上面的测试代码保存到 test_sayhello.py 文件中，通过执行 `python test_sayhello.py` 命令即可执行所有测试，并输出测试的结果、通过情况、总耗时等信息。
 
 ## 测试 Flask 程序
 
-回到我们的程序，我们在项目根目录创建一个 test_watchlist.py 脚本来存储测试代码，我们先编写测试固件和两个简单的基础测试：
+回到我们的程序，我们在项目根目录创建一个 test_watchlist.py 脚本来存储测试代码。下面先编写测试固件和两个简单的基础测试：
 
 *test_watchlist.py：测试固件*
 
 ```python
 import unittest
 
-from app import app, db, Movie, User
+from watchlist import create_app
+from watchlist.extensions import db
+from watchlist.models import Movie, User
 
 
 class WatchlistTestCase(unittest.TestCase):
 
     def setUp(self):
-        # 更新配置
-        app.config.update(
-            TESTING=True,
-            SQLALCHEMY_DATABASE_URI='sqlite:///:memory:'
-        )
-        # 创建数据库和表
+        # 使用测试配置创建程序实例
+        self.app = create_app(config_name='testing')
+        # 创建程序上下文
+		self.context = self.app.app_context()
+		# 激活上下文
+		self.context.push()
+
+		# 创建数据库和表
         db.create_all()
         # 创建测试数据，一个用户，一个电影条目
         user = User(name='Test', username='test')
@@ -104,12 +106,13 @@ class WatchlistTestCase(unittest.TestCase):
         db.session.add_all([user, movie])
         db.session.commit()
 
-        self.client = app.test_client()  # 创建测试客户端
-        self.runner = app.test_cli_runner()  # 创建测试命令运行器
+        self.client = self.app.test_client()  # 创建测试客户端
+        self.runner = self.app.test_cli_runner()  # 创建测试命令运行器
 
     def tearDown(self):
         db.session.remove()  # 清除数据库会话
         db.drop_all()  # 删除数据库表
+        self.context.pop()  # 清除上下文
     
     # 测试程序实例是否存在
     def test_app_exist(self):
@@ -120,14 +123,29 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertTrue(app.config['TESTING'])
 ```
 
-某些配置，在开发和测试时通常需要使用不同的值。在 `setUp()` 方法中，我们更新了两个配置变量的值，首先将 `TESTING` 设为 `True` 来开启测试模式，这样在出错时不会输出多余信息；然后将 `SQLALCHEMY_DATABASE_URI` 设为 `'sqlite:///:memory:'`，这会使用 SQLite 内存型数据库，不会干扰开发时使用的数据库文件。你也可以使用不同文件名的 SQLite 数据库文件，但内存型数据库速度更快。
+某些配置在开发和测试时通常需要使用不同的值。在 `setUp()` 方法中，我们调用工厂函数创建程序实例，传入测试配置对应的配置名。下面是对应的测试配置类：
+
+```python
+class TestingConfig(BaseConfig):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+```
+
+这里将 `TESTING` 设为 `True` 来开启测试模式，这样在出错时不会输出多余信息；然后将 `SQLALCHEMY_DATABASE_URI` 设为 `'sqlite:///:memory:'`，这会使用 SQLite 内存型数据库，不会干扰开发时使用的数据库文件。你也可以使用不同文件名的 SQLite 数据库文件，但内存型数据库速度更快。
+
+某些程序操作需要在激活 Flask 上下文时执行，比如前面介绍的 `url_for()` 函数，或是创建数据库表的 `db.session.create_all()` 操作。我们在 `setUp()` 方法中创建并激活程序上下文：
+
+```python
+self.context = self.app.app_context()
+self.context.push()
+```
 
 接着，我们调用 `db.create_all()` 创建数据库和表，然后添加测试数据到数据库中。在 `setUp()` 方法最后创建的两个类属性分别为测试客户端和测试命令运行器，前者用来模拟客户端请求，后者用来触发自定义命令，下一节会详细介绍。
 
-在 `tearDown()` 方法中，我们调用 `db.session.remove()` 清除数据库会话并调用 `db.drop_all()` 删除数据库表。测试时的程序状态和真实的程序运行状态不同，所以需要调用 `db.session.remove()` 来确保数据库会话被清除。
+在 `tearDown()` 方法中，我们调用 `db.session.remove()` 清除数据库会话并调用 `db.drop_all()` 删除数据库表。测试时的程序状态和真实的程序运行状态不同，所以需要调用 `db.session.remove()` 来确保数据库会话被清除。最后调用 `self.context.pop()` 清除上下文。
 
 
-### 测试客户端
+### 测试程序功能
 
 `app.test_client()` 返回一个测试客户端对象，可以用来模拟客户端（浏览器），我们创建类属性 `self.client` 来保存它。对它调用 `get()` 方法就相当于浏览器向服务器发送 GET 请求，调用 `post()` 则相当于浏览器向服务器发送 POST 请求，以此类推。下面是两个发送 GET 请求的测试方法，分别测试 404 页面和主页：
 
@@ -369,28 +387,29 @@ class WatchlistTestCase(unittest.TestCase):
 ```
 
 
-### 测试命令
+### 测试自定义命令
 
-除了测试程序的各个视图函数，我们还需要测试自定义命令。`app.test_cli_runner()` 方法返回一个命令运行器对象，我们创建类属性 `self.runner` 来保存它。通过对它调用 `invoke()` 方法可以执行命令，传入命令函数对象，或是使用 `args` 关键字直接给出命令参数列表。`invoke()` 方法返回的命令执行结果对象，它的 `output` 属性返回命令的输出信息。下面是我们为各个自定义命令编写的测试方法：
+除了测试程序的各个视图函数，我们还需要测试自定义命令。`app.test_cli_runner()` 方法返回一个命令运行器对象，我们创建类属性 `self.runner` 来保存它。通过对它调用 `invoke()` 方法可以执行命令，传入命令函数对象，或是使用 `args` 关键字直接给出一个包含命令和参数的列表。`invoke()` 方法返回的命令执行结果对象，它的 `output` 属性返回命令的输出信息。下面是我们为各个自定义命令编写的测试方法：
 
 *test_watchlist.py：测试自定义命令行命令*
 
 ```python
 # 导入命令函数
-from app import app, db, Movie, User, forge, initdb
+from watchlist.extensions import db
+from watchlist.models import Movie, User
 
 
 class WatchlistTestCase(unittest.TestCase):
     # ...
     # 测试虚拟数据
     def test_forge_command(self):
-        result = self.runner.invoke(forge)
+        result = self.runner.invoke(args=['forge'])
         self.assertIn('Done.', result.output)
         self.assertNotEqual(Movie.query.count(), 0)
 
     # 测试初始化数据库
     def test_initdb_command(self):
-        result = self.runner.invoke(initdb)
+        result = self.runner.invoke(args=['init-db'])
         self.assertIn('Initialized database.', result.output)
 
     # 测试生成管理员账户
@@ -430,7 +449,7 @@ if __name__ == '__main__':
 使用下面的命令执行测试：
 
 ```bash
-(env) $ python test_watchlist.py
+(.venv) $ python test_watchlist.py
 ...............
 ----------------------------------------------------------------------
 Ran 15 tests in 2.942s
@@ -446,54 +465,61 @@ OK
 为了让程序更加强壮，你可以添加更多、更完善的测试。那么，如何才能知道程序里有哪些代码还没有被测试？整体的测试覆盖率情况如何？我们可以使用 [Coverage.py](https://coverage.readthedocs.io/en/v4.5.x/) 来检查测试覆盖率，首先安装它：
 
 ```bash
-(env) $ pip install coverage
+(.venv) $ pip install coverage
 ```
 
-使用下面的命令执行测试并检查测试覆盖率：
+使用下面的命令执行测试并检查测试覆盖率，通过 `--source`  选项来指定要检查的模块或包：
 
 ```bash
-(env) $ coverage run --source=app test_watchlist.py
+(.venv) $ coverage run --source=watchlist test_watchlist.py
 ```
 
-因为我们只需要检查程序脚本 app.py 的测试覆盖率，所以使用 `--source`  选项来指定要检查的模块或包。
+
+ > **提示** 你可以创建配置文件来预先定义 `--source` 选项，避免每次执行命令都给出这个选项，具体可以参考文档[配置文件章节](https://coverage.readthedocs.io/en/v4.5.x/config.html)。
 
 最后使用下面的命令查看覆盖率报告：
 
 ```bash
 $ coverage report
-Name     Stmts   Miss  Cover
-----------------------------
-app.py     146      5    97%
+Name                               Stmts   Miss  Cover
+------------------------------------------------------
+watchlist/__init__.py                 23      0   100%
+watchlist/blueprints/__init__.py       0      0   100%
+watchlist/blueprints/auth.py          28      0   100%
+watchlist/blueprints/main.py          61      1    98%
+watchlist/commands.py                 41      1    98%
+watchlist/errors.py                   11      2    82%
+watchlist/extensions.py               13      3    77%
+watchlist/models.py                   20      0   100%
+watchlist/settings.py                 15      0   100%
+------------------------------------------------------
+TOTAL                                212      7    97%
 ```
 
-从上面的表格可以看出，一共有 146 行代码，没测试到的代码有 5 行，测试覆盖率为 97%。
+测试覆盖率报告列出了包内文件的覆盖率情况，包括每个文件的行数（Stmts），没测试到的代码行数（Miss），以及测试覆盖率（Cover）。
 
-你还可以使用 coverage html 命令获取详细的 HTML 格式的覆盖率报告，它会在当前目录生成一个 htmlcov 文件夹，打开其中的 index.html 即可查看覆盖率报告。点击文件名可以看到具体的代码覆盖情况，如下图所示：
+你还可以使用 `coverage html` 命令获取详细的 HTML 格式的覆盖率报告，它会在当前目录生成一个 htmlcov 文件夹，打开其中的 index.html 即可查看覆盖率报告。点击文件名可以看到具体的代码覆盖情况，如下图所示：
+![Coverage report](images/9-1.png)
 
-![覆盖率报告](images/9-1.png)
-
-同时在 .gitignore 文件后追加下面两行，忽略掉生成的覆盖率报告文件：
+最后记得在 .gitignore 文件后追加下面两行，忽略掉生成的覆盖率报告文件：
 
 ```
 htmlcov/
 .coverage
 ```
 
-
 ## 本章小结
 
-通过测试后，我们就可以准备上线程序了。结束前，让我们提交代码：
+你也可以将测试文件拆分成多个模块，创建一个 tests 包来存储这些模块。因为目前的测试代码还比较少，暂时可以不做改动。通过测试后，我们就可以准备上线程序了。结束前，让我们提交代码：
 
 ```bash
 $ git add .
-$ git commit -m "Add unit test with unittest"
+$ git commit -m "Add unit tests with unittest"
 $ git push
 ```
 
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[66dc487](https://github.com/helloflask/watchlist/commit/66dc48719c797da00a9e29355b39d77abb45f574)。
 
 ## 进阶提示
 
 * 访问 [Coverage.py 文档](https://coverage.readthedocs.io)或执行 coverage help 命令来查看更多用法。
 * 使用标准库中的 unittest 编写单元测试并不是唯一选择，你也可以使用第三方测试框架，比如非常流行的 [pytest](https://pytest.org)。
-* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/1)的读者，第 12 章详细介绍了测试 Flask 程序的相关知识，包括使用 [Selenium](https://www.seleniumhq.org/) 编写用户界面测试，使用 [Flake8](https://github.com/PyCQA/flake8) 检查代码质量等。 

@@ -2,20 +2,31 @@
 
 静态文件（static files）和我们的模板概念相反，指的是内容不需要动态生成的文件。比如图片、CSS 文件和 JavaScript 脚本等。
 
-在 Flask 中，我们需要创建一个 static 文件夹来保存静态文件，它应该和程序模块、templates 文件夹在同一目录层级，所以我们在项目根目录创建它：
+在 Flask 中，我们需要创建一个 static 文件夹来保存静态文件，它应该和程序模块（app.py）、templates 文件夹在同一目录层级，所以我们在项目根目录创建它：
 
 ```bash
 $ mkdir static
 ```
 
+目前的目录结构如下：
+
+```bash
+watchlist/
+├── templates/
+├── static/
+├── app.py
+├── .env
+├── .flaskenv
+└── .gitignore
+```
 
 ## 生成静态文件 URL
 
 在 HTML 文件里，引入这些静态文件需要给出资源所在的 URL。为了更加灵活，这些文件的 URL 可以通过 Flask 提供的 `url_for()` 函数来生成。
 
-在第 2 章的最后，我们学习过 `url_for()` 函数的用法，传入端点值（视图函数的名称）和参数，它会返回对应的 URL。对于静态文件，需要传入的端点值是 `static`，同时使用 `filename` 参数来传入相对于 static 文件夹的文件路径。
+在第 2 章的最后，我们学习过 `url_for()` 函数的用法，传入端点值（视图函数的名称）和参数，它会返回对应的 URL。对于静态文件，需要传入的端点值为 `static`，同时使用 `filename` 参数来传入相对于 static 文件夹的文件路径。
 
-假如我们在 static 文件夹的根目录下面放了一个 foo.jpg 文件，下面的调用可以获取它的 URL：
+假设我们在 static 文件夹的根目录下面放了一个 foo.jpg 文件，下面的调用可以获取它的 URL：
 
 ```jinja2
 <img src="{{ url_for('static', filename='foo.jpg') }}">
@@ -23,7 +34,7 @@ $ mkdir static
 
 花括号部分的调用会返回 `/static/foo.jpg`。
 
-> **提示** 在 Python 脚本里，`url_for()` 函数需要从 `flask` 包中导入，而在模板中则可以直接使用，因为 Flask 把一些常用的函数和对象添加到了模板上下文（环境）里。
+> **提示** 在 Python 脚本里，`url_for()` 函数需要从 `flask` 包中导入，而在模板中则可以直接使用，因为 Flask 自动把一些常用的函数和对象添加到了模板上下文（环境）里。
 
 
 ## 添加 Favicon
@@ -44,14 +55,14 @@ Favicon（favourite icon） 是显示在标签页和书签栏的网站头像。�
 
 ## 添加图片
 
-为了让页面不那么单调，我们来添加两个图片：一个是显示在页面标题旁边的头像，另一个是显示在页面底部的龙猫动图。我们在 static 目录下面创建一个子文件夹 images，把这两个图片都放到这个文件夹里：
+为了让页面不那么单调，我们来添加两个图片：一个是显示在页面标题旁边的头像，另一个是显示在页面底部的龙猫动图。在 static 目录下面创建一个子文件夹 images，把这两个图片都放到这个文件夹里：
 
 ```bash
 $ cd static
 $ mkdir images
 ```
 
-创建子文件夹并不是必须的，这里只是为了更好的组织同类文件。同样的，如果你有多个 CSS 文件，也可以创建一个 css 文件夹来组织他们。下面我们在页面模板中添加这两个图片，注意填写正确的文件路径：
+创建子文件夹并不是必须的，这里只是为了更好的组织同类文件。类似地，如果你有多个 CSS 文件，也可以创建一个 css 文件夹来组织它们。下面我们在页面模板中添加这两个图片，注意填写正确的文件路径：
 
 *templates/index.html：添加图片*
 
@@ -135,7 +146,7 @@ footer {
 </head>
 ```
 
-> **提示** 当你把 CSS 写到单独的文件后，浏览器获取到这个文件后会对其进行缓存（其他静态文件同理，比如 JavaScript 文件）。Flask 从 2.0 版本开始支持自动重载静态文件的变化，如果你使用的仍然是旧版本的 Flask，那么每当你对 CSS 文件的内容进行更新后，都需要使用下面的快捷键清除缓存：
+> **提示** 当你把 CSS 写到单独的文件后，浏览器获取到这个文件后会对其进行缓存（其他静态文件同理，比如 JavaScript 文件）。Flask 从 2.0 版本开始支持自动重载静态文件，如果你使用的仍然是旧版本的 Flask，那么每当你对 CSS 文件的内容进行更新后，都需要使用下面的快捷键清除缓存：
 >
 > - Google Chrome（Mac）：Command + Shift + R
 > - Google Chrome（Windows & Linux）：Ctrl + F5
@@ -173,8 +184,6 @@ $ git add .
 $ git commit -m "Add static files"
 $ git push
 ```
-
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[e51c579](https://github.com/helloflask/watchlist/commit/e51c579735ae837824f10af5c1b7d454014d3c59)。
 
 
 ## 进阶提示

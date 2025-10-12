@@ -2,7 +2,7 @@
 
 在一般的 Web 程序里，访问一个地址通常会返回一个包含各类信息的 HTML 页面。因为我们的程序是动态的，页面中的某些信息需要根据不同的情况来进行调整，比如对登录和未登录用户显示不同的信息，所以页面需要在用户访问时根据程序逻辑动态生成。
 
-我们把包含变量和运算逻辑的 HTML 或其他格式的文本叫做**模板**，执行这些变量替换和逻辑计算工作的过程被称为**渲染**，这个工作由我们这一章要学习使用的模板渲染引擎——Jinja2 来完成。
+我们把包含变量和运算逻辑的 HTML 或其他格式的文本叫做**模板（template）**，执行这些变量替换和逻辑计算工作的过程被称为**渲染（rendering）**，这个工作由我们这一章要学习使用的模板渲染引擎——Jinja2 来完成。
 
 按照默认的设置，Flask 会从程序实例所在模块同级目录的 templates 文件夹中寻找模板，我们的程序目前存储在项目根目录的 app.py 文件里，所以我们要在项目根目录创建这个文件夹：
 
@@ -10,10 +10,20 @@
 $ mkdir templates
 ```
 
+目前的目录结构如下：
+
+```bash
+watchlist/
+├── templates/
+├── app.py
+├── .env
+├── .flaskenv
+└── .gitignore
+```
 
 ## 模板基本语法
 
-在社交网站上，每个人都有一个主页，借助 Jinja2 就可以写出一个通用的模板：
+在社交网站上，每个人都有一个主页，借助 Jinja2 就可以写出一个通用的用户主页模板：
 
 ```jinja2
 <h1>{{ username }}的个人主页</h1>
@@ -30,8 +40,7 @@ Jinja2 的语法和 Python 大致相同，你在后面会陆续接触到一些�
 - `{% ... %}` 用来标记语句，比如 if 语句，for 语句等。
 - `{# ... #}` 用来写注释。
 
-模板中使用的变量需要在渲染的时候传递进去，具体我们后面会了解。
-
+模板中使用的变量需要在渲染的时候传递进去，具体我们下面会了解。
 
 ## 编写主页模板
 
@@ -56,7 +65,7 @@ Jinja2 的语法和 Python 大致相同，你在后面会陆续接触到一些�
         {% endfor %}  {# 使用 endfor 标签结束 for 语句 #}
     </ul>
     <footer>
-        <small>&copy; 2018 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
+        <small>&copy; 2025 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
 	</footer>
 </body>
 </html>
@@ -122,22 +131,18 @@ def index():
 
 ![主页电影列表](images/3-1.png)
 
-
 ## 本章小结
 
 这一章我们编写了一个简单的主页。结束前，让我们提交代码：
 
 ```bash
 $ git add .
-$ git commit -m "Add index page"
+$ git commit -m "Add the index page template"
 $ git push
 ```
-
-> **提示** 你可以在 GitHub 上查看本书示例程序的对应 commit：[8537d98](https://github.com/helloflask/watchlist/commit/8537d98bdd7828b1f7aa2431bbd5a16e757a3cc4)。
 
 
 ## 进阶提示
 
 * 使用 [Faker](https://github.com/joke2k/faker) 可以实现自动生成虚拟数据，它支持丰富的数据类型，比如时间、人名、地名、随机字符等。
 * 除了过滤器，Jinja2 还在模板中提供了一些测试器、全局函数可以使用；除此之外，还有更丰富的控制结构支持，有一些我们会在后面学习到，更多的内容则可以访问 [Jinja2 文档](https://jinja.palletsprojects.com/en/3.0.x/templates)学习。
-* 如果你是[《Flask Web 开发实战》](http://helloflask.com/book/1)的读者，模板相关内容可以在第 3 章《模板》找到，Faker 相关内容可以在第 7 章找到。
