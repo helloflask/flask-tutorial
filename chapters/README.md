@@ -6,8 +6,8 @@
 
 ## 目录
 
-* [前言](0-preface.md)
-* [为本书付费](0-pay.md)
+* [前言](preface.md)
+* [为本书付费](pay.md)
 * [第 1 章：准备工作](1-preparation.md)
 * [第 2 章：Hello, Flask!](2-hello.md)
 * [第 3 章：模板](3-template.md)
@@ -20,7 +20,7 @@
 * [第 10 章：测试](10-test.md)
 * [第 11 章：部署上线](11-deployment.md)
 * [第 12 章：小挑战](12-challenge.md)
-* [后记](13-postscript.md)
+* [后记](postscript.md)
 
 ## 版权信息
 
