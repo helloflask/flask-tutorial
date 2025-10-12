@@ -25,6 +25,8 @@ False
 我们在存储用户信息的 `User` 模型类添加 `username` 字段和 `password_hash` 字段，分别用来存储登录所需的用户名和密码散列值，同时添加两个方法来实现设置密码和验证密码的功能：
 
 ```python
+from typing import Optional
+
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -35,13 +37,27 @@ class User(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)  # 主键
     name: Mapped[str] = mapped_column(String(20))  # 名字
     username: Mapped[str] = mapped_column(String(20))  # 用户名
-    password_hash: Mapped[str] = mapped_column(String(128))  # 密码散列值
+    password_hash: Mapped[Optional[str]] = mapped_column(String(128))  # 密码散列值
 
     def set_password(self, password):  # 用来设置密码的方法，接受密码作为参数
         self.password_hash = generate_password_hash(password)  # 将生成的密码保持到对应字段
 
     def validate_password(self, password):  # 用于验证密码的方法，接受密码作为参数
         return check_password_hash(self.password_hash, password)  # 返回布尔值
+```
+
+password_hash 字段在调用 set_password() 方法时才会生成，因此我们使用 Optional 将其标记为可选字段：
+
+```python
+from typing import Optional
+
+password_hash: Mapped[Optional[str]] = mapped_column(String(128))
+```
+
+如果你使用的 Python 版本是 3.10 及以上版本，可以使用管道符号搭配 None 来表示可选：
+
+```python
+password_hash: Mapped[str | None] = mapped_column(String(128))
 ```
 
 因为模型（表结构）发生变化，我们需要重新生成数据库（这会清空数据）：
@@ -56,6 +72,7 @@ class User(db.Model):
 user = User(name=name, username='admin')
 user.set_password('helloflask')
 ```
+
 ## 生成管理员账户
 
 因为程序只允许一个人使用，没有必要编写一个注册页面。我们可以编写一个命令来创建管理员账户，下面是实现这个功能的 `admin()` 函数：
