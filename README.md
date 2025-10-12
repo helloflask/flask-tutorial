@@ -6,7 +6,7 @@
 
 如果你发现了书中的错误，或是有任何意见或建议，欢迎[创建 Issue](https://github.com/helloflask/flask-tutorial/issues/new) 反馈或提交 Pull Request 进行修正。对于较大的内容变动，建议先[创建 Issue](https://github.com/helloflask/flask-tutorial/issues/new) 进行讨论。谢谢！
 
-![](http://helloflask.com/static/tutorial-cover-s.png)
+<img src="chapters/cover.jpg" width="400px">
 
 © 2018 - 2025 [李辉](http://greyli.com)（Grey Li） / [HelloFlask](http://helloflask.com)
 

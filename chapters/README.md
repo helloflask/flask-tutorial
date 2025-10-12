@@ -1,8 +1,8 @@
 # Flask 入门教程
 
-<img src="cover.jpg" width="400px"></img>
+<img src="cover.jpg" width="400px">
 
-当前版本：4.0（2025.8.16）
+当前版本：4.0（2025/10/12）
 
 ## 目录
 
