@@ -49,10 +49,7 @@ Flask（<https://github.com/pallets/flask>）是一个使用 Python 语言编写
 
 * 在源码仓库[创建 Issue](https://github.com/helloflask/flask-tutorial/issues/new)。
 * 在[代码厨房社区](https://codekitchen.community)发布帖子，并选择“Flask 入门教程”分类。
-
-## 联系作者
-
-其他问题可以通过邮箱 <flasktutorial@greyli.com> 联系我。
+* 通过邮箱 <flasktutorial@greyli.com> 联系作者。
 
 ## 相关资源
 

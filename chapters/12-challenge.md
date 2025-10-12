@@ -1,4 +1,4 @@
-# 小挑战
+# 第 12 章：小挑战
 
 经过本书的学习，你应该有能力独立开发一个简单的 Web 程序了。这里为你准备的小挑战是：给你的 Watchlist 程序添加一个留言板功能，效果类似 [SayHello](http://sayhello.helloflask.com)。
 
