@@ -8,6 +8,17 @@
 $ mkdir static
 ```
 
+目前的目录结构如下：
+
+```bash
+watchlist/
+├── templates/
+├── static/
+├── app.py
+├── .env
+├── .flaskenv
+└── .gitignore
+```
 
 ## 生成静态文件 URL
 

@@ -14,4 +14,4 @@
 * 更新到部署后的程序
 * 可以参考 [SayHello 源码](https://github.com/greyli/sayhello)
 
-如果在完成这个挑战的过程中遇到了困难，可以在 [代码厨房社区](https://codekitchen.community)发起讨论（设置帖子分类为“Flask 入门教程”）。除此之外，后记列出了更多讨论的好去处。
+如果在完成这个挑战的过程中遇到了困难，可以在 [代码厨房社区](https://codekitchen.community)发起讨论（设置帖子分类为“Flask 入门教程”）。

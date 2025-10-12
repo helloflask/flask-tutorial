@@ -14,11 +14,11 @@ $ mkdir templates
 
 ```bash
 watchlist/
-  - app.py
-  - templates/
-  - .env
-  - .flaskenv
-  - .gitignore
+├── templates/
+├── app.py
+├── .env
+├── .flaskenv
+└── .gitignore
 ```
 
 ## 模板基本语法
@@ -41,7 +41,6 @@ Jinja2 的语法和 Python 大致相同，你在后面会陆续接触到一些�
 - `{# ... #}` 用来写注释。
 
 模板中使用的变量需要在渲染的时候传递进去，具体我们下面会了解。
-
 
 ## 编写主页模板
 
@@ -66,7 +65,7 @@ Jinja2 的语法和 Python 大致相同，你在后面会陆续接触到一些�
         {% endfor %}  {# 使用 endfor 标签结束 for 语句 #}
     </ul>
     <footer>
-        <small>&copy; 2018 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
+        <small>&copy; 2025 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
 	</footer>
 </body>
 </html>
@@ -132,7 +131,6 @@ def index():
 
 ![主页电影列表](images/3-1.png)
 
-
 ## 本章小结
 
 这一章我们编写了一个简单的主页。结束前，让我们提交代码：
@@ -148,4 +146,3 @@ $ git push
 
 * 使用 [Faker](https://github.com/joke2k/faker) 可以实现自动生成虚拟数据，它支持丰富的数据类型，比如时间、人名、地名、随机字符等。
 * 除了过滤器，Jinja2 还在模板中提供了一些测试器、全局函数可以使用；除此之外，还有更丰富的控制结构支持，有一些我们会在后面学习到，更多的内容则可以访问 [Jinja2 文档](https://jinja.palletsprojects.com/en/3.0.x/templates)学习。
-

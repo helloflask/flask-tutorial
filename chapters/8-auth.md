@@ -390,4 +390,3 @@ $ git push
 ## 进阶提示
 
 * 访问 [Flask-Login 文档](https://flask-login.readthedocs.io/)了解更多细节和用法。
-

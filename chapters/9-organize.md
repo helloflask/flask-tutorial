@@ -525,4 +525,4 @@ $ git push
 
 ## 进阶提示
 
-- 查看《Flask Web 开发实战》示例程序 [Greybook 的源码](https://github.com/greyli/greybook)，了解更大的程序的代码组织结构示例。
+- 查看《Flask 从入门到进阶》示例程序 [Greybook 的源码](https://github.com/greyli/greybook)，了解更大的程序的代码组织结构示例。
