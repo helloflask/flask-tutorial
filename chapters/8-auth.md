@@ -175,7 +175,7 @@ def login():
             flash('Invalid input.')
             return redirect(url_for('login'))
         
-        user = db.session.get(select(User).filter_by(username=username)).scalar()
+        user = db.session.execute(select(User).filter_by(username=username)).scalar()
         # 验证密码是否一致
         if user is not None and user.validate_password(password):
             login_user(user)  # 登入用户

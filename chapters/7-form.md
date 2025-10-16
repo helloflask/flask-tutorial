@@ -123,7 +123,7 @@ def index():
         flash('Item created.')  # 显示成功创建的提示
         return redirect(url_for('index'))  # 重定向回主页
 
-    movies = db.session.execute(select(Movie)).scalars()
+    movies = db.session.execute(select(Movie)).scalars().all()
     return render_template('index.html', movies=movies)
 ```
 
