@@ -8,7 +8,7 @@
 
 时至今日，Flask 仍然是我最喜欢的 Python Web 框架。希望未来可以为 Flask 社区作出更多贡献。
 
-欢迎访问我的[个人主页](http://greyli.com)了解更多信息。
+欢迎访问我的[个人主页](http://greyli.com)了解更多信息，也欢迎通过邮件订阅我的 [Newsletter](https://greyli.com/newsletter/) 。
 
 ## 关于本书
 
