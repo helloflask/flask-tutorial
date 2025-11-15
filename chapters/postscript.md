@@ -27,4 +27,4 @@
 
 你喜欢这本书的写作模式吗？
 
-在这个 AI 编程时代，了解基本的编程概念和软技能变得尤为重要。我正在写一本《编程入门教程》。写作模式类似这本书，每一章涉及一个编程工具或概念。提供尽可能少的细节，但是尽可能让你自己动手一起写代码。如果你想获取关于这本书的最新动态，欢迎关注我的 [Twitter](https://x.com/greylihui) 和[微信公众号](https://greyli.com/files/qrcode_gh.jpg)，或是通过邮件订阅[我的 Newsletter](https://greyli.com/subscribe/)。
+在这个 AI 编程时代，了解基本的编程概念和软技能变得尤为重要。我正在写一本《编程入门教程》。写作模式类似这本书，每一章涉及一个编程工具或概念。提供尽可能少的细节，但是尽可能让你自己动手一起写代码。如果你想获取关于这本书的最新动态，欢迎关注我的 [Twitter](https://x.com/greylihui) 和[微信公众号](https://greyli.com/files/qrcode_gh.jpg)，或是通过邮件订阅我的 [Newsletter](https://greyli.com/newsletter/)。

@@ -242,3 +242,8 @@ $ git pull
 
 *  因为 PythonAnywhere 支持在线管理文件、编辑代码、执行命令，你可以在学习编程的过程中使用它来在线开发 Web 程序。
 *  PythonAnywhere 的 Web 面板还有一些功能设置：Log files 部分可以查看你的程序日志，Traffic 部分显示了你的程序访问流量情况，Security 部分可以为你的程序程序开启强制启用 HTTPS 和密码保护。
+* 如果你打算使用 PythonAnywhere 提供的 MySQL 数据库，需要在 Databases 面板创建数据库，并在生产环境配置类中设置正确的数据库 URI。因为 PythonAnywhere 的数据库服务会在 5 分钟（300 秒）断开连接，我们需要将数据库连接池的回收时间设为 300 秒以下，比如：
+
+```python
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_size' : 100, 'pool_recycle' : 280}
+```
