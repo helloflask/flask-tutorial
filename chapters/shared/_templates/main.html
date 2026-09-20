@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block announce %}
+{% if config.theme.language == "en" %}
+The English translation is in progress. Read the complete <a href="/">Chinese edition</a> while new chapters are being translated.
+{% else %}
 📌《Flask 入门教程》第 4 版已于 2025 年 10 月 12 日发布，新版本基于 Flask 3.x 和 Python 3.9+ 更新。欢迎关注作者的 <a href="https://twitter.com/greylihui" target="_blank" style="color: #526cfe">Twitter</a>、<a href="https://greyli.com/files/qrcode_gh.jpg" target="_blank" style="color: #526cfe">微信公众号</a>或 <a href="https://greyli.com/newsletter" target="_blank" style="color: #526cfe">Newsletter</a> 获取更多动态。
+{% endif %}
 {% endblock %}
 
 {% block extrahead %}

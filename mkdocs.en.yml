@@ -1,7 +1,7 @@
-site_name: Flask 入门教程
-site_description: 使用 Python 和 Flask 开发你的第一个 Web 程序
-site_url: https://tutorial.helloflask.com/
-docs_dir: chapters/zh
+site_name: Flask Tutorial
+site_description: Build your first web application with Python and Flask
+site_url: https://tutorial.helloflask.com/en/
+docs_dir: chapters/en
 theme:
   name: material
   custom_dir: chapters/shared/_templates
@@ -13,7 +13,7 @@ theme:
     primary: black
   icon:
     repo: fontawesome/brands/github
-  language: zh
+  language: en
 repo_url: https://github.com/helloflask/flask-tutorial
 repo_name: helloflask/flask-tutorial
 extra:
@@ -44,25 +44,11 @@ markdown_extensions:
   - toc:
         permalink: True
 nav:
-  - 目录: README.md
-  - 前言: preface.md
-  - 第 1 章：准备工作: 1-preparation.md
-  - 第 2 章：Hello, Flask!: 2-hello.md
-  - 第 3 章：模板: 3-template.md
-  - 第 4 章：静态文件: 4-static.md
-  - 第 5 章：数据库: 5-database.md
-  - 第 6 章：模板优化: 6-advanced-template.md
-  - 第 7 章：表单: 7-form.md
-  - 第 8 章：用户认证: 8-auth.md
-  - 第 9 章：组织你的代码: 9-organize.md
-  - 第 10 章：测试: 10-test.md
-  - 第 11 章：部署上线: 11-deployment.md
-  - 第 12 章：小挑战: 12-challenge.md
-  - 后记: postscript.md
-  - 教程主页↗: https://helloflask.com/book/3
-  - 书稿源码↗: https://github.com/helloflask/flask-tutorial
-  - 示例程序源码↗: https://github.com/helloflask/watchlist
-  - 代码厨房社区↗: https://codekitchen.community
+  - Introduction: README.md
+  - Chinese edition (complete): https://tutorial.helloflask.com/
+  - Book homepage: https://helloflask.com/book/3
+  - Book source: https://github.com/helloflask/flask-tutorial
+  - Example application: https://github.com/helloflask/watchlist
 plugins:
   - search
 extra_css:
