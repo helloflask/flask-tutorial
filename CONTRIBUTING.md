@@ -1,12 +1,12 @@
-# 贡献指南 / Contributing
+# Contributing
 
-## 双语文档构建 / Building both languages
+## Building both languages
 
-中文继续使用网站根路径（例如 `/1-preparation/`），英文使用 `/en/`。
+The Chinese edition stays at the site root (for example, `/1-preparation/`), while the English edition uses `/en/`.
 
-- `chapters/zh/`：完整中文书稿；`mkdocs.yml`：中文目录和站点配置。
-- `chapters/en/`：英文书稿；`mkdocs.en.yml`：英文目录和站点配置。已翻译章节列在英文目录中，未翻译章节明确链接到中文版。
-- `chapters/shared/`：两种语言共用的图片、样式、封面和模板。构建时复制到各语言的临时文档目录，保持书稿中的 `images/...` 等相对链接有效。
+- `chapters/zh/` contains the complete Chinese manuscript; `mkdocs.yml` defines its contents and site configuration.
+- `chapters/en/` contains the English manuscript; `mkdocs.en.yml` defines its contents and site configuration. Translated chapters appear in the English contents, while links to untranslated chapters are clearly marked as pointing to the Chinese edition.
+- `chapters/shared/` contains images, styles, the cover, and templates shared by both languages. The build copies these assets into each language's temporary documentation directory so relative links such as `images/...` remain valid.
 
 Install the documentation dependencies and build both editions:
 
