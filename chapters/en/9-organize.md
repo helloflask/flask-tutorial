@@ -433,8 +433,7 @@ The same principle applies to the other modules.
 Our package is named watchlist, so imports begin with `watchlist`. If you choose another name, such as app, change the imports accordingly:
 
 ```python
-from app import create_app
-from app.extensions import db
+from app import app, db
 from app.models import User, Movie
 ```
 

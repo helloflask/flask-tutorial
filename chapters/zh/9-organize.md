@@ -434,8 +434,7 @@ from watchlist.extensions import db
 包名称这里使用了 watchlist，所以导入时要从 watchlist 包导入，如果你使用了更常规的名字，比如 app，那么导入语句也要相应变化：
 
 ```python
-from app import create_app
-from app.extensions import db
+from app import app, db
 from app.models import User, Movie
 ```
 
