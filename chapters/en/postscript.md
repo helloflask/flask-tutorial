@@ -1,6 +1,6 @@
 # Afterword
 
-Congratulations—you have completed the entire Flask Tutorial! With any luck, you have also built your first web application and deployed it to the internet. That is something to remember: a small milestone on your journey as a programmer. Take a moment to celebrate, then keep going!
+Congratulations—you have completed the entire Flask for Beginners! With any luck, you have also built your first web application and deployed it to the internet. That is something to remember: a small milestone on your journey as a programmer. Take a moment to celebrate, then keep going!
 
 ## Share your experience and feedback
 

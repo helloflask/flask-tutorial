@@ -14,4 +14,4 @@ Some suggestions to get you started:
 * Update the deployed application.
 * Consult the [SayHello source code](https://github.com/greyli/sayhello) if you need an example.
 
-If you get stuck, start a discussion in the [Code Kitchen community](https://codekitchen.community), using the “Flask 入门教程” (Flask Tutorial) category.
+If you get stuck, start a discussion in the [Code Kitchen community](https://codekitchen.community), using the “Flask 入门教程” (Flask for Beginners) category.

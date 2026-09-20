@@ -48,7 +48,7 @@ If you would like to discuss Flask, web development, or related topics with othe
 You are welcome to send feedback, suggestions, and corrections in any of these ways:
 
 * [Open an issue](https://github.com/helloflask/flask-tutorial/issues/new) in the source repository.
-* Post in the [Code Kitchen community](https://codekitchen.community) under the “Flask 入门教程” (Flask Tutorial) category.
+* Post in the [Code Kitchen community](https://codekitchen.community) under the “Flask 入门教程” (Flask for Beginners) category.
 * Email the author at <flasktutorial@greyli.com>.
 
 ## Resources
