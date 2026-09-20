@@ -173,7 +173,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'dev')
 更新后的工厂函数接受传入对应配置类名称（默认设为 development），然后获取对应的配置类，并调用 `app.config.from_object()` 方法将配置更新到程序中。同时我们将注册蓝本、初始化扩展、错误处理函数、自定义命令等操作移动到工厂函数中：
 
 ```python
-from flask import Flask, current_app
+from flask import Flask
 
 def create_app(config_name='development'):
     app = Flask(__name__)
@@ -191,7 +191,7 @@ def create_app(config_name='development'):
     @app.context_processor
     def inject_user():  # 函数名可以随意修改
         user = db.session.execute(select(User)).scalar()
-        return dict(user=user, current_app=current_app)
+        return dict(user=user)
 
     # 错误处理函数
     ...
@@ -293,7 +293,7 @@ $ touch blueprints/auth.py blueprints/main.py  # 创建蓝本模块
 *watchlist/\_\_init\_\_.py：工厂函数*
 
 ```python
-from flask import Flask, current_app
+from flask import Flask
 from sqlalchemy import select
 
 from watchlist.extensions import db, login_manager
@@ -325,7 +325,7 @@ def create_app(config_name='development'):
     @app.context_processor
     def inject_user():  # 函数名可以随意修改
         user = db.session.execute(select(User)).scalar()
-        return dict(user=user, current_app=current_app)
+        return dict(user=user)
 
     return app
 ```
