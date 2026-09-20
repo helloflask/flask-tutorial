@@ -108,10 +108,10 @@ from flask import request, url_for, redirect, flash
 def index():
     if request.method == 'POST':  # Check whether this is a POST request
         # Read the form data
-        title = request.form.get('title', '').strip()  # Use the input field's name attribute
-        year = request.form.get('year', '').strip()
+        title = request.form.get('title')  # Use the input field's name attribute
+        year = request.form.get('year')
         # Validate the data
-        if not title or not year or len(year) != 4 or len(title) > 60:
+        if not title or not year or len(year) > 4 or len(title) > 60:
             flash('Invalid input.')  # Show an error message
             return redirect(url_for('index'))  # Redirect to the home page
         # Save the form data to the database

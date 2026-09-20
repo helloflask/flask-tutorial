@@ -110,10 +110,10 @@ from flask import request, url_for, redirect, flash
 def index():
     if request.method == 'POST':  # 判断是否是 POST 请求
         # 获取表单数据
-        title = request.form.get('title', '').strip()  # 传入表单对应输入字段的 name 值
-        year = request.form.get('year', '').strip()
+        title = request.form.get('title')  # 传入表单对应输入字段的 name 值
+        year = request.form.get('year')
         # 验证数据
-        if not title or not year or len(year) != 4 or len(title) > 60:
+        if not title or not year or len(year) > 4 or len(title) > 60:
             flash('Invalid input.')  # 显示错误提示
             return redirect(url_for('index'))  # 重定向回主页
         # 保存表单数据到数据库
@@ -138,7 +138,7 @@ Flask 会在请求触发后把请求信息放到 `request` 对象里，你可以
 from flask import request
 ```
 
-它需要在请求上下文激活时使用，因此我们在处理请求的视图函数中访问它。它包含请求相关的所有信息，比如请求的路径（`request.path`）、请求的方法（`request.method`）、表单数据（`request.form`）、查询字符串（`request.args`）等等。
+因为它在请求触发时才会包含数据，所以你只能在视图函数内部调用它。它包含请求相关的所有信息，比如请求的路径（`request.path`）、请求的方法（`request.method`）、表单数据（`request.form`）、查询字符串（`request.args`）等等。
 
 在上面的 `if` 语句中，我们首先通过 `request.method` 的值来判断请求方法。在 `if` 语句内，我们通过 `request.form` 来获取表单数据。`request.form` 是一个特殊的字典，用表单字段的 `name` 属性值可以获取用户填入的对应数据：
 
@@ -148,7 +148,7 @@ if request.method == 'POST':
     year = request.form.get('year', '').strip()
 ```
 
-这里对表单字段值调用了 `strip()` 来去除首尾的空格。使用空字符串作为默认值，可以让缺失的字段进入后续验证，而不会在调用 `.strip()` 时出错。
+这里对表单字段值调用了 `strip()` 来去除首尾的空格。
 
 ### flash 消息
 
@@ -176,7 +176,7 @@ app.config['SECRET_KEY'] = 'dev'  # 等同于 app.secret_key = 'dev'
 
 下面在基模板（base.html）里使用 `get_flashed_messages()` 函数获取提示消息并显示：
 
-```html
+```python
 <!-- 插入到页面标题上方 -->
 {% for message in get_flashed_messages() %}
 	<div class="alert">{{ message }}</div>
@@ -184,7 +184,7 @@ app.config['SECRET_KEY'] = 'dev'  # 等同于 app.secret_key = 'dev'
 <h2>...</h2>
 ```
 
-`get_flashed_messages()` 获取消息时，会从 session 的待显示消息队列中移除它们，并在响应中更新 Cookie，因此消息会在当前请求中显示，而不会在下次访问页面时再次出现。这也是为什么发送消息的函数被命名为 flash，这一过程也被称为”消息闪现“。
+`get_flashed_messages()` 返回消息的同时还会从 Cookie 中清除掉消息数据，所以可以确保消息只在当前页面上显示。这也是为什么发送消息的函数被命名为 flash，这一过程也被称为”消息闪现“。
 
 `alert` 类为提示消息增加样式：
 
@@ -353,6 +353,6 @@ $ git push
 ## 进阶提示
 
 - 从上面的代码可以看出，手动验证表单数据既麻烦又不可靠。对于复杂的程序，我们一般会使用集成了 WTForms 的扩展 [Flask-WTF](https://github.com/wtforms/flask-wtf) 来简化表单处理。通过编写表单类，定义表单字段和验证器，它可以自动生成表单对应的 HTML 代码，并在表单提交时验证表单数据，返回对应的错误消息。更重要的是，它还内置了 CSRF（跨站请求伪造） 保护功能。你可以阅读 [Flask-WTF 文档](https://flask-wtf.readthedocs.io)和 Hello, Flask! 专栏上的[表单系列文章](https://zhuanlan.zhihu.com/p/23577026)了解具体用法。
-- CSRF 是一种常见的攻击手段。以我们的删除表单为例，某恶意网站的页面中内嵌了一段代码，访问时会自动发送一个删除某个电影条目的 POST 请求到我们的程序。如果我们访问了这个恶意网站，就会导致电影条目被删除，因为我们的程序没法分辨请求发自哪里。一种常见的防护方式是在表单里添加一个包含随机令牌的隐藏字段，同时在用户的 session 中保存对应的令牌（Flask 默认通过签名 Cookie 保存 session），在提交时由服务器比较提交的令牌与保存的令牌。在我们的程序中没有实现 CSRF 保护，仅使用 POST 请求也不能提供这种保护。
+- CSRF 是一种常见的攻击手段。以我们的删除表单为例，某恶意网站的页面中内嵌了一段代码，访问时会自动发送一个删除某个电影条目的 POST 请求到我们的程序。如果我们访问了这个恶意网站，就会导致电影条目被删除，因为我们的程序没法分辨请求发自哪里。解决方法通常是在表单里添加一个包含随机字符串的隐藏字段，同时在 Cookie 中也创建一个同样的随机字符串，在提交时通过对比两个值是否一致来判断是否是用户自己发送的请求。在我们的程序中没有实现 CSRF 保护。
 - 使用 Flask-WTF 时，表单类在模板中的渲染代码基本相同，你可以编写宏来渲染表单字段。如果你使用 Bootstap，那么扩展 [Bootstrap-Flask](https://github.com/helloflask/bootstrap-flask) 内置了多个表单相关的宏，可以简化渲染工作。
 - 你可以把删除按钮的行内 JavaScript  代码改为事件监听函数，写到单独的 JavaScript 文件里。再进一步，你也可以使用 JavaScript 来监听点击删除按钮的动作，并发送删除条目的 POST 请求，这样删除按钮就可以使用普通 `<a>` 标签（CSRF 令牌存储在元素属性里），而不用创建表单元素。
