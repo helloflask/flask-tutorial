@@ -1,4 +1,4 @@
-# Flask Tutorial
+# Flask for Beginners
 
 Build your first web application with Python and Flask.
 
@@ -36,6 +36,6 @@ Report errors or suggest improvements through [GitHub issues](https://github.com
 
 ## Copyright
 
-Copyright © 2018–2025 [Grey Li](https://greyli.com).
+Copyright © 2018–2026 [Grey Li](https://greyli.com).
 
 This book is licensed under [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/).
