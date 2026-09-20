@@ -6,7 +6,7 @@ This tutorial introduces the essentials of Flask by guiding you through building
 
 ## Translation status
 
-The introduction, preface, chapters 1–12, afterword, and the two code-listing supplements are available in English. You can also read the [Chinese edition](/).
+The main book is now available in English: the introduction, preface, chapters 1–12, and afterword. You can also read the [Chinese edition](/).
 
 ## Contents
 
@@ -24,11 +24,6 @@ The introduction, preface, chapters 1–12, afterword, and the two code-listing 
 * [Chapter 11: Deployment](11-deployment.md)
 * [Chapter 12: A challenge](12-challenge.md)
 * [Afterword](postscript.md)
-
-## Code-listing supplements
-
-* [Chapter 1: Code listing](1-preparation-code-listing.md)
-* [Chapter 2: Code listing](2-hello-code-listing.md)
 
 ## Feedback
 
