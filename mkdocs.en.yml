@@ -60,7 +60,7 @@ nav:
   - "Chapter 12: A challenge": 12-challenge.md
   - Afterword: postscript.md
   - Chinese edition: https://tutorial.helloflask.com/
-  - Book homepage: https://helloflask.com/book/3
+  - Book homepage: https://helloflask.com/en/book/3
   - Book source: https://github.com/helloflask/flask-tutorial
   - Example application: https://github.com/helloflask/watchlist
 plugins:
