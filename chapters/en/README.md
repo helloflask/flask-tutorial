@@ -6,17 +6,17 @@ This tutorial introduces the essentials of Flask by guiding you through building
 
 ## Translation status
 
-The English translation is in progress. The introduction, preface, and chapter 1 are now available in English. The complete fourth edition is available in [Chinese](/).
+The English translation is in progress. The introduction, preface, and chapters 1–4 are now available in English. The complete fourth edition is available in [Chinese](/).
 
 ## Contents
 
-The preface and chapter 1 are available in English. Links marked **Chinese** open chapters that have not yet been translated.
+The preface and chapters 1–4 are available in English. Links marked **Chinese** open chapters that have not yet been translated.
 
 * [Preface](preface.md)
 * [Chapter 1: Getting ready](1-preparation.md)
-* [Chapter 2: Hello, Flask! (Chinese)](/2-hello/)
-* [Chapter 3: Templates (Chinese)](/3-template/)
-* [Chapter 4: Static files (Chinese)](/4-static/)
+* [Chapter 2: Hello, Flask!](2-hello.md)
+* [Chapter 3: Templates](3-template.md)
+* [Chapter 4: Static files](4-static.md)
 * [Chapter 5: Databases (Chinese)](/5-database/)
 * [Chapter 6: Improving templates (Chinese)](/6-advanced-template/)
 * [Chapter 7: Forms (Chinese)](/7-form/)
