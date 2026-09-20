@@ -145,11 +145,11 @@ Install dependencies and initialize the application:
 $ python3 -m venv .venv  # Create a virtual environment
 $ source .venv/bin/activate  # Activate the virtual environment
 (.venv) $ pip install -r requirements.txt  # Install all dependencies
-(.venv) $ flask --app wsgi:app init-db  # Initialize the database; alternatively run flask --app wsgi:app forge for sample data
-(.venv) $ flask --app wsgi:app admin  # Create the administrator account
+(.venv) $ flask init-db  # Initialize the database; alternatively run flask forge for sample data
+(.venv) $ flask admin  # Create the administrator account
 ```
 
-Use the same Python version for the virtual environment and the Web application, as required by the [official Flask setup guide](https://help.pythonanywhere.com/pages/Flask/). If `python3` selects a different version, use the matching versioned executable instead. The explicit `--app wsgi:app` options run initialization against the production application and database.
+Use the same Python version for the virtual environment and the Web application, as required by the [official Flask setup guide](https://help.pythonanywhere.com/pages/Flask/). If `python3` selects a different version, use the matching versioned executable instead.
 
 Your console should look similar to this screenshot, which omits the last two commands:
 
