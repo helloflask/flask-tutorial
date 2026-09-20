@@ -8,6 +8,13 @@ This tutorial introduces the essentials of Flask by guiding you through building
 
 The main book is now available in English: the introduction, preface, chapters 1–12, and afterword. You can also read the [Chinese edition](/).
 
+## Translations
+
+Read the book in either language:
+
+* [简体中文](https://tutorial.helloflask.com/)
+* [English](https://tutorial.helloflask.com/en/)
+
 ## Contents
 
 * [Preface](preface.md)
