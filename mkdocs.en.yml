@@ -58,7 +58,11 @@ nav:
   - "Chapter 10: Testing": 10-test.md
   - "Chapter 11: Deployment": 11-deployment.md
   - "Chapter 12: A challenge": 12-challenge.md
-  - Chinese edition (complete): https://tutorial.helloflask.com/
+  - Afterword: postscript.md
+  - Code-listing supplements:
+      - "Chapter 1: Code listing": 1-preparation-code-listing.md
+      - "Chapter 2: Code listing": 2-hello-code-listing.md
+  - Chinese edition: https://tutorial.helloflask.com/
   - Book homepage: https://helloflask.com/book/3
   - Book source: https://github.com/helloflask/flask-tutorial
   - Example application: https://github.com/helloflask/watchlist
