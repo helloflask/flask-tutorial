@@ -144,8 +144,8 @@ from flask import request
 
 ```python
 if request.method == 'POST':
-    title = request.form.get('title').strip()
-    year = request.form.get('year').strip()
+    title = request.form.get('title', '').strip()
+    year = request.form.get('year', '').strip()
 ```
 
 这里对表单字段值调用了 `strip()` 来去除首尾的空格。
@@ -243,8 +243,8 @@ def edit(movie_id):
     movie = db.get_or_404(Movie, movie_id)
 
     if request.method == 'POST':  # 处理编辑表单的提交请求
-        title = request.form.get('title').strip()
-        year = request.form.get('year').strip()
+        title = request.form.get('title', '').strip()
+        year = request.form.get('year', '').strip()
         
         if not title or not year or len(year) != 4 or len(title) > 60:
             flash('Invalid input.')

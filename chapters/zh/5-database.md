@@ -43,7 +43,7 @@ from pathlib import Path
 
 # ...
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + str(Path(app.root_path) / 'data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + str(Path(app.root_path) / 'data.db').lstrip('/')
 ```
 
 > **注意** 这个配置变量的最后一个单词是 URI，而不是 URL。
@@ -70,7 +70,7 @@ from flask_sqlalchemy import SQLAlchemy
 SQLITE_PREFIX = 'sqlite:///' if sys.platform.startswith('win') else 'sqlite:////'
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = SQLITE_PREFIX + str(Path(app.root_path) / 'data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLITE_PREFIX + str(Path(app.root_path) / 'data.db').lstrip('/')
 
 db = SQLAlchemy(app, model_class=Base)
 ```
@@ -115,7 +115,7 @@ class Movie(db.Model):  # 表名将会是 movie
 | 字段类型     | 说明                                                                              |
 | -------- | ------------------------------------------------------------------------------- |
 | int      | 整型                                                                              |
-| str      | 字符串，可以通过 `mapped_column(String(size)` 的形式声明字符串长度。字段类 String 需要从 sqlalchemy 模块导入 |
+| str      | 字符串，可以通过 `mapped_column(String(size))` 的形式声明字符串长度。字段类 String 需要从 sqlalchemy 模块导入 |
 | str      | 长文本，需要同时使用 `mapped_column(Text)` 声明。字段类 Text 需要从 sqlalchemy 模块导入                |
 | datetime | 时间日期，即 Python `datetime` 对象，需要先从 `datetime` 模块导入 `datetime` 对象                  |
 | float    | 浮点数                                                                             |
@@ -246,7 +246,7 @@ from sqlalchemy import select
 | first_or_404() | 返回查询的第一条记录，如果未找到，则返回 404 错误响应                              |
 | get_or_404()   | 传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回 404 错误响应                    |
 | paginate()     | 返回一个 Pagination 对象，可以对记录进行分页处理                             |
-在实际使用时，我们一般会分别使用 `scalars.first()` 和 `scalars().all()` 来获取单条记录或多条记录。这两个调用会返回标量值（scalar），也就是模型类实例。`scalars.first()` 等同于调用 `scalar()`。
+在实际使用时，我们一般会分别使用 `scalars().first()` 和 `scalars().all()` 来获取单条记录或多条记录。这两个调用会返回标量值（scalar），也就是模型类实例。`scalars().first()` 等同于调用 `scalar()`。
 
 需要额外注意的是，`first_or_404()`、`get_or_404()` 以及 `paginate()` 方法由扩展 Flask-SQLAlchemy 提供，所以使用时直接通过 db 对象调用。以 `get_or_404()` 为例：
 

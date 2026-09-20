@@ -102,7 +102,7 @@ def page_not_found(error):
 
 @app.route('/')
 def index():
-    movies = db.session.execute(select(Movies)).scalars().all()
+    movies = db.session.execute(select(Movie)).scalars().all()
     return render_template('index.html', movies=movies)
 ```
 
