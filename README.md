@@ -10,7 +10,7 @@ If you find an error or have feedback or suggestions, please [open an issue](htt
 
 <img src="chapters/shared/cover.jpg" width="400px">
 
-© 2018 - 2026 [Grey Li (李辉)](https://greyli.com/en) / [HelloFlask](http://helloflask.com)
+© 2018 - 2026 [Grey Li (李辉)](https://greyli.com/en) / [HelloFlask](https://helloflask.com/en)
 
 This book is licensed under [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/deed.en). Commercial use, redistribution of modified versions, and redistribution without attribution are not permitted.
 
