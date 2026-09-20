@@ -43,7 +43,7 @@ from pathlib import Path
 
 # ...
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + str(Path(app.root_path) / 'data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + str(Path(app.root_path) / 'data.db').lstrip('/')
 ```
 
 > **注意** 这个配置变量的最后一个单词是 URI，而不是 URL。
