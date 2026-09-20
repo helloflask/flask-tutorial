@@ -4,10 +4,6 @@ Build your first web application with Python and Flask.
 
 This tutorial introduces the essentials of Flask by guiding you through building [Watchlist](https://github.com/helloflask/watchlist), a simple application for keeping track of movies.
 
-## Translation status
-
-The main book is now available in English: the introduction, preface, chapters 1–12, and afterword. You can also read the [Chinese edition](/).
-
 ## Translations
 
 Read the book in either language:
