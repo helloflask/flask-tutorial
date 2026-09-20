@@ -226,7 +226,7 @@ Perform any necessary follow-up steps, such as installing new dependencies, then
 
 ## Chapter summary
 
-With the application online, you can keep adding features or start a new project. The book is nearing its end, but your learning is just beginning: it covers the essentials needed to start using Flask, with plenty more to explore. The [afterword (Chinese)](/postscript/) recommends further reading.
+With the application online, you can keep adding features or start a new project. The book is nearing its end, but your learning is just beginning: it covers the essentials needed to start using Flask, with plenty more to explore. The [afterword](postscript.md) recommends further reading.
 
 One challenge still awaits you in [chapter 12](12-challenge.md).
 

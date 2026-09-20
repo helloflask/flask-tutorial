@@ -4,6 +4,13 @@
 
 当前版本：4.0（2025/10/12）
 
+## 翻译版本
+
+本书提供以下语言版本：
+
+* [简体中文](https://tutorial.helloflask.com/)
+* [English](https://tutorial.helloflask.com/en/)
+
 ## 目录
 
 * [前言](preface.md)
