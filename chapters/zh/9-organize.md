@@ -173,7 +173,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'dev')
 更新后的工厂函数接受传入对应配置类名称（默认设为 development），然后获取对应的配置类，并调用 `app.config.from_object()` 方法将配置更新到程序中。同时我们将注册蓝本、初始化扩展、错误处理函数、自定义命令等操作移动到工厂函数中：
 
 ```python
-from flask import Flask
+from flask import Flask, current_app
 
 def create_app(config_name='development'):
     app = Flask(__name__)
@@ -191,7 +191,7 @@ def create_app(config_name='development'):
     @app.context_processor
     def inject_user():  # 函数名可以随意修改
         user = db.session.execute(select(User)).scalar()
-        return dict(user=user)
+        return dict(user=user, current_app=current_app)
 
     # 错误处理函数
     ...
@@ -238,7 +238,7 @@ def index():
 在模板中则可以直接使用 current_app 对象：
 
 ```jinja
-<p>Debug Mode: {{ config['DEBUG'] }}</p>
+<p>Debug Mode: {{ current_app.config['DEBUG'] }}</p>
 ```
 
 Flask 在执行 flask run 命令时，也包含自动寻找工厂函数的设置。它默认会从 app.py 或 wsgi.py 文件中寻找名为 create_app 或 make_app 的工厂函数，并调用它获取程序实例。因为我们的工厂函数现在存放在 app.py 中，所以仍然可以直接执行 flask run 来运行程序： 
@@ -293,7 +293,7 @@ $ touch blueprints/auth.py blueprints/main.py  # 创建蓝本模块
 *watchlist/\_\_init\_\_.py：工厂函数*
 
 ```python
-from flask import Flask
+from flask import Flask, current_app
 from sqlalchemy import select
 
 from watchlist.extensions import db, login_manager
@@ -325,7 +325,7 @@ def create_app(config_name='development'):
     @app.context_processor
     def inject_user():  # 函数名可以随意修改
         user = db.session.execute(select(User)).scalar()
-        return dict(user=user)
+        return dict(user=user, current_app=current_app)
 
     return app
 ```

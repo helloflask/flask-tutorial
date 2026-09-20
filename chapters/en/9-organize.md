@@ -172,7 +172,7 @@ Here, `os.getenv('SECRET_KEY', 'dev')` reads `SECRET_KEY` from the environment, 
 The updated factory accepts a configuration name, defaulting to `development`. It looks up the class and loads it with `app.config.from_object()`. Move blueprint registration, extension initialization, context processors, error handlers, and custom commands into the factory:
 
 ```python
-from flask import Flask
+from flask import Flask, current_app
 
 def create_app(config_name='development'):
     app = Flask(__name__)
@@ -190,7 +190,7 @@ def create_app(config_name='development'):
     @app.context_processor
     def inject_user():  # You can choose any function name
         user = db.session.execute(select(User)).scalar()
-        return dict(user=user)
+        return dict(user=user, current_app=current_app)
 
     # Error handlers
     ...
@@ -234,10 +234,10 @@ def index():
     # ...
 ```
 
-In templates, Flask makes the application's configuration available directly as `config`:
+The context processor above also makes `current_app` available in templates:
 
 ```jinja
-<p>Debug Mode: {{ config['DEBUG'] }}</p>
+<p>Debug Mode: {{ current_app.config['DEBUG'] }}</p>
 ```
 
 The `flask run` command also discovers factories automatically. It looks in app.py or wsgi.py for a function named `create_app` or `make_app` and calls it. Since our factory is still in app.py, we can keep using:
@@ -292,7 +292,7 @@ Put the factory in the package initializer, `__init__.py`:
 *watchlist/\_\_init\_\_.py: the application factory*
 
 ```python
-from flask import Flask
+from flask import Flask, current_app
 from sqlalchemy import select
 
 from watchlist.extensions import db, login_manager
@@ -324,7 +324,7 @@ def create_app(config_name='development'):
     @app.context_processor
     def inject_user():  # You can choose any function name
         user = db.session.execute(select(User)).scalar()
-        return dict(user=user)
+        return dict(user=user, current_app=current_app)
 
     return app
 ```
