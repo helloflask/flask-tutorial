@@ -4,11 +4,6 @@
 
 Released: 2026/09/20
 
-- 新增英文版正文，包含前言、第 1–12 章和后记；保留完整中文正文。
-- 增加双语目录、语言切换、独立搜索索引和两种语言的统一构建检查。
-- 修复代码示例中的蓝本登录端点、密码哈希字段长度、缺失导入、缩进和测试配置等问题。
-- 移除付费章节、支付页面及相关入口。
-
 - Add an English edition of the main book, including the preface, chapters 1–12, and afterword, alongside the Chinese edition.
 - Add bilingual navigation, language switching, separate search indexes, and combined build checks.
 - Fix code examples, including the blueprint login endpoint, password-hash column length, missing imports, indentation, and test configuration.
