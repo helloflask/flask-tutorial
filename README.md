@@ -4,7 +4,7 @@ English | [简体中文](README.zh-CN.md)
 
 > Build your first web application with Python and Flask
 
-This is the source repository for *Flask Tutorial*. Visit the [book homepage](http://helloflask.com/book/3) to read it online.
+This is the source repository for *Flask Tutorial*. Visit the [book homepage](https://helloflask.com/en/book/3) to read it online.
 
 If you find an error or have feedback or suggestions, please [open an issue](https://github.com/helloflask/flask-tutorial/issues/new) or submit a pull request with a correction. For substantial changes, please [open an issue](https://github.com/helloflask/flask-tutorial/issues/new) first to discuss them. Thank you!
 
