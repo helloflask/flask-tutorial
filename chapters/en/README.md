@@ -2,6 +2,8 @@
 
 Build your first web application with Python and Flask.
 
+Current version: 5.0 (2026/09/20)
+
 This tutorial introduces the essentials of Flask by guiding you through building [Watchlist](https://github.com/helloflask/watchlist), a simple application for keeping track of movies.
 
 ## Translations

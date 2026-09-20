@@ -1,5 +1,14 @@
 # Changelog
 
+## 5.0
+
+Released: 2026/09/20
+
+- Add an English edition of the main book, including the preface, chapters 1–12, and afterword, alongside the Chinese edition.
+- Add bilingual navigation, language switching, separate search indexes, and combined build checks.
+- Fix code examples, including the blueprint login endpoint, password-hash column length, missing imports, indentation, and test configuration.
+- Remove the payment chapter, payment pages, and related links.
+
 ## 4.0
 
 Released: 2025/10/12
