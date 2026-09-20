@@ -118,7 +118,7 @@ from flask import Flask
 
 def create_app():
     app = Flask(__name__)  # 创建程序实例
-	return app  # 返回程序实例
+    return app  # 返回程序实例
 ```
 
 > **提示** 按照惯例，工厂函数一般会被命名为 create_app 或 make_app。
@@ -139,7 +139,7 @@ class BaseConfig:  # 创建配置基类
 
 
 class DevelopmentConfig(BaseConfig):  # 开发配置
-    SQLALCHEMY_DATABASE_URI = SQLITE_PREFIX + str(BASE_DIR / 'data-dev.db')
+    SQLALCHEMY_DATABASE_URI = SQLITE_PREFIX + str(BASE_DIR / 'data-dev.db').lstrip('/')
 
 
 class TestingConfig(BaseConfig):  # 测试配置
@@ -148,7 +148,7 @@ class TestingConfig(BaseConfig):  # 测试配置
 
 
 class ProductionConfig(BaseConfig):  # 生产配置
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', SQLITE_PREFIX + str(BASE_DIR / 'data.db'))
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', SQLITE_PREFIX + str(BASE_DIR / 'data.db').lstrip('/'))
 
 
 config = {
@@ -183,23 +183,23 @@ def create_app(config_name='development'):
     app.register_blueprint(main_bp)
     app.register_blueprint(auth_bp)
 
-	# 初始化扩展
-	db.init_app(app)
-	login_manager.init_app(app)
+    # 初始化扩展
+    db.init_app(app)
+    login_manager.init_app(app)
 
-	# 上下文处理函数
-	@app.context_processor
-	def inject_user():  # 函数名可以随意修改
-	    user = db.session.execute(select(User)).scalar()
-	    return dict(user=user)
+    # 上下文处理函数
+    @app.context_processor
+    def inject_user():  # 函数名可以随意修改
+        user = db.session.execute(select(User)).scalar()
+        return dict(user=user)
 
-	# 错误处理函数
-	...
+    # 错误处理函数
+    ...
 
-	# 自定义命令函数
-	...
+    # 自定义命令函数
+    ...
 
-	return app
+    return app
 ```
 
 因为扩展对象在程序其他部分需要用到，所以不能放到工厂函数中创建。为了支持工厂函数模式，扩展都提供了一个 `init_app()` 方法，可以用来分离扩展对象的创建和初始化：
@@ -302,6 +302,7 @@ from watchlist.blueprints.auth import auth_bp
 from watchlist.models import User
 from watchlist.errors import register_errors
 from watchlist.commands import register_commands
+from watchlist.settings import config
 
 
 def create_app(config_name='development'):
@@ -312,21 +313,21 @@ def create_app(config_name='development'):
     app.register_blueprint(main_bp)
     app.register_blueprint(auth_bp)
 
-	# 初始化扩展
-	db.init_app(app)
-	login_manager.init_app(app)
+    # 初始化扩展
+    db.init_app(app)
+    login_manager.init_app(app)
 
-	# 注册错误处理函数和命令
-	register_errors(app)
-	register_commands(app)
+    # 注册错误处理函数和命令
+    register_errors(app)
+    register_commands(app)
 
-	# 注册上下文处理函数
-	@app.context_processor
-	def inject_user():  # 函数名可以随意修改
-	    user = db.session.execute(select(User)).scalar()
-	    return dict(user=user)
+    # 注册上下文处理函数
+    @app.context_processor
+    def inject_user():  # 函数名可以随意修改
+        user = db.session.execute(select(User)).scalar()
+        return dict(user=user)
 
-	return app
+    return app
 ```
 
 扩展对象的创建和相关操作放到单独的 extensions.py 模块。
@@ -351,7 +352,7 @@ def load_user(user_id):
 	user = db.session.get(User, int(user_id))
 	return user
 
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'
 ```
 
 因为 models.py 模块需要导入存放在 extensions.py 中的 db 对象，为了避免循环依赖，`load_user()` 函数中使用的 User 模型类在函数内进行导入。
@@ -390,9 +391,9 @@ from watchlist.errors import register_errors
 def create_app(config_name='development'):
     app = Flask(__name__)
 
-	register_errors(app)
+    register_errors(app)
 
-	return app
+    return app
 ```
 
 我们为两个蓝本在 blueprints 子包下分别创建了对应的模块（记得为 blueprints 子包创建一个构造文件 `__init__.py`）。以认证蓝本为例，我们把 auth 蓝本的定义和相关视图函数放到了 auth.py 模块下。
@@ -492,7 +493,7 @@ watchlist
     ├── settings.py
 	├── extensions.py
     ├── blueprints
-	│   ├── __main__.py
+	│   ├── __init__.py
     │   ├── main.py
     │   └── auth.py
     ├── static

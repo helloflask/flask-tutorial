@@ -17,7 +17,7 @@ Web 程序通常有两种部署方式：传统部署和云部署。传统部署�
 
 ```python
 class ProductionConfig(BaseConfig):
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', SQLITE_PREFIX + str(BASE_DIR / 'data.db'))
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', SQLITE_PREFIX + str(BASE_DIR / 'data.db').lstrip('/'))
 ```
 
 在示例程序里，因为我们部署后将继续使用 SQLite，所以只需要为生产环境设置不同的数据库文件名。另外，继承自 BaseConfig 的配置 SECRET_KEY 需要改为使用随机字符：
