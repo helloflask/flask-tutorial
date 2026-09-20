@@ -1,17 +1,19 @@
-# Flask 入门教程
+# Flask Tutorial
 
-> 使用 Python 和 Flask 开发你的第一个 Web 程序
+English | [简体中文](README.zh-CN.md)
 
-这里是《Flask 入门教程》的源码仓库。请访问[本书主页](http://helloflask.com/book/3)在线阅读本书。
+> Build your first web application with Python and Flask
 
-如果你发现了书中的错误，或是有任何意见或建议，欢迎[创建 Issue](https://github.com/helloflask/flask-tutorial/issues/new) 反馈或提交 Pull Request 进行修正。对于较大的内容变动，建议先[创建 Issue](https://github.com/helloflask/flask-tutorial/issues/new) 进行讨论。谢谢！
+This is the source repository for *Flask Tutorial*. Visit the [book homepage](https://helloflask.com/en/book/3) to read it online.
+
+If you find an error or have feedback or suggestions, please [open an issue](https://github.com/helloflask/flask-tutorial/issues/new) or submit a pull request with a correction. For substantial changes, please [open an issue](https://github.com/helloflask/flask-tutorial/issues/new) first to discuss them. Thank you!
 
 <img src="chapters/shared/cover.jpg" width="400px">
 
-© 2018 - 2025 [李辉](http://greyli.com)（Grey Li） / [HelloFlask](http://helloflask.com)
+© 2018 - 2025 [Grey Li (李辉)](http://greyli.com) / [HelloFlask](http://helloflask.com)
 
-本书采用 [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh) 协议授权，禁止商用、演绎后分发或无署名转载。
+This book is licensed under [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/deed.en). Commercial use, redistribution of modified versions, and redistribution without attribution are not permitted.
 
-## 参与贡献 / Contributing
+## Contributing
 
-双语文档构建、翻译和 Netlify 部署说明请参阅[贡献指南](CONTRIBUTING.md)。
+See the [contributing guide](CONTRIBUTING.md) for instructions on building both language editions, translating chapters, and deploying with Netlify.

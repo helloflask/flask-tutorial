@@ -5,7 +5,7 @@
 中文继续使用网站根路径（例如 `/1-preparation/`），英文使用 `/en/`。
 
 - `chapters/zh/`：完整中文书稿；`mkdocs.yml`：中文目录和站点配置。
-- `chapters/en/`：英文书稿；`mkdocs.en.yml`：英文目录和站点配置。目前只有英文介绍页，未翻译章节明确链接到中文版。
+- `chapters/en/`：英文书稿；`mkdocs.en.yml`：英文目录和站点配置。已翻译章节列在英文目录中，未翻译章节明确链接到中文版。
 - `chapters/shared/`：两种语言共用的图片、样式、封面和模板。构建时复制到各语言的临时文档目录，保持书稿中的 `images/...` 等相对链接有效。
 
 Install the documentation dependencies and build both editions:
