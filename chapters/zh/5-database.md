@@ -30,7 +30,7 @@ class Base(DeclarativeBase):
 db = SQLAlchemy(app, model_class=Base)  # 初始化扩展，传入程序实例 app
 ```
 
-实例化扩展类时，除了程序实例，需要额外传入一个继承自 DeclarativeBase 的子类作为 model_class 参数的值。目前这个类是空的，后续你可以按照需要对这个基类进行自定义。
+实例化扩展类时，除了程序实例，需要额外传入一个继承自 DeclarativeBase 的子类作为 model_class 参数的值。目前这个类是空的，后续你可以按照需要对这个基类进行自定义。初始化扩展前，还需要先完成下一节的数据库配置。
 
 ## 设置数据库 URI
 
@@ -43,39 +43,40 @@ from pathlib import Path
 
 # ...
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + str(Path(app.root_path) / 'data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + str(Path(app.root_path) / 'data.db')
 ```
 
 > **注意** 这个配置变量的最后一个单词是 URI，而不是 URL。
 
-对于这个变量值，不同的 DBMS 有不同的格式，对于 SQLite 来说，这个值的格式如下：
+对于这个变量值，不同的 DBMS 有不同的格式，对于 SQLite 来说，使用 Unix 风格的绝对路径时，这个值的格式如下（第四个斜线是绝对路径开头的斜线）：
 
-```python
+```text
 sqlite:////数据库文件的绝对地址
 ```
 
 数据库文件一般放到项目根目录即可，`app.root_path` 返回程序实例所在模块的路径（目前来说，即项目根目录），我们使用它来构建文件路径。数据库文件的名称和后缀你可以自由定义，一般会使用 .db、.sqlite 和 .sqlite3 作为后缀。
 
-另外，如果你使用 Windows 系统，上面的 URI 前缀部分只需要写入三个斜线（即 `sqlite:///`）。在本书的示例程序代码里，做了一些兼容性处理，实际的代码如下：
+在 Windows 上，`C:/.../data.db` 这样的绝对路径前需要三个斜线（即 `sqlite:///`）；在 Unix 系统上，绝对路径本身以 `/` 开头，拼接后自然形成四个斜线。因此，使用 `Path` 构造绝对路径时，两种系统都只需要拼接 `sqlite:///` 前缀，无须额外判断操作系统。完整的配置代码如下：
 
 *app.py：数据库配置*
 
 ```python
-import os
-import sys
+from pathlib import Path
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
 
-SQLITE_PREFIX = 'sqlite:///' if sys.platform.startswith('win') else 'sqlite:////'
+class Base(DeclarativeBase):
+    pass
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = SQLITE_PREFIX + str(Path(app.root_path) / 'data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + str(Path(app.root_path) / 'data.db')
 
 db = SQLAlchemy(app, model_class=Base)
 ```
 
-如果你固定在某一个操作系统上进行开发，部署时也使用相同的操作系统，那么可以不用这么做，直接根据你的需要写出前缀即可。
+如果你固定在某一个操作系统上进行开发，部署时也使用相同的操作系统，也可以直接写出对应的完整 URI。拼接绝对路径时，注意路径本身已经包含了所需的起始斜线。
 
 > **提示** 你可以访问 [Flask 文档的配置页面](https://flask.palletsprojects.com/config/)查看 Flask 内置的配置变量；同样的，在 [Flask-SQLAlchemy 文档的配置页面](https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/)可以看到 Flask-SQLAlchemy 提供的配置变量。
 
@@ -108,18 +109,19 @@ class Movie(db.Model):  # 表名将会是 movie
 * 模型类要声明继承 `db.Model`。
 * 使用 `__tablename__` 属性定义表名称。
 * 每一个类属性（字段）的类型通过类型标注（type hint）定义，类型信息通过 `Mapped[]` 传入。下面的表格列出了常用的字段类型和对应的类型对象。
-* 如果对字段有额外的设置，可以使用 `mapped_column()` 调用传入额外的参数。比如，`primary_key` 设置当前字段是否为主键。除此之外，常用的选项还有 `index`（布尔值，是否设置索引）、`unique`（布尔值，是否允许重复值）、`default`（设置默认值）等。
+* 如果对字段有额外的设置，可以使用 `mapped_column()` 调用传入额外的参数。比如，`primary_key` 设置当前字段是否为主键。除此之外，常用的选项还有 `index`（布尔值，是否设置索引）、`unique`（布尔值，是否要求值唯一）、`default`（设置默认值）等。
 
 常用的字段类型如下表所示：
 
 | 字段类型     | 说明                                                                              |
 | -------- | ------------------------------------------------------------------------------- |
 | int      | 整型                                                                              |
-| str      | 字符串，可以通过 `mapped_column(String(size)` 的形式声明字符串长度。字段类 String 需要从 sqlalchemy 模块导入 |
+| str      | 字符串，可以通过 `mapped_column(String(size))` 的形式声明字符串长度。字段类 String 需要从 sqlalchemy 模块导入 |
 | str      | 长文本，需要同时使用 `mapped_column(Text)` 声明。字段类 Text 需要从 sqlalchemy 模块导入                |
 | datetime | 时间日期，即 Python `datetime` 对象，需要先从 `datetime` 模块导入 `datetime` 对象                  |
 | float    | 浮点数                                                                             |
 | bool     | 布尔值                                                                             |
+
 > **提示** 如果你对类型标注不熟悉，可以阅读[相关文档](https://docs.python.org/zh-cn/3.12/library/typing.html)。简单来说，我们可以通过特殊语法来为变量、函数参数、函数返回值等标注相应的类型，比如 `message: str = 'How are you?'`。其中的“: str”部分用来标注 message 变量的类型为字符串（str）。大部分内置类型都可以直接用作类型标注，比如 str、int、list、dict、bool。对于复杂的类型标注，可以从 typing 模块导入相应的类型。
 
 ## 创建数据库表
@@ -246,7 +248,8 @@ from sqlalchemy import select
 | first_or_404() | 返回查询的第一条记录，如果未找到，则返回 404 错误响应                              |
 | get_or_404()   | 传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回 404 错误响应                    |
 | paginate()     | 返回一个 Pagination 对象，可以对记录进行分页处理                             |
-在实际使用时，我们一般会分别使用 `scalars.first()` 和 `scalars().all()` 来获取单条记录或多条记录。这两个调用会返回标量值（scalar），也就是模型类实例。`scalars.first()` 等同于调用 `scalar()`。
+
+在实际使用时，我们一般会分别使用 `scalars().first()` 和 `scalars().all()` 来获取单条记录或多条记录。这两个调用会返回标量值（scalar），也就是模型类实例。`scalars().first()` 等同于调用 `scalar()`。
 
 需要额外注意的是，`first_or_404()`、`get_or_404()` 以及 `paginate()` 方法由扩展 Flask-SQLAlchemy 提供，所以使用时直接通过 db 对象调用。以 `get_or_404()` 为例：
 
@@ -348,7 +351,7 @@ def index():
     return render_template('index.html', user=user, movies=movies)
 ```
 
-> **提示**  `scalars()` 返回的 Result 对象可以直接作为迭代器使用。如果你对返回的结果只需要调用 for 循环迭代，那么可以仅调用 `scalars()` 而不是 `scalars().all()`，这样会比后者把所有结果都加载出来再进行 for 循环性能更好。
+> **提示**  `scalars()` 返回的 ScalarResult 对象可以直接迭代。如果你对返回的结果只需要调用 for 循环迭代，那么可以仅调用 `scalars()` 而不是 `scalars().all()`，这样可以避免先把所有结果收集到列表中再进行 for 循环。
 
 在 `index` 视图中，原来传入模板的 `name` 变量被 `user` 实例取代，模板 index.html 中的两处 `name` 变量也要相应的更新为 `user.name` 属性：
 
