@@ -23,6 +23,8 @@ def sayhello(to=None):
 ```python
 import unittest
 
+from hello import sayhello
+
 
 class SayHelloTestCase(unittest.TestCase):  # 测试用例
 
@@ -38,7 +40,7 @@ class SayHelloTestCase(unittest.TestCase):  # 测试用例
        
     def test_sayhello_to_somebody(self):  # 第 2 个测试
         rv = sayhello(to='Grey')
-		self.assertEqual(rv, 'Hello, Grey!')
+        self.assertEqual(rv, 'Hello, Grey!')
 
 
 if __name__ == '__main__':
@@ -92,11 +94,11 @@ class WatchlistTestCase(unittest.TestCase):
         # 使用测试配置创建程序实例
         self.app = create_app(config_name='testing')
         # 创建程序上下文
-		self.context = self.app.app_context()
-		# 激活上下文
-		self.context.push()
+        self.context = self.app.app_context()
+        # 激活上下文
+        self.context.push()
 
-		# 创建数据库和表
+        # 创建数据库和表
         db.create_all()
         # 创建测试数据，一个用户，一个电影条目
         user = User(name='Test', username='test')
@@ -116,11 +118,11 @@ class WatchlistTestCase(unittest.TestCase):
     
     # 测试程序实例是否存在
     def test_app_exist(self):
-        self.assertIsNotNone(app)
+        self.assertIsNotNone(self.app)
 
     # 测试程序是否处于测试模式
     def test_app_is_testing(self):
-        self.assertTrue(app.config['TESTING'])
+        self.assertTrue(self.app.config['TESTING'])
 ```
 
 某些配置在开发和测试时通常需要使用不同的值。在 `setUp()` 方法中，我们调用工厂函数创建程序实例，传入测试配置对应的配置名。下面是对应的测试配置类：
@@ -133,7 +135,7 @@ class TestingConfig(BaseConfig):
 
 这里将 `TESTING` 设为 `True` 来开启测试模式，这样在出错时不会输出多余信息；然后将 `SQLALCHEMY_DATABASE_URI` 设为 `'sqlite:///:memory:'`，这会使用 SQLite 内存型数据库，不会干扰开发时使用的数据库文件。你也可以使用不同文件名的 SQLite 数据库文件，但内存型数据库速度更快。
 
-某些程序操作需要在激活 Flask 上下文时执行，比如前面介绍的 `url_for()` 函数，或是创建数据库表的 `db.session.create_all()` 操作。我们在 `setUp()` 方法中创建并激活程序上下文：
+某些程序操作需要在激活 Flask 上下文时执行，比如前面介绍的 `url_for()` 函数，或是创建数据库表的 `db.create_all()` 操作。我们在 `setUp()` 方法中创建并激活程序上下文：
 
 ```python
 self.context = self.app.app_context()

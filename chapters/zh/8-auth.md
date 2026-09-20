@@ -37,7 +37,7 @@ class User(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)  # 主键
     name: Mapped[str] = mapped_column(String(20))  # 名字
     username: Mapped[str] = mapped_column(String(20))  # 用户名
-    password_hash: Mapped[Optional[str]] = mapped_column(String(128))  # 密码散列值
+    password_hash: Mapped[Optional[str]] = mapped_column(String(256))  # 密码散列值
 
     def set_password(self, password):  # 用来设置密码的方法，接受密码作为参数
         self.password_hash = generate_password_hash(password)  # 将生成的密码保持到对应字段
@@ -51,13 +51,13 @@ password_hash 字段在调用 set_password() 方法时才会生成，因此我�
 ```python
 from typing import Optional
 
-password_hash: Mapped[Optional[str]] = mapped_column(String(128))
+password_hash: Mapped[Optional[str]] = mapped_column(String(256))
 ```
 
 如果你使用的 Python 版本是 3.10 及以上版本，可以使用管道符号搭配 None 来表示可选：
 
 ```python
-password_hash: Mapped[str | None] = mapped_column(String(128))
+password_hash: Mapped[str | None] = mapped_column(String(256))
 ```
 
 因为模型（表结构）发生变化，我们需要重新生成数据库（这会清空数据）：

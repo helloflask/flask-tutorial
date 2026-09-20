@@ -17,7 +17,7 @@ Web 程序通常有两种部署方式：传统部署和云部署。传统部署�
 
 ```python
 class ProductionConfig(BaseConfig):
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', SQLITE_PREFIX + str(BASE_DIR / 'data.db'))
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', SQLITE_PREFIX + str(BASE_DIR / 'data.db').lstrip('/'))
 ```
 
 在示例程序里，因为我们部署后将继续使用 SQLite，所以只需要为生产环境设置不同的数据库文件名。另外，继承自 BaseConfig 的配置 SECRET_KEY 需要改为使用随机字符：
@@ -147,8 +147,8 @@ SECRET_KEY=3d6f45a5fc12445dbac2f59c3b6c7cb1
 $ python3 -m venv .venv  # 创建虚拟环境
 $ source .venv/bin/activate  # 激活虚拟环境
 (.venv) $ pip install -r requirements.txt  # 安装所有依赖
-(.venv) $ flask init-db  # 初始化数据库，也可以执行 flask forge 创建虚拟数据
-(.venv) $ flask admin  # 创建管理员账户
+(.venv) $ flask --app wsgi:app init-db  # 初始化数据库，也可以执行 flask --app wsgi:app forge 创建虚拟数据
+(.venv) $ flask --app wsgi:app admin  # 创建管理员账户
 ```
 
 你的命令行窗口和依次输入的命令（省略了后两条命令）类似下图：

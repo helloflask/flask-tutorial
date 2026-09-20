@@ -6,11 +6,11 @@ This tutorial introduces the essentials of Flask by guiding you through building
 
 ## Translation status
 
-The English translation is in progress. The introduction, preface, and chapters 1–7 are now available in English. The complete fourth edition is available in [Chinese](/).
+The English translation is in progress. The introduction, preface, and chapters 1–12 are now available in English. The complete fourth edition is available in [Chinese](/).
 
 ## Contents
 
-The preface and chapters 1–7 are available in English. Links marked **Chinese** open chapters that have not yet been translated.
+The preface and chapters 1–12 are available in English. The afterword is still available only in Chinese.
 
 * [Preface](preface.md)
 * [Chapter 1: Getting ready](1-preparation.md)
@@ -20,11 +20,11 @@ The preface and chapters 1–7 are available in English. Links marked **Chinese*
 * [Chapter 5: Databases](5-database.md)
 * [Chapter 6: Improving templates](6-advanced-template.md)
 * [Chapter 7: Forms](7-form.md)
-* [Chapter 8: User authentication (Chinese)](/8-auth/)
-* [Chapter 9: Organizing your code (Chinese)](/9-organize/)
-* [Chapter 10: Testing (Chinese)](/10-test/)
-* [Chapter 11: Deployment (Chinese)](/11-deployment/)
-* [Chapter 12: Challenges (Chinese)](/12-challenge/)
+* [Chapter 8: User authentication](8-auth.md)
+* [Chapter 9: Organizing your code](9-organize.md)
+* [Chapter 10: Testing](10-test.md)
+* [Chapter 11: Deployment](11-deployment.md)
+* [Chapter 12: A challenge](12-challenge.md)
 * [Afterword (Chinese)](/postscript/)
 
 ## Feedback
